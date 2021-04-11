@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="tableOnline:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessClassMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessDepartmentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessGradeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessMajorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/ClazzMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/DepartmentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/GradeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/KeysMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/MajorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessDepartment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessGrade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessMajor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Clazz.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Department.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Grade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Major.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/TableInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessClassMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessDepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessGradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessMajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ClazzMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/KeysMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/MajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/TableInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring-mybatis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/error/errors.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/system/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tableOnline.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/AccessClassMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/AccessDepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/AccessGradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/AccessMajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/ClazzMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/GradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/KeysMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/MajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/TableInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/spring-mvc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/spring-mybatis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/controller/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/AccessClassMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/AccessDepartmentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/AccessGradeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/AccessMajorMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/ClazzMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/DepartmentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/GradeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/KeysMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/MajorMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/TableInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/UserInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/UserMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessClass.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessDepartment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessGrade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessMajor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Clazz.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Department.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Grade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Keys.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Major.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/TableInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/UserInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/service/UserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/db.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/generatorConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessClassMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessDepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessGradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessMajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/ClazzMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/GradeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/KeysMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/MajorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/TableInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/spring-mvc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/spring-mybatis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/AccessClassMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/AccessDepartmentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/AccessGradeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/AccessMajorMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/ClazzMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/DepartmentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/GradeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/KeysMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/MajorMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/TableInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/UserInfoMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/UserMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessClass.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessDepartment.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessGrade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessMajor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Clazz.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Department.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Grade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Keys.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Major.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/TableInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/UserInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/UserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/ValidateCode-1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/annotations-13.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/ant-1.9.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/ant-launcher-1.9.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/apiguardian-api-1.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/asm-6.0_ALPHA.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/aspectjweaver-1.8.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/attoparser-2.0.4.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/c3p0-0.9.5.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/cglib-3.2.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/commons-beanutils-1.8.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/commons-fileupload-1.3.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/commons-io-2.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/commons-logging-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/jackson-annotations-2.9.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/jackson-core-2.9.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/jackson-databind-2.9.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/javassist-3.20.0-GA.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/jave-1.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/jcommander-1.78.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/jquery-3.5.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/junit-jupiter-5.8.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/junit-jupiter-api-5.8.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/junit-jupiter-engine-5.8.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/junit-jupiter-params-5.8.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/junit-platform-commons-1.8.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/junit-platform-engine-1.8.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/kotlin-stdlib-1.4.20.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/kotlin-stdlib-common-1.4.20.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/kotlin-stdlib-jdk7-1.4.20.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/kotlin-stdlib-jdk8-1.4.20.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/log4j-1.2.17.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/mchange-commons-java-0.2.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/mybatis-3.4.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/mybatis-spring-1.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/mysql-connector-java-8.0.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/ognl-3.1.12.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/opentest4j-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/protobuf-java-3.6.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/shiro-core-1.2.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/slf4j-api-1.6.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-aop-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-beans-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-context-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-core-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-expression-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-jdbc-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-tx-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-web-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/spring-webmvc-4.3.7.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/testng-7.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/thymeleaf-3.0.9.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/thymeleaf-spring5-3.0.9.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/unbescape-1.1.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/tableOnline/index.jsp" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="team_tb@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="E:/JetBrainIdeaPlugns/apache-maven-3.5.0" />
+        <option name="userSettingsFile" value="E:\JetBrainIdeaPlugns\apache-maven-3.5.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1qxJ12A2PVOxstML1TwCm0V6KEk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="添加" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../music" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\js" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.tableOnline">
+    <configuration name="UserserviceTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tableOnline" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="team.tb.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="team.tb.service" />
+      <option name="MAIN_CLASS_NAME" value="team.tb.service.UserserviceTest" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tableOnline[mybatis-generator:generate]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="mybatis-generator:generate" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="tableOnline" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:\Program Files\Java\jdk1.8.0_211\jre">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <deployment>
+        <artifact name="tableOnline:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/tableOnline" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_tableOnline" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50363" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="tableOnline:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.UserserviceTest.test01" />
+      <item itemvalue="Maven.tableOnline[mybatis-generator:generate]" />
+      <item itemvalue="Tomcat Server.tableOnline" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserserviceTest.test01" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="" />
+      <created>1618015088686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618015088686</updated>
+      <workItem from="1618015092583" duration="1803000" />
+      <workItem from="1618036626231" duration="800000" />
+      <workItem from="1618041521248" duration="747000" />
+      <workItem from="1618043539745" duration="600000" />
+      <workItem from="1618055324688" duration="4613000" />
+      <workItem from="1618059962018" duration="752000" />
+      <workItem from="1618060924201" duration="654000" />
+      <workItem from="1618064405331" duration="6390000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

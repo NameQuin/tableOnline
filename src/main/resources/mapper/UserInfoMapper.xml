@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.tb.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="team.tb.pojo.UserInfo">
+    <id column="ufid" jdbcType="INTEGER" property="ufid" />
+    <result column="kid" jdbcType="VARCHAR" property="kid" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user_info
+    where ufid = #{ufid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.tb.pojo.UserInfo">
+    insert into t_user_info (ufid, kid, value,
+      uid)
+    values (#{ufid,jdbcType=INTEGER}, #{kid,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
+      #{uid,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="team.tb.pojo.UserInfo">
+    update t_user_info
+    set kid = #{kid,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR}
+    where ufid = #{ufid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ufid, kid, value, uid
+    from t_user_info
+    where ufid = #{ufid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ufid, kid, value, uid
+    from t_user_info
+  </select>
+</mapper>

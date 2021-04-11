@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.tb.dao.KeysMapper">
+  <resultMap id="BaseResultMap" type="team.tb.pojo.Keys">
+    <id column="kid" jdbcType="INTEGER" property="kid" />
+    <result column="kname" jdbcType="VARCHAR" property="kname" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_keys
+    where kid = #{kid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.tb.pojo.Keys">
+    insert into t_keys (kid, kname)
+    values (#{kid,jdbcType=INTEGER}, #{kname,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="team.tb.pojo.Keys">
+    update t_keys
+    set kname = #{kname,jdbcType=VARCHAR}
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select kid, kname
+    from t_keys
+    where kid = #{kid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select kid, kname
+    from t_keys
+  </select>
+</mapper>

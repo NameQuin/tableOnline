@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.tb.dao.ClazzMapper">
+  <resultMap id="BaseResultMap" type="team.tb.pojo.Clazz">
+    <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="cnum" jdbcType="VARCHAR" property="cnum" />
+    <result column="cdepartment" jdbcType="VARCHAR" property="cdepartment" />
+    <result column="cmajor" jdbcType="VARCHAR" property="cmajor" />
+    <result column="cgrade" jdbcType="VARCHAR" property="cgrade" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_class
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.tb.pojo.Clazz">
+    insert into t_class (cid, cnum, cdepartment,
+      cmajor, cgrade)
+    values (#{cid,jdbcType=INTEGER}, #{cnum,jdbcType=VARCHAR}, #{cdepartment,jdbcType=VARCHAR},
+      #{cmajor,jdbcType=VARCHAR}, #{cgrade,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="team.tb.pojo.Clazz">
+    update t_class
+    set cnum = #{cnum,jdbcType=VARCHAR},
+      cdepartment = #{cdepartment,jdbcType=VARCHAR},
+      cmajor = #{cmajor,jdbcType=VARCHAR},
+      cgrade = #{cgrade,jdbcType=VARCHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select cid, cnum, cdepartment, cmajor, cgrade
+    from t_class
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select cid, cnum, cdepartment, cmajor, cgrade
+    from t_class
+  </select>
+</mapper>
