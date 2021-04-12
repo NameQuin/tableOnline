@@ -88,6 +88,11 @@
     </mvc:resources>
     <mvc:resources location="/WEB-INF/pages/" mapping="/pages/**">
     </mvc:resources>
+    <mvc:resources mapping="/layui/**" location="/WEB-INF/layui/">
+    </mvc:resources>
+    <mvc:resources mapping="/imgs/**" location="/WEB-INF/imgs/">
+    </mvc:resources>
+
 
 
 

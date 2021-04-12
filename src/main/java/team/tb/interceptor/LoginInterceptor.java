@@ -41,7 +41,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 }
                 if(StringUtils.isEmpty(token)){
                     // 地址重定向
-                    httpServletResponse.sendRedirect("system/index");
+                    httpServletResponse.sendRedirect("login");
                 }
                 try{
                     JWTUtils.verify(token);
@@ -51,7 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                     Cookie cookie = new Cookie("token", "0");
                     cookie.setMaxAge(0);
                     httpServletResponse.addCookie(cookie);
-                    httpServletResponse.sendRedirect("system/index");
+                    httpServletResponse.sendRedirect("login");
                 }
             }
         }
