@@ -39,6 +39,6 @@
   <select id="findUserByUsernameAndPwd" parameterType="team.tb.pojo.User" resultMap="BaseResultMap">
     select uid, username, password, ulevel, ustatus
     from t_user
-    where username = #{username} and password = #{password}
+    where username = #{username} and password = #{password} and ustatus = 1
   </select>
 </mapper>

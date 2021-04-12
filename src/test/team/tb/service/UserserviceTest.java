@@ -15,8 +15,16 @@ public class UserserviceTest {
         user.setPassword("admin");
         User ret = null;
         if(user != null){
-             ret = userService.findUserByUsername(user);
+             ret = userService.findUserByUsernameAndPwd(user);
         }
         System.out.println(ret);
     }
+
+    @Test
+    public void test02(){
+
+    }
+
+
+
 }

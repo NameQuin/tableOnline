@@ -1,9 +1,6 @@
 package team.tb.dao;
 
 import java.util.List;
-
-import com.beust.jcommander.Parameter;
-import org.apache.ibatis.annotations.Param;
 import team.tb.pojo.User;
 
 public interface UserMapper {

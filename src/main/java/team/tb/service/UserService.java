@@ -4,5 +4,5 @@ import team.tb.pojo.User;
 
 public interface UserService {
 
-    User findUserByUsername(User user);
+    User findUserByUsernameAndPwd(User user);
 }

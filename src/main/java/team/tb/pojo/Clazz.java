@@ -7,11 +7,7 @@ public class Clazz implements Serializable {
 
     private String cnum;
 
-    private String cdepartment;
-
     private String cmajor;
-
-    private String cgrade;
 
     private static final long serialVersionUID = 1L;
 
@@ -31,27 +27,11 @@ public class Clazz implements Serializable {
         this.cnum = cnum == null ? null : cnum.trim();
     }
 
-    public String getCdepartment() {
-        return cdepartment;
-    }
-
-    public void setCdepartment(String cdepartment) {
-        this.cdepartment = cdepartment == null ? null : cdepartment.trim();
-    }
-
     public String getCmajor() {
         return cmajor;
     }
 
     public void setCmajor(String cmajor) {
         this.cmajor = cmajor == null ? null : cmajor.trim();
-    }
-
-    public String getCgrade() {
-        return cgrade;
-    }
-
-    public void setCgrade(String cgrade) {
-        this.cgrade = cgrade == null ? null : cgrade.trim();
     }
 }

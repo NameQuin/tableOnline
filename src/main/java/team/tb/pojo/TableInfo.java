@@ -16,9 +16,11 @@ public class TableInfo implements Serializable {
 
     private Integer tfflag;
 
-    private Integer tflevel;
-
     private String tfcreator;
+
+    private String tfkeys;
+
+    private String tfcondition;
 
     private static final long serialVersionUID = 1L;
 
@@ -70,19 +72,27 @@ public class TableInfo implements Serializable {
         this.tfflag = tfflag;
     }
 
-    public Integer getTflevel() {
-        return tflevel;
-    }
-
-    public void setTflevel(Integer tflevel) {
-        this.tflevel = tflevel;
-    }
-
     public String getTfcreator() {
         return tfcreator;
     }
 
     public void setTfcreator(String tfcreator) {
         this.tfcreator = tfcreator == null ? null : tfcreator.trim();
+    }
+
+    public String getTfkeys() {
+        return tfkeys;
+    }
+
+    public void setTfkeys(String tfkeys) {
+        this.tfkeys = tfkeys == null ? null : tfkeys.trim();
+    }
+
+    public String getTfcondition() {
+        return tfcondition;
+    }
+
+    public void setTfcondition(String tfcondition) {
+        this.tfcondition = tfcondition == null ? null : tfcondition.trim();
     }
 }

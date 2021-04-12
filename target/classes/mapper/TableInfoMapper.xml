@@ -8,20 +8,23 @@
     <result column="tfendtime" jdbcType="TIMESTAMP" property="tfendtime" />
     <result column="tfsrc" jdbcType="VARCHAR" property="tfsrc" />
     <result column="tfflag" jdbcType="INTEGER" property="tfflag" />
-    <result column="tflevel" jdbcType="INTEGER" property="tflevel" />
     <result column="tfcreator" jdbcType="VARCHAR" property="tfcreator" />
+    <result column="tfkeys" jdbcType="VARCHAR" property="tfkeys" />
+    <result column="tfcondition" jdbcType="LONGVARCHAR" property="tfcondition" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_table_info
     where tfid = #{tfid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="team.tb.pojo.TableInfo">
-    insert into t_table_info (tfid, tftitle, tfbegintime,
-      tfendtime, tfsrc, tfflag,
-      tflevel, tfcreator)
-    values (#{tfid,jdbcType=INTEGER}, #{tftitle,jdbcType=VARCHAR}, #{tfbegintime,jdbcType=TIMESTAMP},
-      #{tfendtime,jdbcType=TIMESTAMP}, #{tfsrc,jdbcType=VARCHAR}, #{tfflag,jdbcType=INTEGER},
-      #{tflevel,jdbcType=INTEGER}, #{tfcreator,jdbcType=VARCHAR})
+    insert into t_table_info (tfid, tftitle, tfbegintime, 
+      tfendtime, tfsrc, tfflag, 
+      tfcreator, tfkeys, tfcondition
+      )
+    values (#{tfid,jdbcType=INTEGER}, #{tftitle,jdbcType=VARCHAR}, #{tfbegintime,jdbcType=TIMESTAMP}, 
+      #{tfendtime,jdbcType=TIMESTAMP}, #{tfsrc,jdbcType=VARCHAR}, #{tfflag,jdbcType=INTEGER}, 
+      #{tfcreator,jdbcType=VARCHAR}, #{tfkeys,jdbcType=VARCHAR}, #{tfcondition,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.TableInfo">
     update t_table_info
@@ -30,17 +33,18 @@
       tfendtime = #{tfendtime,jdbcType=TIMESTAMP},
       tfsrc = #{tfsrc,jdbcType=VARCHAR},
       tfflag = #{tfflag,jdbcType=INTEGER},
-      tflevel = #{tflevel,jdbcType=INTEGER},
-      tfcreator = #{tfcreator,jdbcType=VARCHAR}
+      tfcreator = #{tfcreator,jdbcType=VARCHAR},
+      tfkeys = #{tfkeys,jdbcType=VARCHAR},
+      tfcondition = #{tfcondition,jdbcType=LONGVARCHAR}
     where tfid = #{tfid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tflevel, tfcreator
+    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tfcreator, tfkeys, tfcondition
     from t_table_info
     where tfid = #{tfid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tflevel, tfcreator
+    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tfcreator, tfkeys, tfcondition
     from t_table_info
   </select>
 </mapper>

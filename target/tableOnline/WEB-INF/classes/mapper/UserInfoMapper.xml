@@ -12,9 +12,9 @@
     where ufid = #{ufid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="team.tb.pojo.UserInfo">
-    insert into t_user_info (ufid, kid, value,
+    insert into t_user_info (ufid, kid, value, 
       uid)
-    values (#{ufid,jdbcType=INTEGER}, #{kid,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
+    values (#{ufid,jdbcType=INTEGER}, #{kid,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
       #{uid,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.UserInfo">

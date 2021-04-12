@@ -53,40 +53,51 @@
           class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver"/>
     </bean>
-
-    <!--  配置多个视图解析-->
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-
-        <property name="viewResolvers">
-            <list>
-                <!--thymeleaf解析器，无法解析jsp，可以解析html-->
-                <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
-                    <property name="characterEncoding" value="UTF-8"/>
-                    <property name="templateEngine" ref="templateEngine" />
-                    <property name="viewNames" value="*"/>
-                    <property name="order" value="2" />
-                </bean>
-                <!--jsp-->
-                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                    <property name="prefix" value="/WEB-INF/pages/"/>
-                    <property name="suffix" value=".jsp"/>
-                    <property name="viewNames" value="*"/>
-                    <property name="order" value="1" />
-                </bean>
-
-            </list>
-        </property>
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>
-<!--    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">-->
-<!--        <property name="templateEngine" ref="templateEngine"/>-->
-<!--        <property name="characterEncoding" value="UTF-8"/>-->
+
+<!--    &lt;!&ndash;  配置多个视图解析&ndash;&gt;-->
+<!--    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">-->
+
+<!--        <property name="viewResolvers">-->
+<!--            <list>-->
+<!--                &lt;!&ndash;thymeleaf解析器，无法解析jsp，可以解析html&ndash;&gt;-->
+<!--                <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">-->
+<!--                    <property name="characterEncoding" value="UTF-8"/>-->
+<!--                    <property name="templateEngine" ref="templateEngine" />-->
+<!--                    <property name="viewNames" value="*"/>-->
+<!--                    <property name="order" value="2" />-->
+<!--                </bean>-->
+<!--                &lt;!&ndash;jsp&ndash;&gt;-->
+<!--                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--                    <property name="prefix" value="/WEB-INF/pages/"/>-->
+<!--                    <property name="suffix" value=".jsp"/>-->
+<!--                    <property name="viewNames" value="*"/>-->
+<!--                    <property name="order" value="1" />-->
+<!--                </bean>-->
+
+<!--            </list>-->
+<!--        </property>-->
 <!--    </bean>-->
 
 
     <!--所有静态资源需要重新映射 -->
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**">
     </mvc:resources>
+    <mvc:resources location="/WEB-INF/pages/" mapping="/pages/**">
+    </mvc:resources>
 
+
+<!--    拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+<!--            /**表示该路径下的所有子路径-->
+            <mvc:mapping path="/**"/>
+            <bean class="team.tb.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- 文件上传-->
     <bean name="multipartResolver"
