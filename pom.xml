@@ -4,12 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+<<<<<<< HEAD
   <groupId>team.tb</groupId>
   <artifactId>tableOnline</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>tableOnline Maven Webapp</name>
+=======
+  <groupId>person.music</groupId>
+  <artifactId>music</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>music Maven Webapp</name>
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -237,6 +246,7 @@
       <scope>compile</scope>
     </dependency>
 
+<<<<<<< HEAD
     <!--    jwt包-->
     <dependency>
       <groupId>com.auth0</groupId>
@@ -256,6 +266,12 @@
         </includes>
       </resource>
     </resources>
+=======
+  </dependencies>
+
+  <build>
+    <finalName>music</finalName>
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 
       <!--插件信息-->

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="tableOnline:war exploded" />
@@ -123,12 +124,17 @@
       <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/system/index.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/team/tb/service/UserserviceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/team/tb/service/UserserviceTest.class" afterDir="false" />
     </list>
+=======
+  <component name="ChangeListManager">
+    <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="" />
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_DATA_SOURCES" value="true" />
@@ -168,6 +174,8 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+=======
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -182,6 +190,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1qxJ12A2PVOxstML1TwCm0V6KEk" />
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="添加" />
   </component>
@@ -205,6 +214,18 @@
       <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF" />
       <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages" />
     </key>
+=======
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JetBrainJava\tableOnline\src\main\resources" />
+    </key>
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -218,6 +239,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.MD5Utils">
     <configuration name="MD5Utils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="team.tb.utils.MD5Utils" />
@@ -377,6 +399,8 @@
       </list>
     </recent_temporary>
   </component>
+=======
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
@@ -397,6 +421,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1618015088686</updated>
+<<<<<<< HEAD
       <workItem from="1618015092583" duration="1803000" />
       <workItem from="1618036626231" duration="800000" />
       <workItem from="1618041521248" duration="747000" />
@@ -408,12 +433,16 @@
       <workItem from="1618100557392" duration="3939000" />
       <workItem from="1618115947833" duration="9914000" />
       <workItem from="1618129567867" duration="12339000" />
+=======
+      <workItem from="1618015092583" duration="937000" />
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -427,4 +456,6 @@
       </map>
     </option>
   </component>
+=======
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
 </project>

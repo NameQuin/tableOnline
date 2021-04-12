@@ -8,6 +8,7 @@
 <!--    要是出现找不到文件的情况，就直接使用上面的绝对路径-->
 <!--    <properties resource="config.properties"/>-->
 
+    <properties resource="config.properties"/>
     <!--产生最简单的sql  CRUD-->
     <context id="Mysql" targetRuntime="MyBatis3simple">
     <!--生成较为通用的sql，但是需要有关于类的反射和泛型的知识-->
@@ -47,7 +48,7 @@
         </sqlMapGenerator>
         <!-- 指定生成dao接口的所在包,以及包在项目中的地址 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="team.tb.dao" targetProject="src/main/java">
+                         targetPackage="team.tb.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

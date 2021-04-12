@@ -42,7 +42,6 @@
 <!--        前缀   自动加上/WEB-INF/pages/-->
         <property name="prefix" value="/WEB-INF/pages/"/>
 <!--        后缀   变成了WEB-INF/pages/main.html-->
-        <property name="suffix" value=".html"/>
         <property name="characterEncoding" value="UTF-8"/>
         <property name="order" value="1"/>
         <property name="templateMode" value="HTML5"/>
@@ -53,6 +52,7 @@
           class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver"/>
     </bean>
+
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine"/>
         <property name="characterEncoding" value="UTF-8"/>
@@ -90,6 +90,7 @@
     </mvc:resources>
 
 
+
 <!--    拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
@@ -98,6 +99,7 @@
             <bean class="team.tb.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
+
 
     <!-- 文件上传-->
     <bean name="multipartResolver"

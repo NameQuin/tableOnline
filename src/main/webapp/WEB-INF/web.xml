@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+<<<<<<< HEAD
 
   <!--  全局初始化参数  -->
   <!--  定义spring相关的配置文件路径，除了springmvc之外的-->
@@ -54,4 +55,6 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+=======
+>>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
 </web-app>
