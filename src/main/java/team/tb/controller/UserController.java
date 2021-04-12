@@ -3,6 +3,7 @@ package team.tb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import team.tb.common.Result;
 import team.tb.pojo.User;
 import team.tb.service.UserService;
@@ -23,15 +24,19 @@ public class UserController extends BaseController{
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/toLogin")
+    public String toLogin(){
+        return "login";
+    }
+
     @RequestMapping("/login")
-    public String login(User user, HttpServletRequest request, HttpServletResponse response){
+    @ResponseBody
+    public Result login(User user, HttpServletRequest request, HttpServletResponse response){
         User ret = null;
         if(!StringUtils.isEmpty(user.getUsername()) && !StringUtils.isEmpty(user.getPassword())){
             // 将传递进来的密码进行加密
             user.setPassword(MD5Utils.encryption(user.getUsername(), user.getPassword()));
             ret = userService.findUserByUsernameAndPwd(user);
-            request.setAttribute("gender", "男 女");
-            request.setAttribute("ugender", "nan nv");
         }
         if(ret != null){
             // 将对象存入session中
@@ -45,8 +50,20 @@ public class UserController extends BaseController{
             // 设置cookie存活时间为一周
             cookie.setMaxAge(60*60*24*7);
             response.addCookie(cookie);
-            return "system/index";
+//            return "system/index";
+            return Result.succ("登陆成功");
         }
-        return "error/error";
+//        return "error/error";
+        return Result.fail("登陆失败");
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        // 移除session中的信息，将cookie的信息也清除
+        request.getSession().invalidate();
+        Cookie cookie = new Cookie("token", "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "login";
     }
 }

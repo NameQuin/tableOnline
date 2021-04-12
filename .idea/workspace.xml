@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="tableOnline:war exploded" />
@@ -8,133 +7,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/common/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/log/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/JWTUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/MD5Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/StringUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/system/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/common/Result.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/controller/BaseController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/interceptor/LoginInterceptor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/log/Logger.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/utils/JWTUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/utils/MD5Utils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/team/tb/utils/StringUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/common/Result.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/BaseController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/interceptor/LoginInterceptor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/log/Logger.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/JWTUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/MD5Utils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/StringUtils.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/commons-codec-1.11.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/lib/java-jwt-3.4.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/system/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessClassMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessClassMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessDepartmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessDepartmentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessGradeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessGradeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessMajorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/AccessMajorMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/ClazzMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/ClazzMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/DepartmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/DepartmentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/GradeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/GradeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/KeysMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/KeysMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/MajorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/MajorMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Clazz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Clazz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/TableInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/TableInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AccessClassMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessClassMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AccessDepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessDepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AccessGradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessGradeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/AccessMajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/AccessMajorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ClazzMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ClazzMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/GradeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/KeysMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/KeysMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MajorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TableInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TableInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/StringUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/errors.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/error/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/indexs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/error/errors.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/system/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/team/tb/service/UserserviceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/team/tb/service/UserserviceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/adminPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/adminPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/system/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AccessClassMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/AccessClassMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AccessDepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/AccessDepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AccessGradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/AccessGradeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AccessMajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/AccessMajorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ClazzMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ClazzMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/DepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/GradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/GradeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/KeysMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/KeysMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/MajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/MajorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/TableInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/TableInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring-mvc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/team/tb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Clazz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Clazz.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Keys.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Keys.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/TableInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/TableInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/interceptor/LoginInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/interceptor/LoginInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/utils/StringUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessClassMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessClassMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessDepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessDepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessGradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessGradeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessMajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/AccessMajorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/ClazzMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/ClazzMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/DepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/GradeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/GradeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/KeysMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/KeysMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/MajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/MajorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/TableInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/TableInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/spring-mvc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Clazz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Clazz.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Keys.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Keys.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/TableInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/TableInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/errors.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/error/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/indexs.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/error/errors.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/system/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/team/tb/service/UserserviceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/team/tb/service/UserserviceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/interceptor/LoginInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/interceptor/LoginInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/StringUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/error/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/error/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/system/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/index.jsp" afterDir="false" />
     </list>
-=======
-  <component name="ChangeListManager">
-    <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="" />
->>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-<<<<<<< HEAD
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
     <option name="GROUP_DATA_SOURCES" value="true" />
@@ -174,8 +79,6 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-=======
->>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -190,42 +93,22 @@
     </option>
   </component>
   <component name="ProjectId" id="1qxJ12A2PVOxstML1TwCm0V6KEk" />
-<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="添加" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../js-web" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\js" />
-      <recent name="E:\JetBrainJava\tableOnline\src\main\resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\system" />
-      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\error" />
-      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF" />
-      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages" />
-    </key>
-=======
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tomcatDemo" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\JetBrainJava\tableOnline\src\main\resources" />
     </key>
->>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -239,8 +122,7 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
-  <component name="RunManager" selected="Application.MD5Utils">
+  <component name="RunManager" selected="Tomcat Server.tableOnline">
     <configuration name="MD5Utils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="team.tb.utils.MD5Utils" />
       <module name="tableOnline" />
@@ -387,9 +269,9 @@
     <list>
       <item itemvalue="Application.MD5Utils" />
       <item itemvalue="JUnit.UserserviceTest.test01" />
+      <item itemvalue="JUnit.UserserviceTest.test02" />
       <item itemvalue="Maven.tableOnline[mybatis-generator:generate]" />
       <item itemvalue="Tomcat Server.tableOnline" />
-      <item itemvalue="JUnit.UserserviceTest.test02" />
     </list>
     <recent_temporary>
       <list>
@@ -399,8 +281,6 @@
       </list>
     </recent_temporary>
   </component>
-=======
->>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
@@ -421,7 +301,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1618015088686</updated>
-<<<<<<< HEAD
       <workItem from="1618015092583" duration="1803000" />
       <workItem from="1618036626231" duration="800000" />
       <workItem from="1618041521248" duration="747000" />
@@ -433,16 +312,14 @@
       <workItem from="1618100557392" duration="3939000" />
       <workItem from="1618115947833" duration="9914000" />
       <workItem from="1618129567867" duration="12339000" />
-=======
       <workItem from="1618015092583" duration="937000" />
->>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
+      <workItem from="1618238868458" duration="78000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -456,6 +333,4 @@
       </map>
     </option>
   </component>
-=======
->>>>>>> 485722ed4d9a1aba75315fffb8f8f0a148f11f76
 </project>
