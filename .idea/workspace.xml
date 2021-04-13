@@ -8,31 +8,17 @@
   <component name="ChangeListManager">
     <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/IndexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/StringUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/adminPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/adminPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/CreateForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/ManageAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/adminList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/adminPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/adminPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/error/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/error/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/system/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/interceptor/LoginInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/interceptor/LoginInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/utils/StringUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/interceptor/LoginInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/interceptor/LoginInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/StringUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/utils/StringUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/error/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/error/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/system/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/tableOnline/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/rootPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/rootPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/userPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/userPanel.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,8 +50,8 @@
       <list>
         <option value="Interface" />
         <option value="Jsp File" />
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -97,17 +83,25 @@
     <ConfirmationsSetting value="1" id="添加" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tomcatDemo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/css" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\css" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\user" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\root" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\admin" />
       <recent name="E:\JetBrainJava\tableOnline\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\user" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\admin" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages\root" />
+      <recent name="E:\JetBrainJava\tableOnline\src\main\webapp\WEB-INF\pages" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -314,6 +308,7 @@
       <workItem from="1618129567867" duration="12339000" />
       <workItem from="1618015092583" duration="937000" />
       <workItem from="1618238868458" duration="78000" />
+      <workItem from="1618272963928" duration="14428000" />
     </task>
     <servers />
   </component>

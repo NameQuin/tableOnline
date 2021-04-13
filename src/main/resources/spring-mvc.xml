@@ -91,6 +91,8 @@
     </mvc:resources>
     <mvc:resources mapping="/imgs/**" location="/WEB-INF/imgs/">
     </mvc:resources>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/">
+    </mvc:resources>
 
 
 
@@ -107,7 +109,7 @@
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/user/toLogin"/>
             <mvc:exclude-mapping path="/user/logout"/>
-<!--            <mvc:exclude-mapping path="/pages/**"/>-->
+            <mvc:exclude-mapping path="/pages/getCode"/>
             <bean class="team.tb.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
