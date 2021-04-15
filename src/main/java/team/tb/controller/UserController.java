@@ -56,10 +56,12 @@ public class UserController extends BaseController{
             if(ret != null){
                 // 将对象存入session中
                 request.getSession().setAttribute("user", ret);
-                // 将用户id，用户名生成token
+                // 将用户id，用户名，用户等级生成token
+                // 等级信息是为了在拦截时确定该用户是否有该操作的权限
                 Map<String, String> map = new HashMap<>();
                 map.put("id", String.valueOf(ret.getUid()));
                 map.put("username", ret.getUsername());
+                map.put("userLevel", String.valueOf(ret.getUlevel()));
                 // 生成token
                 String token = JWTUtils.getToken(map);
                 Cookie cookie = new Cookie("token", token);
@@ -67,7 +69,7 @@ public class UserController extends BaseController{
                 cookie.setMaxAge(60*60*24*7);
                 response.addCookie(cookie);
                 // 依据登陆者身份跳转页面
-                String path = "pages";
+                String path = request.getContextPath() + "/pages";
                 if(ret.getUlevel() == 0){
                     path += "/user/userPanel.html";
                 }else if(ret.getUlevel() == 1){

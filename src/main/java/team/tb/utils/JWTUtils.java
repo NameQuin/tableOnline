@@ -57,6 +57,9 @@ public class JWTUtils {
      * @return payload中相应键对应的值
      */
     public static String getClaim(String token, String key){
-        return JWT.require(Algorithm.HMAC256(TOKEN)).build().verify(token).getClaim(key).asString();
+        if(key != null){
+            return JWT.require(Algorithm.HMAC256(TOKEN)).build().verify(token).getClaim(key).asString();
+        }
+        return null;
     }
 }

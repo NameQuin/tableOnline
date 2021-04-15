@@ -34,6 +34,21 @@ public class IndexController {
         return "root/rootPanel";
     }
 
+    @RequestMapping("/admin/formList.html")
+    public String formListInAdmin(){
+        return "admin/formList";
+    }
+
+    @RequestMapping("/admin/addForm.html")
+    public String addFormInAdmin(){
+        return "admin/addForm";
+    }
+
+    @RequestMapping("/admin/userList.html")
+    public String userListInAdmin(){
+        return "admin/userList";
+    }
+
     /**
      * 获取验证码
      * @param request

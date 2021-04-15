@@ -1,6 +1,8 @@
 package team.tb.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import team.tb.pojo.User;
 
 public interface UserMapper {
@@ -15,4 +17,8 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User findUserByUsernameAndPwd(User user);
+
+    List<User> getUserList(@Param("page") Integer page, @Param("limit") Integer limit);
+
+    int getCount();
 }

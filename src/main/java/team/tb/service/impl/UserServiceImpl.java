@@ -6,7 +6,10 @@ import team.tb.dao.UserMapper;
 import team.tb.pojo.User;
 import team.tb.service.UserService;
 
+import java.util.List;
+
 @Service
+
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -15,5 +18,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUsernameAndPwd(User user) {
         return userMapper.findUserByUsernameAndPwd(user);
+    }
+
+    @Override
+    public List<User> getUserList(Integer page, Integer limit) {
+        return userMapper.getUserList(page, limit);
+    }
+
+    @Override
+    public int getCount() {
+        return userMapper.getCount();
     }
 }

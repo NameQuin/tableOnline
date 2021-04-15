@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.tb.dao.GradeMapper">
+  <resultMap id="BaseResultMap" type="team.tb.pojo.Grade">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_grade
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="team.tb.pojo.Grade">
+    insert into t_grade (gid, grade)
+    values (#{gid,jdbcType=INTEGER}, #{grade,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="team.tb.pojo.Grade">
+    update t_grade
+    set grade = #{grade,jdbcType=VARCHAR}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select gid, grade
+    from t_grade
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select gid, grade
+    from t_grade
+  </select>
+</mapper>
