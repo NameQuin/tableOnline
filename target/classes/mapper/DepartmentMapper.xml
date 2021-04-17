@@ -31,4 +31,10 @@
     select did, dname, dgrade
     from t_department
   </select>
+<!--根据年级Id查找院系-->
+  <select id="getDepartmentByGrade" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select did, dname, dgrade
+    from t_department
+    where dgrade = #{gradeId}
+  </select>
 </mapper>

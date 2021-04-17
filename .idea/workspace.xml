@@ -8,40 +8,79 @@
   <component name="ChangeListManager">
     <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/common/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/common/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/ClazzMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/ClazzMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/DepartmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/DepartmentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/MajorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/MajorMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/UserLoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessDepartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessDepartment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessGrade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessGrade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessMajor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/AccessMajor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Clazz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Clazz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Major.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/TableInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/TableInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/UserInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/utils/JWTUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/JWTUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/TableInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/TableInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ClazzMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ClazzMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/MajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/MajorMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/layui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/code.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/laydate/default/laydate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/layer/default/icon-ext.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/layer/default/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/layer/default/layer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/layer/default/loading-0.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/layer/default/loading-1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/css/modules/layer/default/loading-2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/font/iconfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/layui/layui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/addForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/addForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/adminPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/adminPanel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/formList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/formList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/viewForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/viewForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/moreForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/moreForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/addForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/addForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/rootPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/rootPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/ClazzMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/ClazzMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/MajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/MajorMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/dao/ClazzMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/ClazzMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/dao/DepartmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/DepartmentMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/dao/MajorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/MajorMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/dao/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/dao/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessDepartment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessDepartment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessGrade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessGrade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessMajor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/AccessMajor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Clazz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Clazz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Department.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Department.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Grade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Keys.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Keys.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/Major.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/Major.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/TableInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/TableInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/pojo/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/pojo/UserInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/team/tb/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/team/tb/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/ClazzMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/ClazzMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/DepartmentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/MajorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/MajorMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/ClazzMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/ClazzMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/DepartmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/DepartmentMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/MajorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/MajorMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/dao/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessDepartment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessDepartment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessGrade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessGrade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessMajor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/AccessMajor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Clazz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Clazz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Department.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Department.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Grade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Keys.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Keys.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Major.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/Major.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/TableInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/TableInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/pojo/UserInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/classes/team/tb/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/admin/formList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/admin/formList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/admin/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/tableOnline/WEB-INF/pages/admin/userList.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,9 +111,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -109,7 +148,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="F:/大学课程/大二下/实训/music" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../music_project" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
@@ -336,6 +376,9 @@
       <workItem from="1618359115827" duration="10061000" />
       <workItem from="1618384370351" duration="18203000" />
       <workItem from="1618447850718" duration="7627000" />
+      <workItem from="1618491447276" duration="3156000" />
+      <workItem from="1618559141174" duration="28807000" />
+      <workItem from="1618645550361" duration="3071000" />
     </task>
     <servers />
   </component>

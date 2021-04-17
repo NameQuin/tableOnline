@@ -31,4 +31,10 @@
     select mid, mname, mdepartment
     from t_major
   </select>
+<!--  根据院系id获取专业-->
+  <select id="getMajorByDepartmentId" resultMap="BaseResultMap">
+    select mid, mname, mdepartment
+    from t_major
+    where mdepartment = #{departmentId}
+  </select>
 </mapper>

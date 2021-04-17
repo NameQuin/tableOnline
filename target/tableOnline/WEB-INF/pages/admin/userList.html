@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
     <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 </head>
 <style>
     #serachDiv{
@@ -15,33 +16,73 @@
 <body>
 <div id="serachDiv">
     <form class="layui-form layui-col-space5">
-        <div class="layui-inline layui-show-xs-block">
-            <input class="layui-input"  autocomplete="off" placeholder="开始日期" name="startTime" id="startTime">
+        <div class="layui-form-item">
+<!--            在有form-item属性的div里面的lay-filter在form.render()重新渲染时使用-->
+<!--            select中的lay-filter在监听动作时使用-->
+            <div class="layui-input-inline">
+                <select name="grade" id="grade" lay-filter="grade">
+                    <option value="">请选择年级</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="department" id="department" lay-filter="department">
+                    <option value="">请选择院系</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="major" id="major" lay-filter="major">
+                    <option value="">请选择专业</option>
+                </select>
+            </div>
         </div>
-        <div class="layui-inline layui-show-xs-block">
-            <input class="layui-input"  autocomplete="off" placeholder="截止日期" name="endTime" id="endTime">
-        </div>
-        <div class="layui-inline layui-show-xs-block">
-            <input type="text" name="formTitle"  placeholder="请输入需要查询的表标题" autocomplete="off" class="layui-input">
-        </div>
-        <div class="layui-inline layui-show-xs-block">
-            <button class="layui-btn" lay-submit="" lay-filter="searchForm"><i class="layui-icon">&#xe615;</i></button>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <select name="clazz" id="clazz" lay-filter="clazz">
+                    <option value="">请选择班级</option>
+                </select>
+            </div>
+            <div class="layui-inline layui-show-xs-inline">
+                <input type="text" name="username"  placeholder="请输入用户名字" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-inline layui-show-xs-block">
+                <button class="layui-btn" lay-submit="" lay-filter="searchUser"><i class="layui-icon">&#xe615;</i></button>
+            </div>
         </div>
     </form>
 </div>
-<table class="layui-hide" id="formListTable" lay-filter="formListTable"></table>
+<table class="layui-hide" id="userListTable" lay-filter="userListTable"></table>
 <script type="text/html" id="toolbar">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script th:inline="none">
-    layui.use(['form', 'table', 'laydate'], function() {
+    $(function () {
+        // 初始化第一个下拉列表的内容
+        $.ajax({
+            type: 'POST',
+            url: '/tableOnline/admin/getGrade',
+            dataType: 'json',
+            success: function (res) {
+                var s = $("#grade");
+                var content = "<option value=\"\">请选择年级</option>";
+                $.each(res.data, function (i, val) {
+                    content += "<option value=" + val.gid + ">" + val.grade + "</option>";
+                });
+                s.html(content);
+                layui.form.render('select');
+            },
+            error: function (res) {
+                layui.layer.msg("服务器错误");
+            }
+        });
+    });
+    layui.use(['form', 'table'], function() {
         var table = layui.table;
         var form = layui.form;
 
         // 生成一个表格
         var tabIns = table.render({
-            elem: '#formListTable'
+            elem: '#userListTable' // 表格id
             , url: '/tableOnline/admin/getUserList'
             , title: '用户列表'
             , page: true //开启分页
@@ -55,23 +96,95 @@
             ]]
         });
 
+        // 监听年级下拉列表选择
+        form.on('select(grade)', function (data) {
+            $.ajax({
+               type: 'POST',
+               url: '/tableOnline/admin/getDepartment',
+               data: {
+                   gradeId: data.value
+               },
+                dataType: 'json',
+                success: function (res) {
+                    var s = $("#department");
+                    var content = "<option value=\"\">请选择院系</option>";
+                    $.each(res.data, function (i, val) {
+                        content += "<option value=" + val.did + ">" + val.dname + "</option>";
+                    });
+                    s.html(content);
+                    // 年级选择改变后，剩下的选项都需要清除
+                    $("#major").empty().append("<option value=\"\">请选择专业</option>");
+                    $("#clazz").empty().append("<option value=\"\">请选择班级</option>");
+                    layui.form.render('select');
+                },
+                error: function (res) {
+                    layui.layer.msg("服务器错误");
+                }
+            });
+        });
+        // 监听院系下拉列表选择
+        form.on('select(department)', function (data) {
+            $.ajax({
+                type: 'POST',
+                url: '/tableOnline/admin/getMajor',
+                data: {
+                    departmentId: data.value
+                },
+                dataType: 'json',
+                success: function (res) {
+                    var s = $("#major");
+                    var content = "<option value=\"\">请选择专业</option>";
+                    $.each(res.data, function (i, val) {
+                        content += "<option value=" + val.mid + ">" + val.mname + "</option>";
+                    });
+                    s.html(content);
+                    // 清除班级选项
+                    $("#clazz").empty().append("<option value=\"\">请选择班级</option>");
+                    layui.form.render('select');
+                },
+                error: function (res) {
+                    layui.layer.msg("服务器错误");
+                }
+            });
+        });
+
+        // 监听专业下拉列表选择
+        form.on('select(major)', function (data) {
+            $.ajax({
+                type: 'POST',
+                url: '/tableOnline/admin/getClazz',
+                data: {
+                    majorId: data.value
+                },
+                dataType: 'json',
+                success: function (res) {
+                    var s = $("#clazz");
+                    var content = "<option value=\"\">请选择班级</option>";
+                    $.each(res.data, function (i, val) {
+                        content += "<option value=" + val.cid + ">" + val.cnum + "</option>";
+                    });
+                    s.html(content);
+                    layui.form.render('select');
+                },
+                error: function (res) {
+                    layui.layer.msg("服务器错误");
+                }
+            });
+        });
+
         // 搜索提交，表格重载
-        form.on("submit(searchForm)", function (data) {
+        form.on("submit(searchUser)", function (data) {
+            console.log(data.field);
             var btn = $(this);
             btn.attr("disabled", true).addClass("layui-disabled");
             tabIns.reload({
                 url: "/tableOnline/admin/searchUser",
                 type: "post",
-                where: {
-                    "formTitle": data.field.formTitle,
-                    "startTime": data.field.startTime,
-                    "endTime": data.field.endTime
-                },
+                where: data.field,
                 page: {
                     cur: 1
                 }
             });
-
             btn.attr("disabled", false).removeClass("layui-disabled");
             return false;
         });

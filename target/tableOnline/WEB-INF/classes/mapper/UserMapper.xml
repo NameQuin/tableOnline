@@ -41,17 +41,76 @@
     select tu.uid, tui.value as username, tu.password, tu.ulevel, tu.ustatus
     from t_user tu, t_user_info tui, t_keys tk
     where tu.username = #{username} and tu.password = #{password} and tu.ustatus = 1
-            and tk.kname = "name" and tk.kid = tui.kid
+            and tk.kname = "name" and tk.kid = tui.kid and tui.uid = tu.uid
   </select>
 <!--  查找所有普通用户-->
   <select id="getUserList" resultMap="BaseResultMap">
     select tu.uid, tui.value as username, tu.ulevel, tu.ustatus
     from t_user tu, t_user_info tui, t_keys tk
-    where tk.kname = "name" and tk.kid = tui.kid
+    where tk.kname = "name" and tk.kid = tui.kid and tu.uid = tui.uid
     and tu.ulevel = 0 limit #{page}, #{limit}
   </select>
-<!--  用户数据条数-->
+<!--  普通用户数据条数-->
   <select id="getCount" resultType="java.lang.Integer">
-    select count(uid) from t_user where ulevel = 1
+    select count(uid) from t_user where ulevel = 0
+  </select>
+<!--  根据条件查询普通用户信息-->
+  <select id="getUserOnCondition" resultMap="BaseResultMap">
+    <bind name="likePattern" value="'%' + username + '%'"/>
+    select tu.uid, tui.value as username, tu.ulevel, tu.ustatus
+    from t_user tu, t_user_info tui, t_keys tk
+    where tu.uid = tui.uid and tk.kname = "name" and tk.kid = tui.kid
+    <if test='username != null and username != ""'>
+      and username like #{likePattern}
+    </if>
+      and tu.ulevel = 0 and tu.uid in (
+      SELECT DISTINCT tui3.uid FROM t_user_info tui2, t_user_info tui3, t_user_info tui4, t_user_info tui5
+      WHERE  tui2.uid = tui3.uid AND tui2.uid = tui4.uid AND tui2.uid = tui5.uid
+        <if test="grade != null and grade != 0">
+          AND EXISTS (SELECT * FROM t_keys tk2 WHERE tk2.kname = "grade" AND tui2.kid = tk2.kid AND tui2.value = #{grade}
+            <if test="department != null and department != 0">
+              AND EXISTS (SELECT * FROM t_keys tk3 WHERE tk3.kname = "department" AND tui3.kid = tk3.kid AND tui3.value = #{department}
+                  <if test="major != null and major != 0">
+                    AND EXISTS (SELECT * FROM t_keys tk4 WHERE tk4.kname = "major" AND tui4.kid = tk4.kid AND tui4.value = #{major}
+                        <if test="clazz != null and clazz != 0">
+                          AND EXISTS (SELECT * FROM t_keys tk5 WHERE tk5.kname = "class" AND tui5.kid = tk5.kid AND tui5.value = #{clazz})
+                        </if>
+                    )
+                  </if>
+                  )
+            </if>
+              )
+        </if>
+        )
+    limit #{page}, #{limit}
+  </select>
+  <!--  根据条件查询普通用户信息条数，方便分页-->
+  <select id="getUserCountOnCondition" resultType="java.lang.Integer">
+    <bind name="likePattern" value="'%' + username + '%'"/>
+    select count(tu.uid)
+    from t_user tu, t_user_info tui, t_keys tk
+    where tu.uid = tui.uid and tk.kname = "name" and tk.kid = tui.kid
+    <if test='username != null and username != ""'>
+      and username like #{likePattern}
+    </if>
+    and tu.ulevel = 0 and tu.uid in (
+    SELECT DISTINCT tui3.uid FROM t_user_info tui2, t_user_info tui3, t_user_info tui4, t_user_info tui5
+    WHERE  tui2.uid = tui3.uid AND tui2.uid = tui4.uid AND tui2.uid = tui5.uid
+    <if test="grade != null and grade != 0">
+      AND EXISTS (SELECT * FROM t_keys tk2 WHERE tk2.kname = "grade" AND tui2.kid = tk2.kid AND tui2.value = #{grade}
+      <if test="department != null and department != 0">
+        AND EXISTS (SELECT * FROM t_keys tk3 WHERE tk3.kname = "department" AND tui3.kid = tk3.kid AND tui3.value = #{department}
+        <if test="major != null and major != 0">
+          AND EXISTS (SELECT * FROM t_keys tk4 WHERE tk4.kname = "major" AND tui4.kid = tk4.kid AND tui4.value = #{major}
+          <if test="clazz != null and clazz != 0">
+            AND EXISTS (SELECT * FROM t_keys tk5 WHERE tk5.kname = "class" AND tui5.kid = tk5.kid AND tui5.value = #{clazz})
+          </if>
+          )
+        </if>
+        )
+      </if>
+      )
+    </if>
+    )
   </select>
 </mapper>
