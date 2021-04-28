@@ -35,6 +35,13 @@
   <select id="getMajorByDepartmentId" resultMap="BaseResultMap">
     select mid, mname, mdepartment
     from t_major
-    where mdepartment = #{departmentId}
+    <where>
+      <if test="departments != null and departments.length > 0">
+        mdepartment in
+        <foreach collection="departments" index="index" item="departmentId" open="(" separator="," close=")">
+          #{departmentId}
+        </foreach>
+      </if>
+    </where>
   </select>
 </mapper>

@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public Integer getUserCountOnCondition(Integer grade, Integer department, Integer major, Integer clazz, String username) {
         return userMapper.getUserCountOnCondition(grade, department, major, clazz, username);
     }
+
+    @Override
+    public List<User> getUserByClass(Integer[] clazzs) {
+        return userMapper.getUserByClass(clazzs);
+    }
 }

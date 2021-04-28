@@ -47,4 +47,11 @@ public interface UserService {
      * @return
      */
     Integer getUserCountOnCondition(Integer grade, Integer department, Integer major, Integer clazz, String username);
+
+    /**
+     * 根据班级查找用户
+     * @param clazzs
+     * @return
+     */
+    List<User> getUserByClass(Integer[] clazzs);
 }

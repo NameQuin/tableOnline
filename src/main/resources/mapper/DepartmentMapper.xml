@@ -31,10 +31,17 @@
     select did, dname, dgrade
     from t_department
   </select>
-<!--根据年级Id查找院系-->
-  <select id="getDepartmentByGrade" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+<!--根据多个年级Id查找院系-->
+  <select id="getDepartmentByGrade" resultMap="BaseResultMap">
     select did, dname, dgrade
     from t_department
-    where dgrade = #{gradeId}
+    <where>
+      <if test="grades != null and grades.length > 0">
+        dgrade in
+        <foreach collection="grades" item="gradeId" index="index" open="(" separator="," close=")">
+          #{gradeId}
+        </foreach>
+      </if>
+    </where>
   </select>
 </mapper>

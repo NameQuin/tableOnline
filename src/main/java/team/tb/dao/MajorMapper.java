@@ -1,6 +1,8 @@
 package team.tb.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import team.tb.pojo.Major;
 
 public interface MajorMapper {
@@ -16,8 +18,8 @@ public interface MajorMapper {
 
     /**
      * 根据院系获取专业
-     * @param departmentId
+     * @param departments
      * @return
      */
-    List<Major> getMajorByDepartmentId(Integer departmentId);
+    List<Major> getMajorByDepartmentId(@Param("departments") Integer[] departments);
 }

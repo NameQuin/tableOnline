@@ -7,7 +7,7 @@ public class Keys implements Serializable {
 
     private String kname;
 
-    private Integer ktype;
+    private String ktype;
 
     private String ktypevalue;
 
@@ -35,11 +35,11 @@ public class Keys implements Serializable {
         this.kname = kname == null ? null : kname.trim();
     }
 
-    public Integer getKtype() {
+    public String getKtype() {
         return ktype;
     }
 
-    public void setKtype(Integer ktype) {
+    public void setKtype(String ktype) {
         this.ktype = ktype;
     }
 

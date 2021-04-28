@@ -8,8 +8,8 @@ public interface DepartmentService {
 
     /**
      * 根据年级id查找院系
-     * @param gradeId
+     * @param grades
      * @return
      */
-    List<Department> getDepartmentByGrade(Integer gradeId);
+    List<Department> getDepartmentByGrade(Integer[] grades);
 }

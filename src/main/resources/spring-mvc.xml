@@ -93,12 +93,19 @@
     </mvc:resources>
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/">
     </mvc:resources>
+    <mvc:resources mapping="/elementui/**" location="/WEB-INF/elementui/">
+    </mvc:resources>
 
 
 
 
 <!--    拦截器-->
     <mvc:interceptors>
+<!--        禁止浏览器缓存的拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="team.tb.interceptor.CommonInterceptor"/>
+        </mvc:interceptor>
         <mvc:interceptor>
 <!--            /**表示该路径下的所有子路径-->
             <mvc:mapping path="/*/user/**"/>
@@ -109,12 +116,12 @@
             <mvc:exclude-mapping path="/pages/getCode"/>
             <bean class="team.tb.interceptor.UserLoginInterceptor"/>
         </mvc:interceptor>
-
+<!--        管理员路径拦截-->
         <mvc:interceptor>
             <mvc:mapping path="/*/admin/**"/>
             <bean class="team.tb.interceptor.AdminLoginInterceptor"/>
         </mvc:interceptor>
-
+<!--超级管理员路径拦截-->
         <mvc:interceptor>
             <mvc:mapping path="/*/root/**"/>
             <bean class="team.tb.interceptor.RootLoginInterceptor"/>

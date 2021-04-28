@@ -2,6 +2,8 @@ package team.tb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.tb.common.Result;
@@ -11,8 +13,7 @@ import team.tb.service.*;
 import team.tb.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 /**
  * 管理员可以做的操作
@@ -32,6 +33,8 @@ public class AdminController extends BaseController {
     private ClazzService clazzService;
     @Autowired
     private MajorService majorService;
+    @Autowired
+    private KeysService keysService;
 
 
     /**
@@ -75,7 +78,9 @@ public class AdminController extends BaseController {
     @RequestMapping("/searchForm")
     @ResponseBody
     public Result searchForm(HttpServletRequest request, String formTitle, String startTime, String endTime, Integer page, Integer limit){
-        // 传入的字符串参数只会为空，不会为null
+        System.out.println("开始时间======>" + startTime);
+        System.out.println("结束时间======>" + endTime);
+        // 传入的字符串参数只要传递了参数，不管有没有值，只会为空，不会为null
         User user = (User) request.getSession().getAttribute("user");
         Integer id = user.getUid();
         // 计算分页信息，获取相应数据条数
@@ -121,48 +126,51 @@ public class AdminController extends BaseController {
 
     /**
      * 获取对应年级的所有班级
-     * @param gradeId
+     * @param grades
      * @return
      */
     @RequestMapping("/getDepartment")
     @ResponseBody
-    public Result getDepartment(Integer gradeId){
-        List<Department> list = departmentService.getDepartmentByGrade(gradeId);
+    public Result getDepartment(Integer[] grades){
+        List<Department> list = departmentService.getDepartmentByGrade(grades);
         return Result.succ(list);
     }
 
     /**
      * 获取对应专业的班级
-     * @param majorId
+     * @param majors
      * @return
      */
     @RequestMapping("/getClazz")
     @ResponseBody
-    public Result getClazz(Integer majorId){
-        if(majorId != null){
-            List<Clazz> list = clazzService.getClazzByDepartmentId(majorId);
-            return Result.succ(list);
-        }else{
-            return Result.fail("参数为空");
-        }
+    public Result getClazz(Integer[] majors){
+        List<Clazz> list = clazzService.getClazzByMajorId(majors);
+        return Result.succ(list);
     }
 
     /**
      * 根据院系id查找专业
-     * @param departmentId
+     * @param departments
      * @return
      */
     @RequestMapping("/getMajor")
     @ResponseBody
-    public Result getMajor(Integer departmentId){
-        if(departmentId != null){
-            List<Major> list = majorService.getMajorByDepartmentId(departmentId);
-            return Result.succ(list);
-        }else{
-            return Result.fail("参数为空");
-        }
+    public Result getMajor(Integer[] departments){
+        List<Major> list = majorService.getMajorByDepartmentId(departments);
+        return Result.succ(list);
     }
 
+    /**
+     * 根据班级查找学生信息
+     * @param clazzs
+     * @return
+     */
+    @RequestMapping("/getStudent")
+    @ResponseBody
+    public Result getStudent(Integer[] clazzs){
+        List<User> list = userService.getUserByClass(clazzs);
+        return Result.succ(list);
+    }
     /**
      * 根据条件查找用户信息
      * @param grade
@@ -179,5 +187,28 @@ public class AdminController extends BaseController {
         List<User> list = userService.getUserOnCondition(grade, department, major, clazz, username, page, limit);
         int count = userService.getUserCountOnCondition(grade, department, major, clazz, username);
         return Result.succ(0, list, count);
+    }
+
+    /**
+     * 获得已存在数据库的字段信息
+     * @return
+     */
+    @RequestMapping("/getAllKeys")
+    @ResponseBody
+    public Result getAllKeys(){
+        List<Keys> list = keysService.getAllKeys();
+        return Result.succ(list);
+    }
+
+    /**
+     * 获得表单创建信息并创建表单
+     * @param data
+     * @return
+     */
+    @PostMapping("/createForm")
+    @ResponseBody
+    public Result createFormRequest(@RequestBody Map<String, Object> data){
+        System.out.println(data);
+        return null;
     }
 }

@@ -61,7 +61,7 @@
     from t_user tu, t_user_info tui, t_keys tk
     where tu.uid = tui.uid and tk.kname = "name" and tk.kid = tui.kid
     <if test='username != null and username != ""'>
-      and username like #{likePattern}
+      and tui.value like #{likePattern}
     </if>
       and tu.ulevel = 0 and tu.uid in (
       SELECT DISTINCT tui3.uid FROM t_user_info tui2, t_user_info tui3, t_user_info tui4, t_user_info tui5
@@ -112,5 +112,18 @@
       )
     </if>
     )
+  </select>
+<!--根据班级查找用户信息-->
+  <select id="getUserByClass" resultMap="BaseResultMap">
+    select tu.uid, tui1.value as username
+    from t_user tu, t_user_info tui1, t_user_info tui2, t_keys tk1, t_keys tk2
+    where tk1.kname = "name" AND tk1.kid = tui1.kid AND tu.uid = tui1.uid AND tu.uid = tui2.uid AND tk2.kname = "class" AND tk2.kid = tui2.kid
+      and tu.ulevel = 0
+    <if test="clazzs != null and clazzs.length > 0">
+      and tui2.value in
+        <foreach collection="clazzs" item="clazzId" index="index" open="(" separator="," close=")">
+          #{clazzId}
+        </foreach>
+    </if>
   </select>
 </mapper>

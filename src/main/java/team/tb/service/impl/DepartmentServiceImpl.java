@@ -13,7 +13,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentMapper departmentMapper;
     @Override
-    public List<Department> getDepartmentByGrade(Integer gradeId) {
-        return departmentMapper.getDepartmentByGrade(gradeId);
+    public List<Department> getDepartmentByGrade(Integer[] grades) {
+        return departmentMapper.getDepartmentByGrade(grades);
     }
 }

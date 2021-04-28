@@ -7,8 +7,8 @@ import java.util.List;
 public interface MajorService {
     /**
      * 根据院系id查找专业
-     * @param departmentId
+     * @param departments
      * @return
      */
-    List<Major> getMajorByDepartmentId(Integer departmentId);
+    List<Major> getMajorByDepartmentId(Integer[] departments);
 }

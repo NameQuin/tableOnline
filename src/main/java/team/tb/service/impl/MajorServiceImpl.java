@@ -13,7 +13,7 @@ public class MajorServiceImpl implements MajorService {
     @Autowired
     private MajorMapper majorMapper;
     @Override
-    public List<Major> getMajorByDepartmentId(Integer departmentId) {
-        return majorMapper.getMajorByDepartmentId(departmentId);
+    public List<Major> getMajorByDepartmentId(Integer[] departments) {
+        return majorMapper.getMajorByDepartmentId(departments);
     }
 }

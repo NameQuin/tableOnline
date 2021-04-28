@@ -13,7 +13,7 @@ public class ClazzServiceImpl implements ClazzService {
     @Autowired
     private ClazzMapper clazzMapper;
     @Override
-    public List<Clazz> getClazzByDepartmentId(Integer majorId) {
-        return clazzMapper.getClazzByDepartmentId(majorId);
+    public List<Clazz> getClazzByMajorId(Integer[] majors) {
+        return clazzMapper.getClazzByMajorId(majors);
     }
 }

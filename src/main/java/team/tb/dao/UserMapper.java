@@ -63,4 +63,11 @@ public interface UserMapper {
     Integer getUserCountOnCondition(@Param("grade") Integer grade, @Param("department") Integer department,
                                        @Param("major") Integer major, @Param("clazz") Integer clazz,
                                        @Param("username") String username);
+
+    /**
+     * 根据班级查找用户数
+     * @param clazzs
+     * @return
+     */
+    List<User> getUserByClass(@Param("clazzs") Integer[] clazzs);
 }

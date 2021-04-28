@@ -32,9 +32,17 @@
     from t_class
   </select>
 <!--  根据院系id获取班级，保证班号顺序-->
-  <select id="getClazzByDepartmentId" resultMap="BaseResultMap">
+  <select id="getClazzByMajorId" resultMap="BaseResultMap">
     select cid, cnum, cmajor
     from t_class
-    where cmajor = #{majorId} order by cnum
+    <where>
+      <if test="majors != null and majors.length > 0">
+        cmajor in
+        <foreach collection="majors" item="majorId" index="index" open="(" separator="," close=")">
+          #{majorId}
+        </foreach>
+      </if>
+    </where>
+    order by cnum
   </select>
 </mapper>

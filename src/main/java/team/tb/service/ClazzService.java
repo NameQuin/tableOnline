@@ -7,8 +7,8 @@ import java.util.List;
 public interface ClazzService {
     /**
      * 根据院系获得班级
-     * @param departmentId
+     * @param majors
      * @return
      */
-    List<Clazz> getClazzByDepartmentId(Integer majorId);
+    List<Clazz> getClazzByMajorId(Integer[] majors);
 }

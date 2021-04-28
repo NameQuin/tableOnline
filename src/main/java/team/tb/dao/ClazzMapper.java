@@ -1,6 +1,8 @@
 package team.tb.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import team.tb.pojo.Clazz;
 
 public interface ClazzMapper {
@@ -16,8 +18,8 @@ public interface ClazzMapper {
 
     /**
      * 根据院系获得班级
-     * @param majorId
+     * @param majors
      * @return
      */
-    List<Clazz> getClazzByDepartmentId(Integer majorId);
+    List<Clazz> getClazzByMajorId(@Param("majors") Integer[] majors);
 }
