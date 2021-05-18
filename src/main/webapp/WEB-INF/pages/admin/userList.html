@@ -58,27 +58,35 @@
 <script th:inline="none">
     $(function () {
         // 初始化第一个下拉列表的内容
-        $.ajax({
-            type: 'POST',
-            url: '/tableOnline/admin/getGrade',
-            dataType: 'json',
-            success: function (res) {
-                var s = $("#grade");
-                var content = "<option value=\"\">请选择年级</option>";
-                $.each(res.data, function (i, val) {
-                    content += "<option value=" + val.gid + ">" + val.grade + "</option>";
-                });
-                s.html(content);
-                layui.form.render('select');
-            },
-            error: function (res) {
-                layui.layer.msg("服务器错误");
-            }
+        layui.use('form', 'layer', function () {
+            let form = layui.form;
+            let layer = layui.layer;
+            $.ajax({
+                type: 'POST',
+                url: '/tableOnline/admin/getGrade',
+                dataType: 'json',
+                success: function (res) {
+                    var s = $("#grade");
+                    var content = "<option value=\"\">请选择年级</option>";
+                    $.each(res.data, function (i, val) {
+                        content += "<option value=" + val.gid + ">" + val.grade + "</option>";
+                    });
+                    s.html(content);
+                    form.render('select');
+                },
+                error: function (res) {
+                    layer.msg("服务器错误", {
+                        icon: 2,
+                        time: 1000
+                    });
+                }
+            });
         });
     });
-    layui.use(['form', 'table'], function() {
+    layui.use(['form', 'table', 'layer'], function() {
         var table = layui.table;
         var form = layui.form;
+        var layer = layui.layer;
 
         // 生成一个表格
         var tabIns = table.render({
@@ -90,8 +98,8 @@
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'uid', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
                 , {field: 'username', title: '姓名', width: 100}
-                , {field: 'ulevel', title: '用户等级', width: 120}
-                , {field: 'ustatus', title: '用户状态', width: 120}
+                , {field: 'ulevel', title: '用户等级', templet: '#userLevel', width: 120}
+                , {field: 'ustatus', title: '用户状态', templet: '#userStatus', width: 120}
                 , {fixed: 'right', title: '操作', toolbar: '#toolbar', width: 150}
             ]]
         });
@@ -102,14 +110,14 @@
                type: 'POST',
                url: '/tableOnline/admin/getDepartment',
                data: {
-                   gradeId: data.value
+                   gradeId: [data.value]
                },
                 dataType: 'json',
                 success: function (res) {
                     var s = $("#department");
                     var content = "<option value=\"\">请选择院系</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.did + ">" + val.dname + "</option>";
+                        content += "<option value=" + val.did + ">" + val.dfullname + "</option>";
                     });
                     s.html(content);
                     // 年级选择改变后，剩下的选项都需要清除
@@ -128,14 +136,14 @@
                 type: 'POST',
                 url: '/tableOnline/admin/getMajor',
                 data: {
-                    departmentId: data.value
+                    departmentId: [data.value]
                 },
                 dataType: 'json',
                 success: function (res) {
                     var s = $("#major");
                     var content = "<option value=\"\">请选择专业</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.mid + ">" + val.mname + "</option>";
+                        content += "<option value=" + val.mid + ">" + val.mfullname + "</option>";
                     });
                     s.html(content);
                     // 清除班级选项
@@ -154,14 +162,14 @@
                 type: 'POST',
                 url: '/tableOnline/admin/getClazz',
                 data: {
-                    majorId: data.value
+                    majorId: [data.value]
                 },
                 dataType: 'json',
                 success: function (res) {
                     var s = $("#clazz");
                     var content = "<option value=\"\">请选择班级</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.cid + ">" + val.cnum + "</option>";
+                        content += "<option value=" + val.cid + ">" + val.cfullname + "</option>";
                     });
                     s.html(content);
                     layui.form.render('select');
@@ -170,6 +178,45 @@
                     layui.layer.msg("服务器错误");
                 }
             });
+        });
+
+        // 监听状态操作，实现更改用户状态
+        form.on('switch(userstatus)', function(data){
+            // console.log(data.elem); //得到checkbox原始DOM对象
+            // console.log(data.elem.checked); //开关是否开启，true或者false
+            // console.log(data.value); //开关value值，也可以通过data.elem.value得到
+            //向后台发送请求  ajax  使用jquery的形式编写ajax
+            let check = data.elem.checked === true?1:0;
+            let uid = data.value;
+            $.ajax({ //jquery的ajax形式
+                type:'post',//请求的方式
+                url:'/tableOnline/admin/changeUserStatus',//向后台发送请求的地址
+                data:{ //表示向后台传入的参数 key-value
+                    'status':check,
+                    'uid':uid
+                },
+                dataType:'json',//告诉后台返回的数据必须是json格式的数据
+                success:function(res){ // 当请求成功以后的回调函数  res会直接接受后台返回的json格式的数据
+                    if(res.code === 200){
+                        layer.msg('修改成功', {
+                            icon: 1,
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        });
+                    }else{
+                        layer.msg('修改失败', {
+                            icon: 1,
+                            time: 1000 // 1秒关闭
+                        })
+                    }
+                },
+                error: function (err) {
+                    layer.msg('服务器错误', {
+                        icon: 2,
+                        time: 1000 // 1秒关闭
+                    })
+                }
+            })
+
         });
 
         // 搜索提交，表格重载
@@ -191,17 +238,28 @@
     })
 </script>
 
-<!--表单状态模板-->
-<script type="text/html" id="formStatus">
-    {{# var status = d.tfflag;
+<!--用户类型-->
+<script type="text/html" id="userLevel">
+    {{# var level = d.ulevel;
+    if(level === 0){
+    }}
+    <span>普通用户</span>
+    {{# }else if(level === 1) { }}
+    <soan>管理员</soan>
+    {{# }else if(level === 2) { }}
+    <span>超级管理员</span>
+    {{# }}}
+</script>
+<!--用户状态-->
+<script type="text/html" id="userStatus">
+    {{# var status = d.ustatus;
+        var uid = d.uid;
     if(status === 0){
     }}
-    <span>未发布</span>
+    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
     {{# }else if(status === 1) { }}
-    <soan>进行中</soan>
-    {{# }else if(status === 2) { }}
-    <span>已结束</span>
-    {{# }}}
+    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
+    {{# } }}
 </script>
 </body>
 </html>

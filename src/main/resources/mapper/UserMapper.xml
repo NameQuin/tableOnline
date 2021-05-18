@@ -40,7 +40,7 @@
   <select id="findUserByUsernameAndPwd" parameterType="team.tb.pojo.User" resultMap="BaseResultMap">
     select tu.uid, tui.value as username, tu.password, tu.ulevel, tu.ustatus
     from t_user tu, t_user_info tui, t_keys tk
-    where tu.username = #{username} and tu.password = #{password} and tu.ustatus = 1
+    where tu.username = #{username} and tu.password = #{password}
             and tk.kname = "name" and tk.kid = tui.kid and tui.uid = tu.uid
   </select>
 <!--  查找所有普通用户-->
@@ -115,15 +115,108 @@
   </select>
 <!--根据班级查找用户信息-->
   <select id="getUserByClass" resultMap="BaseResultMap">
-    select tu.uid, tui1.value as username
-    from t_user tu, t_user_info tui1, t_user_info tui2, t_keys tk1, t_keys tk2
+    select tu.uid, CONCAT(c.cfullname, "--", tui1.value) AS username
+    from t_user tu, t_user_info tui1, t_user_info tui2, t_keys tk1, t_keys tk2, t_class c
     where tk1.kname = "name" AND tk1.kid = tui1.kid AND tu.uid = tui1.uid AND tu.uid = tui2.uid AND tk2.kname = "class" AND tk2.kid = tui2.kid
-      and tu.ulevel = 0
+      and c.cid = tui2.value and tu.ulevel = 0
     <if test="clazzs != null and clazzs.length > 0">
       and tui2.value in
         <foreach collection="clazzs" item="clazzId" index="index" open="(" separator="," close=")">
           #{clazzId}
         </foreach>
     </if>
+    order by username
   </select>
+
+<!--  根据专业获取学生-->
+  <select id="getUserByMajor" resultMap="BaseResultMap">
+    select tu.uid
+    from t_user tu, t_user_info tui1,  t_keys tk1
+    where tu.uid = tui1.uid AND tk1.kname = "major" AND tk1.kid = tui1.kid
+    and tu.ulevel = 0
+    <if test="majors != null and majors.length > 0">
+      and tui1.value in
+      <foreach collection="majors" item="majorId" index="index" open="(" separator="," close=")">
+        #{majorId}
+      </foreach>
+    </if>
+  </select>
+<!--  根据院系获取学生-->
+  <select id="getUserByDepartment" resultMap="BaseResultMap">
+    select tu.uid
+    from t_user tu, t_user_info tui1,  t_keys tk1
+    where tu.uid = tui1.uid AND tk1.kname = "major" AND tk1.kid = tui1.kid
+    and tu.ulevel = 0
+    <if test="departments != null and departments.length > 0">
+      and tui1.value in
+      <foreach collection="departments" item="departmentId" index="index" open="(" separator="," close=")">
+        #{departmentId}
+      </foreach>
+    </if>
+  </select>
+
+<!--  根据年级查找学生-->
+  <select id="getUserByGrade" resultMap="BaseResultMap">
+    select tu.uid
+    from t_user tu, t_user_info tui1,  t_keys tk1
+    where tu.uid = tui1.uid AND tk1.kname = "grade" AND tk1.kid = tui1.kid
+    and tu.ulevel = 0
+    <if test="grades != null and grades.length > 0">
+      and tui1.value in
+      <foreach collection="grades" item="gradeId" index="index" open="(" separator="," close=")">
+        #{gradeId}
+      </foreach>
+    </if>
+  </select>
+<!--获取所有的普通用户的id-->
+  <select id="selectAllNormalUserId" resultType="java.lang.String">
+    select uid
+    from t_user
+    where ulevel = 0 and ustatus = 1
+  </select>
+
+<!--  获得管理员列表-->
+  <select id="getAdminList" resultMap="BaseResultMap">
+    select tu.uid, tui.value as username, tu.ulevel, tu.ustatus
+    from t_user tu, t_user_info tui, t_keys tk
+    where tk.kname = "name" and tk.kid = tui.kid and tu.uid = tui.uid
+      and tu.ulevel = 1 limit #{page}, #{limit}
+  </select>
+  <!--  管理员数据条数-->
+  <select id="getAdminCount" resultType="java.lang.Integer">
+    select count(uid) from t_user where ulevel = 1
+  </select>
+<!--  符合条件的管理员数据-->
+  <select id="searchAdmin" resultMap="BaseResultMap">
+    <bind name="likePattern" value="'%' + username + '%'"/>
+    select tu.uid, tui.value as username, tu.ulevel, tu.ustatus
+    from t_user tu, t_user_info tui, t_keys tk
+    where tu.uid = tui.uid and tk.kname = "name" and tk.kid = tui.kid and tu.ulevel = 1
+    <if test='username != null and username != ""'>
+      and tui.value like #{likePattern}
+    </if>
+    limit #{page}, #{limit}
+  </select>
+<!--  符合条件的管理员数量-->
+  <select id="searchAdminCount" resultType="java.lang.Integer">
+    <bind name="likePattern" value="'%' + username + '%'"/>
+    select count(tu.uid)
+    from t_user tu, t_user_info tui, t_keys tk
+    where tu.uid = tui.uid and tk.kname = "name" and tk.kid = tui.kid and tu.ulevel = 1
+    <if test='username != null and username != ""'>
+      and tui.value like #{likePattern}
+    </if>
+  </select>
+<!--  普通用户的封禁与解封-->
+  <update id="changeUserStatus">
+    update t_user
+    set ustatus = #{status}
+    where uid = #{uid} and ulevel = 0
+  </update>
+<!--  管理员的封禁与解封-->
+  <update id="changeAdminStatus">
+    update t_user
+    set ustatus = #{status}
+    where uid = #{uid} and ulevel = 1
+  </update>
 </mapper>

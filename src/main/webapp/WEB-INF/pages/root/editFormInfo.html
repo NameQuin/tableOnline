@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>表单信息</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+</head>
+<style>
+    #app{
+        width: 30%;
+        margin-left: 35%;
+    }
+</style>
+<body>
+<div id="app">
+    <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="表单名称">
+            <el-input style="width: 72%" v-model="form.formTitle"></el-input>
+        </el-form-item>
+        <el-form-item label="开始时间">
+            <el-date-picker v-model="form.startTime" type="datetime" :picker-options="options1" placeholder="选择日期时间"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="结束时间">
+            <el-date-picker v-model="form.endTime" type="datetime" :picker-options="options2" placeholder="选择日期时间"></el-date-picker>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="submitData">提交</el-button>
+            <el-button @click="resetData">重置</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+
+</body>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            form: {
+                formId: '',
+                formTitle: '',
+                startTime: '',
+                endTime: ''
+            },
+            formInfo: {
+                tfid: '',
+                tftitle: '',
+                tfbegintime: '',
+                tfendtime: '',
+            },
+            options1: {},
+            options2: {}
+        },
+        mounted: function(){
+            // 将表单部分数据初始化
+            this.getFormInfo();
+            // 将选项赋值
+            this.options1 = this.startTimeLimit();
+            this.options2 = this.endTimeLimit();
+        },
+        methods: {
+            startTimeLimit(){ // 开始时间限制
+                let that = this;
+                return {
+                    disabledDate(time) {
+                        let date = that.form.endTime;
+                        if(date !== ""){
+                            return time.getTime() < new Date() - 8.64e7 || time.getTime() > that.form.endTime;
+                        }else{
+                            return time.getTime() < new Date() - 8.64e7;
+                        }
+                    }
+                }
+            },
+            endTimeLimit(){ // 结束时间限制
+                let that = this;
+                return {
+                    disabledDate(time){
+                        let date = that.form.startTime;
+                        if(date !== ""){
+                            return time.getTime() < date;
+                        }else{
+                            return time.getTime() < new Date() - 8.64e7;
+                        }
+                    }
+                }
+            },
+            resetData: function(){// 重置表单数据
+                this.form.formId = this.formInfo.tfid;
+                this.form.formTitle = this.formInfo.tftitle;
+                this.form.startTime = this.formInfo.tfbegintime;
+                this.form.endTime = this.formInfo.tfendtime;
+            },
+            submitData() {// 提交更新数据
+                if(this.form.startTime === "" || this.form.endTime === ""){
+                    this.$message({
+                        message: "还没有选择时间",
+                        center: true
+                    });
+                    return;
+                }
+                if(this.form.startTime > this.form.endTime){
+                    this.$message({
+                        message: "时间范围不合法",
+                        center: true
+                    });
+                    return;
+                }
+                let that = this;
+                $.ajax({
+                    type: "POST",
+                    url: "/tableOnline/root/changeFormInfo",
+                    data: {
+                        formId: that.form.formId,
+                        formTitle: that.form.formTitle.trim(),
+                        startTime: that.dateFormat(that.form.startTime),
+                        endTime: that.dateFormat(that.form.endTime)
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code === 200){
+                            that.$message({
+                                message: "修改成功，3s后跳转",
+                                center: true
+                            });
+                            setTimeout(function () {
+                                location.href = "/tableOnline/pages/root/formList.html";
+                            }, 3000);
+                        }else{
+                            that.$message({
+                               message: "修改出错，请重试",
+                               center: true
+                            });
+                        }
+                    },
+                    error: function (res) {
+                        that.$message({
+                            message: "服务器错误",
+                            center: true
+                        })
+                    }
+                });
+            },
+            getFormInfo: function() { // 请求表单数据进行数据预置
+                let _this = this;
+                $.ajax({
+                    type: "GET",
+                    url: "/tableOnline/root/getFormInfo",
+                    dataType: "json",
+                    success: function(res){
+                        let data = res.data;
+                        _this.form.formId = _this.formInfo.tfid = data.tfid;
+                        _this.form.formTitle = _this.formInfo.tftitle = data.tftitle;
+                        _this.form.startTime = _this.formInfo.tfbegintime = _this.parseDate(data.tfbegintime);
+                        _this.form.endTime = _this.formInfo.tfendtime = _this.parseDate(data.tfendtime);
+                    },
+                    error: function(res){
+                        console.log("请求失败");
+                    }
+                });
+            },
+            dateFormat: function(date){ // 对时间进行格式化处理
+                let year = date.getFullYear();
+                let month = date.getMonth()+1;
+                let day = date.getDate();
+                let hour = date.getHours();
+                let minute = date.getMinutes();
+                let second = date.getSeconds();
+                const formatNumber = function (n){
+                    n = n.toString();
+                    return n[1] ? n : "0"+n;
+                };
+                let ret = [year, month, day].map(formatNumber).join('-').toString()+" "+[hour, minute, second].map(formatNumber).join(':').toString();
+                return ret;
+            },
+            parseDate: function (dateStr) { // 字符串转时间对象 yyyy-MM-dd HH:mm:ss
+                let dateArr = dateStr.split(" ");
+                let datePart = dateArr[0].split("-").map(s => Number.parseInt(s));
+                let timePart = dateArr[1].split(":").map(s => Number.parseInt(s));
+                return new Date(datePart[0], datePart[1]-1, datePart[2], timePart[0], timePart[1], timePart[2]);
+            }
+        }
+    });
+</script>
+</html>

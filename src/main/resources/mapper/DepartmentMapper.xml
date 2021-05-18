@@ -5,35 +5,37 @@
     <id column="did" jdbcType="INTEGER" property="did" />
     <result column="dname" jdbcType="VARCHAR" property="dname" />
     <result column="dgrade" jdbcType="VARCHAR" property="dgrade" />
+    <result column="dfullname" jdbcType="VARCHAR" property="dfullname" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_department
     where did = #{did,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="team.tb.pojo.Department">
-    insert into t_department (did, dname, dgrade
+    insert into t_department (did, dname, dgrade, dfullname
       )
-    values (#{did,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{dgrade,jdbcType=VARCHAR}
+    values (#{did,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{dgrade,jdbcType=VARCHAR}, #{dfullname,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.Department">
     update t_department
     set dname = #{dname,jdbcType=VARCHAR},
-      dgrade = #{dgrade,jdbcType=VARCHAR}
+        dgrade = #{dgrade,jdbcType=VARCHAR},
+        dfullname = #{dfullname,jdbcType=VARCHAR}
     where did = #{did,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select did, dname, dgrade
+    select did, dname, dgrade, dfullname
     from t_department
     where did = #{did,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select did, dname, dgrade
+    select did, dname, dgrade, dfullname
     from t_department
   </select>
 <!--根据多个年级Id查找院系-->
   <select id="getDepartmentByGrade" resultMap="BaseResultMap">
-    select did, dname, dgrade
+    select did, dname, dgrade, dfullname
     from t_department
     <where>
       <if test="grades != null and grades.length > 0">
@@ -43,5 +45,6 @@
         </foreach>
       </if>
     </where>
+    order by dfullname
   </select>
 </mapper>

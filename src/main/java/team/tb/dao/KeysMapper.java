@@ -13,4 +13,8 @@ public interface KeysMapper {
     List<Keys> selectAll();
 
     int updateByPrimaryKey(Keys record);
+
+    Keys selectLastOne();
+
+    void insertForKey(Keys key);
 }

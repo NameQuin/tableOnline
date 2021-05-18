@@ -29,9 +29,6 @@
                         <img th:src="@{/imgs/default.jpg}" src="/WEB-INF/imgs/default.jpg" class="layui-nav-img">
                         <span th:text="${session.user.username}">user</span>
                     </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">发布新表单</a></dd>
-                    </dl>
                 </li>
                 <li class="layui-nav-item"><a href="/user/logout" th:href="@{/user/logout}">Sign out</a></li>
             </ul>

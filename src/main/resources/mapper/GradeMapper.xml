@@ -26,5 +26,6 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select gid, grade
     from t_grade
+    order by grade
   </select>
 </mapper>

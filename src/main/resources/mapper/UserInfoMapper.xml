@@ -12,9 +12,9 @@
     where ufid = #{ufid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="team.tb.pojo.UserInfo">
-    insert into t_user_info (ufid, kid, value, 
+    insert into t_user_info (ufid, kid, value,
       uid)
-    values (#{ufid,jdbcType=INTEGER}, #{kid,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+    values (#{ufid,jdbcType=INTEGER}, #{kid,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
       #{uid,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.UserInfo">
@@ -33,4 +33,54 @@
     select ufid, kid, value, uid
     from t_user_info
   </select>
+
+<!--  插入一条数据，让数据库自增id-->
+  <insert id="insertWithoutKey" parameterType="team.tb.pojo.UserInfo">
+    insert into t_user_info (kid, value,
+                             uid)
+    values (#{kid,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
+            #{uid,jdbcType=VARCHAR})
+  </insert>
+
+<!--  根据字段id和用户id获取字段值-->
+  <select id="getUserInfoByKeyId" resultMap="BaseResultMap">
+    select ufid, kid, value, uid
+    from t_user_info
+    where kid = #{keyId} and uid = #{userId}
+  </select>
+
+<!--  返回年级字段非引用值-->
+  <select id="getUserGradeInfo" resultMap="BaseResultMap">
+    select ui.ufid, ui.kid, g.grade as value, ui.uid
+    from t_user_info ui left join t_grade g
+    on ui.value = g.gid
+    where ui.uid = #{userId} and ui.kid = #{keyId}
+  </select>
+  <!--  返回院系字段非引用值-->
+  <select id="getUserDepartmentInfo" resultMap="BaseResultMap">
+    select ui.ufid, ui.kid, d.dname as value, ui.uid
+    from t_user_info ui left join t_department d
+    on ui.value = d.did
+    where ui.uid = #{userId} and ui.kid = #{keyId}
+  </select>
+  <!--  返回专业字段非引用值-->
+  <select id="getUserMajorInfo" resultMap="BaseResultMap">
+    select ui.ufid, ui.kid, m.mname as value, ui.uid
+    from t_user_info ui left join t_major m
+    on ui.value = m.mid
+    where ui.uid = #{userId} and ui.kid = #{keyId}
+  </select>
+  <!--  返回班级字段非引用值-->
+  <select id="getUserClassInfo" resultMap="BaseResultMap">
+    select ui.ufid, ui.kid, c.cnum as value, ui.uid
+    from t_user_info ui left join t_class c
+    on ui.value = c.cid
+    where ui.uid = #{userId} and ui.kid = #{keyId}
+  </select>
+<!--  更新指定用户指定字段的值-->
+  <update id="updateValue" parameterType="team.tb.pojo.TableInfo">
+    update t_user_info
+    set value = #{value}
+    where kid = #{kid} and uid = #{uid}
+  </update>
 </mapper>

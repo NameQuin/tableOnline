@@ -11,20 +11,16 @@ public class BaseController implements Serializable {
 
     private static final long serialVersionUID = 6357869213649815390L;
 
-    /**
-     * 得到分页列表的信息
-     */
-
-
-    public static void logBefore(Logger logger, String interfaceName){
+    public static void logBefore(Logger logger, String message){
         logger.info("");
         logger.info("start");
-        logger.info(interfaceName);
+        logger.info(message);
     }
 
-    public static void logAfter(Logger logger){
-        logger.info("end");
+    public static void logAfter(Logger logger, String message){
         logger.info("");
+        logger.info(message != null ? message : "");
+        logger.info("end");
     }
 
 }

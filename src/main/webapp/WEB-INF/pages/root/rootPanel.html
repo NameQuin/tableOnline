@@ -25,15 +25,11 @@
                 <li class="layui-nav-item">
 
                     <a href="javascript:;">
-                        <img src="/WEB-INF/imgs/default.jpg" class="layui-nav-img">
+                        <img th:src="@{/imgs/default.jpg}" src="/WEB-INF/imgs/default.jpg" class="layui-nav-img">
                         Name1e3s
                     </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="">发布新表单</a></dd>
-                        <dd><a href="">管理Admin</a></dd>
-                    </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">Sign out</a></li>
+                <li class="layui-nav-item"><a href="/user/logout" th:href="@{/user/logout}">Sign out</a></li>
             </ul>
         </div>
 
@@ -45,16 +41,17 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;">用户管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" th:href="@{/root/userList.html}">普通用户</a></dd>
-                            <dd><a href="javascript:;" th:href="@{/root/adminList.html}">管理员用户</a></dd>
+                            <dd><a href="javascript:;" th:href="@{/pages/root/userList.html}" target="ifr">普通用户</a></dd>
+                            <dd><a href="javascript:;" th:href="@{/pages/root/adminList.html}" target="ifr">管理员用户</a></dd>
                         </dl>
                     </li>
 
                     <li class="layui-nav-item">
                         <a href="javascript:;">表单管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" th:href="@{/root/formList.html}">表单列表</a></dd>
-                            <dd><a href="javascript:;" th:href="@{/root/addForm.html}">新增表单</a></dd>
+                            <dd><a href="javascript:;" th:href="@{/pages/root/formList.html}" target="ifr">表单列表</a></dd>
+                            <dd><a href="javascript:;" th:href="@{/pages/root/deletedFormList.html}" target="ifr">已删除表单</a></dd>
+                            <dd><a href="javascript:;" th:href="@{/pages/root/addForm.html}" target="ifr">新增表单</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">

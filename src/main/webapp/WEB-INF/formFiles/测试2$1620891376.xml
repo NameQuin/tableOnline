@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form> 
+  <header> 
+    <form-title>测试2</form-title>  
+    <submit-to-db>false</submit-to-db>  
+    <time-range>2021-05-13 15:37:00|2021-05-15 00:00:00</time-range>  
+    <grades/>  
+    <departments/>  
+    <majors/>  
+    <classes/>  
+    <students>3/4/5/6</students>  
+    <form-items> 
+      <form-item> 
+        <id>0</id>  
+        <kid>1</kid>  
+        <type>text</type>  
+        <label>姓名</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>1</id>  
+        <kid>5</kid>  
+        <type>text</type>  
+        <label>年级</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>2</id>  
+        <kid>4</kid>  
+        <type>text</type>  
+        <label>院系</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>3</id>  
+        <kid>10</kid>  
+        <type>text</type>  
+        <label>专业</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>4</id>  
+        <kid>6</kid>  
+        <type>text</type>  
+        <label>班级</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>5</id>  
+        <kid>new1</kid>  
+        <type>text</type>  
+        <label>输入框</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item> 
+    </form-items> 
+  </header>  
+  <body> 
+    <user id="3"> 
+      <field kid="1" label="姓名" value="王五"/>  
+      <field kid="5" label="年级" value="2018"/>  
+      <field kid="4" label="院系" value="信科院"/>  
+      <field kid="10" label="专业" value="软件"/>  
+      <field kid="6" label="班级" value="01"/>  
+      <field kid="new1" label="输入框" value="输入值"/> 
+    </user>  
+    <user id="4"> 
+      <field kid="1" label="姓名" value="李四"/>  
+      <field kid="5" label="年级" value="2017"/>  
+      <field kid="4" label="院系" value="核自院"/>  
+      <field kid="10" label="专业" value="测控"/>  
+      <field kid="6" label="班级" value="05"/>  
+      <field kid="new1" label="输入框" value=""/> 
+    </user>  
+    <user id="5"> 
+      <field kid="1" label="姓名" value="李五"/>  
+      <field kid="5" label="年级" value="2018"/>  
+      <field kid="4" label="院系" value="核自院"/>  
+      <field kid="10" label="专业" value="测控"/>  
+      <field kid="6" label="班级" value="04"/>  
+      <field kid="new1" label="输入框" value=""/> 
+    </user>  
+    <user id="6"> 
+      <field kid="1" label="姓名" value="王六"/>  
+      <field kid="5" label="年级" value="2017"/>  
+      <field kid="4" label="院系" value="信科院"/>  
+      <field kid="10" label="专业" value="软件"/>  
+      <field kid="6" label="班级" value="02"/>  
+      <field kid="new1" label="输入框" value=""/> 
+    </user> 
+  </body> 
+</form>

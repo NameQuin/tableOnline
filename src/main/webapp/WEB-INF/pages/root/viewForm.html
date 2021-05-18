@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>填写表单</title>
+    <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <!--    vue3就不再和elementui兼容了-->
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue.js后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
+<style>
+    #app{
+        /*width: 30%;*/
+        margin-left: 15%;
+    }
+</style>
 <body>
-
+<div id="app">
+    <el-table :data="tableData" style="width: 100%" height="250">
+        <el-table-column fixed prop="uid" label="id" width="150">
+        </el-table-column>
+        <el-table-column v-for="item, i in tableHead" :key="i" :prop="'info.' + i + '.' + item.value" :label="item.label" width="120">
+        </el-table-column>
+    </el-table>
+</div>
 </body>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            tableHead: [], // 表头
+            tableData: [] // 主体数据
+        },
+        created: function(){
+            // 初始化数据
+            this.getFormInfo();
+        },
+        methods: {
+            getFormInfo: function () { // 获取该表单的所有填写的数据用于显示
+                let that = this;
+                $.ajax({
+                    type: "GET",
+                    url: "/tableOnline/root/getFormAllInfo",
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code === 200){
+                            that.tableHead = res.data.header;
+                            that.tableData = res.data.userInfo;
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
 </html>
+

@@ -5,13 +5,14 @@
     <id column="cid" jdbcType="INTEGER" property="cid" />
     <result column="cnum" jdbcType="VARCHAR" property="cnum" />
     <result column="cmajor" jdbcType="VARCHAR" property="cmajor" />
+    <result column="cfullname" jdbcType="VARCHAR" property="cfullname" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_class
     where cid = #{cid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="team.tb.pojo.Clazz">
-    insert into t_class (cid, cnum, cmajor
+    insert into t_class (cid, cnum, cmajor, cfullname
       )
     values (#{cid,jdbcType=INTEGER}, #{cnum,jdbcType=VARCHAR}, #{cmajor,jdbcType=VARCHAR}
       )
@@ -19,21 +20,22 @@
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.Clazz">
     update t_class
     set cnum = #{cnum,jdbcType=VARCHAR},
-      cmajor = #{cmajor,jdbcType=VARCHAR}
+      cmajor = #{cmajor,jdbcType=VARCHAR},
+      cfullname = #{cfullname,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select cid, cnum, cmajor
+    select cid, cnum, cmajor, cfullname
     from t_class
     where cid = #{cid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select cid, cnum, cmajor
+    select cid, cnum, cmajor, cfullname
     from t_class
   </select>
-<!--  根据院系id获取班级，保证班号顺序-->
+<!--  根据专业id获取班级，保证班号顺序-->
   <select id="getClazzByMajorId" resultMap="BaseResultMap">
-    select cid, cnum, cmajor
+    select cid, cnum, cmajor, cfullname
     from t_class
     <where>
       <if test="majors != null and majors.length > 0">
@@ -43,6 +45,6 @@
         </foreach>
       </if>
     </where>
-    order by cnum
+    order by cfullname
   </select>
 </mapper>

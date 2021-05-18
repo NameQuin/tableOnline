@@ -9,6 +9,8 @@ public class Major implements Serializable {
 
     private String mdepartment;
 
+    private String mfullname;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getMid() {
@@ -35,12 +37,21 @@ public class Major implements Serializable {
         this.mdepartment = mdepartment == null ? null : mdepartment.trim();
     }
 
+    public String getMfullname() {
+        return mfullname;
+    }
+
+    public void setMfullname(String mfullname) {
+        this.mfullname = mfullname == null ? null : mfullname.trim();
+    }
+
     @Override
     public String toString() {
         return "Major{" +
                 "mid=" + mid +
                 ", mname='" + mname + '\'' +
                 ", mdepartment='" + mdepartment + '\'' +
+                ", mfullname='" + mfullname + '\'' +
                 '}';
     }
 }

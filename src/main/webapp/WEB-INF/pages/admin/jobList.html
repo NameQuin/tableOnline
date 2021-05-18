@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>任务列表</title>
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+    <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body>
+<table class="layui-hide" id="jobList" lay-filter="jobList"></table>
+</body>
+<script th:inline="none">
+    layui.use(['form', 'table', 'laydate'], function() {
+        var table = layui.table;
+        var form = layui.form;
+        // 生成一个表格
+        var tabIns = table.render({
+            elem: '#jobList'
+            , url: '/tableOnline/admin/jobList'
+            , title: '任务列表'
+            , page: true //开启分页
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
+                , {field: 'name', title: '名字', width: 120}
+                , {field: 'finish', title: '是否完成', width: 180, sort: true}
+                , {field: 'cancel', title: '是否取消', width: 180, sort: true}
+                , {field: 'cancel', title: '是否取消', width: 180, sort: true}
+                , {field: 'remain', title: '剩余时间', width: 180, sort: true}
+            ]]
+        });
+
+        setInterval(function () {
+            tabIns.reload();
+        }, 3000);
+
+    })
+</script>
+</html>

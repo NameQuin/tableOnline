@@ -41,4 +41,16 @@
     select kid, kname, ktype, ktypevalue, kcnname, kusvalue, kchange
     from t_keys
   </select>
+<!--选择最后一条记录-->
+  <select id="selectLastOne" resultMap="BaseResultMap">
+    select kid, kname, ktype, ktypevalue, kcnname, kusvalue, kchange
+    from t_keys
+    order by kid limit 1
+  </select>
+<!--插入新增的字段并返回自增id-->
+  <insert id="insertForKey" parameterType="team.tb.pojo.Keys" useGeneratedKeys="true" keyProperty="kid">
+    insert into t_keys (kname, ktype, ktypevalue, kcnname)
+    values (#{kname,jdbcType=VARCHAR}, #{ktype,jdbcType=INTEGER},
+    #{ktypevalue,jdbcType=VARCHAR}, #{kcnname,jdbcType=VARCHAR})
+  </insert>
 </mapper>

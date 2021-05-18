@@ -1,20 +1,23 @@
 package team.tb.utils;
 
 import com.sun.istack.internal.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
  * 时间类型与字符串类型进行转换的常用方法
  */
 public class DateUtils {
-    private static SimpleDateFormat sdf;
+    private static DateTimeFormatter dtf;
     // HH是24小时制
     private static String DEFAULT_FORMAT = "yyyy-MM-dd HH:mm:ss";
     static {
-        sdf = new SimpleDateFormat(DEFAULT_FORMAT);
+        dtf = DateTimeFormatter.ofPattern(DEFAULT_FORMAT);
     }
 
     /**
@@ -22,24 +25,10 @@ public class DateUtils {
      * @param date
      * @return
      */
-    public static String date2str(@NotNull Date date){
-        return sdf.format(date);
+    public static String date2str(@NotNull LocalDateTime date){
+        return dtf.format(date);
     }
 
-    /**
-     * 根据给定格式将日期转换为字符串
-     * @param date
-     * @param format
-     * @return
-     */
-    public static String date2str(@NotNull Date date, @NotNull String format){
-        // 将转换格式更换为给定的格式
-        sdf.applyPattern(format);
-        String ret = sdf.format(date);
-        // 将格式转换为默认的格式
-        sdf.applyPattern(DEFAULT_FORMAT);
-        return ret;
-    }
 
     /**
      * 将字符串转为日期，使用默认的格式
@@ -47,20 +36,8 @@ public class DateUtils {
      * @return
      * @throws ParseException
      */
-    public static Date str2date(@NotNull String str) throws ParseException {
-        return sdf.parse(str);
+    public static LocalDateTime str2date(@NotNull String str) throws ParseException {
+        return LocalDateTime.parse(str, dtf);
     }
 
-    /**
-     * 按照给定格式解析日期为字符串
-     * @param str
-     * @param format
-     * @return
-     */
-    public static Date str2date(@NotNull String str, @NotNull String format) throws ParseException {
-        sdf.applyPattern(format);
-        Date date = sdf.parse(str);
-        sdf.applyPattern(DEFAULT_FORMAT);
-        return date;
-    }
 }

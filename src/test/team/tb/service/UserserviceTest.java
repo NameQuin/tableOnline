@@ -7,8 +7,9 @@ import team.tb.utils.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserserviceTest {
     @Autowired
@@ -28,18 +29,13 @@ public class UserserviceTest {
 
     @Test
     public void test02() throws ParseException {
-        String start = "2021-04-17 00:00:00";
-        String end = "2021-05-12 10:10:08";
-        Date date1 = DateUtils.str2date(start);
-        Date date2 = DateUtils.str2date(end);
-        System.out.println(date1);
-        System.out.println(date2);
-        System.out.println(DateUtils.date2str(date1));
-        System.out.println(DateUtils.date2str(date2));
-        System.out.println(DateUtils.date2str(date1, "yyyy MM dd"));
-        System.out.println(DateUtils.date2str(date2, "yyyy年MM月dd日"));
-        System.out.println(DateUtils.date2str(date1));
-        System.out.println(DateUtils.date2str(date2));
+        Random random  = new Random();
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            list.add("test"+random.nextInt(50));
+        }
+        System.out.println(list);
+        System.out.println(list.subList(0, 10));
     }
 
 

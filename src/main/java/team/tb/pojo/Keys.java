@@ -19,6 +19,16 @@ public class Keys implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Keys() {
+    }
+
+    public Keys(String kname, String ktype, String ktypevalue, String kcnname) {
+        this.kname = kname;
+        this.ktype = ktype;
+        this.ktypevalue = ktypevalue;
+        this.kcnname = kcnname;
+    }
+
     public Integer getKid() {
         return kid;
     }

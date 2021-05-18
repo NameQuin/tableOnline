@@ -13,112 +13,252 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>发布新表单</title>
-    <link rel="stylesheet" href="../../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+    <!--    <link rel="stylesheet" href="../../layui/css/layui.css" th:href="@{/layui/css/layui.css}">-->
     <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <!--    vue3就不再和elementui兼容了-->
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </head>
-
+<style>
+    .edit-form {
+        width: 80%;
+        height: 100%;
+        margin-left: 10%;
+    }
+    .radio-group{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    .addCmp{
+        margin-top: 20px;
+    }
+    .addCmpDiv{
+        display: inline;
+    }
+    span .reqIcon {
+        color: red;
+    }
+    span .isHid{
+        display: none;
+    }
+    .selectGroup {
+        display: flex;
+        margin-top: 5px;
+    }
+    .selectPadding {
+        margin-left: 5%;
+    }
+    .selectPadding2 {
+        margin-left: 5%;
+    }
+</style>
 <body>
-    <div class="layui-body">
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <label class="layui-form-label">表单名称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="表单标题"
-                        class="layui-input">
-                </div>
-                <a href="www.baidu.com"><i class="layui-icon layui-icon-add-1"
-                        style="margin-left: 50%;font-size: 50px;"></i></a>
+<div class="edit-form" id="app">
+
+    <el-container style="height: 1000px; width: 100%; border: 1px solid #eee">
+        <el-header style="height: 10%; background-color: rgb(238, 241, 246);">
+            <div class="selectGroup">
+                <el-input style="width: 30%" class="selectPadding" v-model="formTitle" clearable>
+                    <template slot="prepend">标题</template>
+                </el-input>
+                <el-select :disabled="gradeList.length <= 0" class="selectPadding" v-model="grades" placeholder="请选择年级" multiple collapse-tags @visible-change="selectFinish1($event)">
+                    <el-option v-for="item in gradeList" :key="item.gid" :label="item.grade" :value="item.gid">
+                    </el-option>
+                </el-select>
+                <el-select :disabled="departmentList.length <= 0" class="selectPadding" v-model="departments" placeholder="请选择学院" multiple collapse-tags @visible-change="selectFinish2($event)">
+                    <el-option v-for="item in departmentList" :key="item.did" :label="item.dfullname" :value="item.did">
+                    </el-option>
+                </el-select>
+                <el-select :disabled="majorList.length <= 0" class="selectPadding" v-model="majors" placeholder="请选择专业" multiple collapse-tags @visible-change="selectFinish3($event)">
+                    <el-option v-for="item in majorList" :key="item.mid" :label="item.mfullname" :value="item.mid">
+                    </el-option>
+                </el-select>
             </div>
-        </form>
+            <div class="selectGroup">
+                <el-select :disabled="classList.length <= 0" class="selectPadding2" v-model="classes" placeholder="请选择班级" multiple collapse-tags @visible-change="selectFinish4($event)">
+                    <el-option v-for="item in classList" :key="item.cid" :label="item.cfullname" :value="item.cid">
+                    </el-option>
+                </el-select>
+                <el-select :disabled="studentList.length <= 0" class="selectPadding2" v-model="students" placeholder="请选择人员" multiple collapse-tags>
+                    <el-option v-for="item in studentList" :key="item.uid" :label="item.username" :value="item.uid">
+                    </el-option>
+                </el-select>
+                <div class="selectPadding2" style="display: flex;">
+                    <el-date-picker v-model="startTime" type="datetime" placeholder="开始日期" :picker-options="options1"></el-date-picker>
+                    <el-date-picker v-model="endTime" type="datetime" placeholder="结束日期" :picker-options="options2"></el-date-picker>
+                </div>
+            </div>
+        </el-header>
+        <el-container style="width: 100%;">
+            <el-aside style="width: 18%;; text-align: center; background-color: rgb(238, 241, 246); font-size: 12px;">
+                <div>
+                    <h2>添加表单项</h2>
+                </div>
+                <el-divider></el-divider>
+                <div>
+                    <p>已有字段</p>
+                    <div class="addCmp">
+                        <el-select v-model="selectField" placeholder="请选择" @change="dbFieldChange">
+                            <el-option v-for="val, i in fieldInDB" :key="i" :label="val.kcnname" :value="i"></el-option>
+                        </el-select>
+                    </div>
+                    <br>
+                    <p>新增字段</p>
+                    <el-radio-group class="radio-group" v-model="radio" @change="radioChange()">
+                        <span><el-radio style="width: 50%;" border label="text">输入框</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="radio">单选框</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="checkbox">复选框</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="select">下拉列表</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="textarea">文本框</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="number">数字框</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="date">日期框</el-radio></span>
+                        <span><el-radio style="width: 50%;" border label="tel">电话框</el-radio></span>
+                    </el-radio-group>
+                </div>
+            </el-aside>
 
-        <script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
-        <!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
-        <script>
-            layui.use(['form', 'layedit', 'laydate'], function () {
-                var form = layui.form
-                    , layer = layui.layer
-                    , layedit = layui.layedit
-                    , laydate = layui.laydate;
+            <el-main style="width: 26%; border: 1px solid #eee; text-align: center; font-size: 12px">
+                <div>
+                    <h2>编辑表单项</h2>
+                </div>
+                <el-divider></el-divider>
+                <div class="add-item">
+                    <!-- 根据不同的radio出现不同的配置项-->
+                    <div v-show="radio">
+                        <el-switch style="display: block;" active-text="必填项" inactive-text="非必填项" v-model="isReq"></el-switch>
+                        <el-switch style="display: block;" active-text="可编辑" inactive-text="不可编辑" v-model="canEdit"></el-switch>
+                        <el-input style="width: 80%;" v-model="name" :disabled="textDisable" class="addCmp" clearable>
+                            <template slot="prepend">名称</template>
+                        </el-input>
+                    </div>
 
-                //日期
-                laydate.render({
-                    elem: '#date'
-                });
-                laydate.render({
-                    elem: '#date1'
-                });
+                    <!-- 添加输入框 -->
 
-                //创建一个编辑器
-                var editIndex = layedit.build('LAY_demo_editor');
+                    <div v-show="radio === 'text' || radio === 'textarea' || radio === 'number' || radio === 'date' || radio === 'tel' || !isNew">
+                        <br>
+                        <p><span style="color: red" v-text="info"></span></p>
+                        <el-button type="primary" plain @click="addComponent(radio)">添加表项</el-button>
+                    </div>
 
-                //自定义验证规则
-                form.verify({
-                    title: function (value) {
-                        if (value.length < 5) {
-                            return '标题至少得5个字符啊';
-                        }
-                    }
-                    , pass: [
-                        /^[\S]{6,12}$/
-                        , '密码必须6到12位，且不能出现空格'
-                    ]
-                    , content: function (value) {
-                        layedit.sync(editIndex);
-                    }
-                });
+                    <!-- 添加单选框等带有选项的组件 -->
 
-                //监听指定开关
-                form.on('switch(switchTest)', function (data) {
-                    layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
-                        offset: '6px'
-                    });
-                    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-                });
+                    <div v-show="(radio === 'radio' || radio === 'checkbox' || radio === 'select') && isNew">
+                        <div v-for="(value, key, i) in rgroup">
+                            <el-input style="width: 80%;" :key="i" v-model="rgroup[key]" clearable>
+                                <template slot="prepend">选项{{i+1}}</template>
+                            </el-input><br>
 
-                //监听提交
-                form.on('submit(demo1)', function (data) {
-                    layer.alert(JSON.stringify(data.field), {
-                        title: '最终的提交信息'
-                    })
-                    return false;
-                });
+                        </div>
+                        <br>
+                        <p><span style="color: red" v-text="info"></span></p>
+                        <el-button type="primary" plain @click="addOption()">添加选项</el-button>
+                        <el-button type="primary" plain @click="addComponent(radio)">添加表项</el-button>
+                    </div>
 
-                //表单赋值
-                layui.$('#LAY-component-form-setval').on('click', function () {
-                    form.val('example', {
-                        "username": "贤心" // "name": "value"
-                        , "password": "123456"
-                        , "interest": 1
-                        , "like[write]": true //复选框选中状态
-                        , "close": true //开关状态
-                        , "sex": "女"
-                        , "desc": "我爱 layui"
-                    });
-                });
 
-                //表单取值
-                layui.$('#LAY-component-form-getval').on('click', function () {
-                    var data = form.val('example');
-                    alert(JSON.stringify(data));
-                });
+                </div>
+            </el-main>
+            <el-container style="width: 56%; border: 1px solid #eee; text-align: center; font-size: 12px;">
+                <el-main>
+                    <div>
+                        <h2>预览表单</h2>
+                    </div>
+                    <el-divider></el-divider>
+                    <div class="render-form">
+                        <el-table :data="formConfig" style="width: 100%">
+                            <el-table-column label="序号" width="50">
+                                <template slot-scope="scope">
+                                    <span style="margin-left: 10px">{{ scope.$index + 1 }}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="字段名" width="100">
+                                <template slot-scope="scope">
+                                    <div slot="reference" class="name-wrapper">
+                                        <el-tag size="medium"><span :class="scope.row.req ? 'reqIcon' : 'isHid'">*</span>{{ scope.row.label }}</el-tag>
+                                    </div>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="组件" width="300">
+                                <template slot-scope="scope">
+                                    <div v-show="scope.row.type === 'text'" style="margin-bottom: 5%;">
+                                        <el-input class="addCmp" style="width: 70%;" clearable></el-input>
+                                    </div>
+                                    <!-- 文本框 -->
+                                    <div v-show="scope.row.type === 'textarea'">
+                                        <el-input type="textarea" class="addCmp" style="width: 70%;"></el-input>
+                                    </div>
+                                    <!--日期框-->
+                                    <div v-show="scope.row.type === 'date'">
+                                        <el-date-picker type="date" placeholder="选择日期"></el-date-picker>
+                                    </div>
+                                    <!--数字框-->
+                                    <div v-show="scope.row.type === 'number'">
+                                        <el-input type="number" placeholder="输入数字"></el-input>
+                                    </div>
+                                    <!--电话框-->
+                                    <div v-show="scope.row.type === 'tel'">
+                                        <el-input type="tel" placeholder="输入电话"></el-input>
+                                    </div>
+                                    <!-- RADIO -->
+                                    <div v-show="scope.row.type === 'radio' && scope.row.options != undefined && Object.keys(scope.row.options).length > 0">
 
-            });
-        </script>
+                                        <div class="addCmp">
+                                            <el-radio-group>
+                                                <el-radio v-show="val" v-for="val, i in scope.row.options" :key="i" :label="val">{{val}}</el-radio>
+                                            </el-radio-group>
+                                        </div>
+                                    </div>
+                                    <!-- checkbox -->
+                                    <div v-show="scope.row.type === 'checkbox' && scope.row.options != undefined && Object.keys(scope.row.options).length > 0">
+                                        <div class="addCscope.row">
+                                            <el-checkbox-group class="addCmpDiv" v-model="checkList">
+                                                <el-checkbox v-show="val" v-for="val, i in scope.row.options" :key="i" :label="val">{{val}}</el-checkbox>
+                                            </el-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <!-- 下拉列表 -->
+                                    <div v-show="scope.row.type === 'select' && scope.row.options != undefined && Object.keys(scope.row.options).length > 0">
+                                        <div class="addCmp">
+                                            <el-select placeholder="请选择">
+                                                <el-option v-show="val" v-for="val, i in scope.row.options" :key="i" :label="val" :value="i"></el-option>
+                                            </el-select>
+                                        </div>
+                                    </div>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作" width="200">
+                                <template slot-scope="scope">
+                                    <el-button size="mini" type="danger" icon="el-icon-delete" plain @click="delComponent(scope.$index, scope.row, scope.row.id)"></el-button>
+                                    <el-button v-show="scope.$index > 0" size="mini" type="primary" icon="el-icon-top" plain @click="upComponent(scope.$index, scope.row, scope.row.id)"></el-button>
+                                    <el-button v-show="scope.$index + 1 !== formConfig.length" size="mini" type="primary" icon="el-icon-bottom" plain @click="downComponent(scope.$index, scope.row, scope.row.id)"></el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
 
-    </div>
+                    </div>
+                </el-main>
 
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        <li style="margin-left: 45%;">@Powered By Name1e3s</li>
-    </div>
-    </div>
+                <el-footer>
+                    <div v-show="formConfig.length > 0" class="confirm-edit flex-center">
+                        <el-button class="confirm-button" type="primary" plain @click="handleEditForm()">提交</el-button>
+                        <el-switch style="display: block;" active-text="提交至数据库" inactive-text="不提交至数据库" v-model="submitToDb"></el-switch>
+                    </div>
+                </el-footer>
+            </el-container>
+        </el-container>
+    </el-container>
 
-    <script src="../../layui/layui.js" th:src="@{/layui/layui.js}"></script>
-    <script>
-        //JavaScript代码区域
-        layui.use('element', function () {
-            var element = layui.element;
+</div>
 
-        });
-    </script>
+
+<script type="text/javascript" th:src="@{/js/addFormAdmin.js}"></script>
+
+
 </body>
+</html>

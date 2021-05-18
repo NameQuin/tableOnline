@@ -92,6 +92,12 @@
       <artifactId>mybatis</artifactId>
       <version>3.4.4</version>
     </dependency>
+<!--    处理数据库字段与实体类属性的映射，可以使用java8新增的LocalDateTime这些类映射-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-typehandlers-jsr310</artifactId>
+      <version>1.0.1</version>
+    </dependency>
     <!--导入mybatis运行的时候的一些依赖包日志相关的 -->
     <dependency>
       <groupId>log4j</groupId>
@@ -175,6 +181,12 @@
       <artifactId>jackson-annotations</artifactId>
       <version>2.9.5</version>
     </dependency>
+    <!-- 支持java8 localDate等新时间类型的序列化，将其转换为指定格式的字符串 -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.9.5</version>
+    </dependency>
 
     <!-- 是专门用来进行文件上传下载的 -->
     <dependency>
@@ -241,6 +253,19 @@
       <groupId>com.auth0</groupId>
       <artifactId>java-jwt</artifactId>
       <version>3.4.0</version>
+    </dependency>
+<!--    读写xml文件-->
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+<!--    使用xpath读取xml的支持-->
+    <!-- https://mvnrepository.com/artifact/jaxen/jaxen -->
+    <dependency>
+      <groupId>jaxen</groupId>
+      <artifactId>jaxen</artifactId>
+      <version>1.1.6</version>
     </dependency>
 
   </dependencies>

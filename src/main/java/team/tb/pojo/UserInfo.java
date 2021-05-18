@@ -13,6 +13,15 @@ public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public UserInfo() {
+    }
+
+    public UserInfo(String kid, String value, String uid) {
+        this.kid = kid;
+        this.value = value;
+        this.uid = uid;
+    }
+
     public Integer getUfid() {
         return ufid;
     }

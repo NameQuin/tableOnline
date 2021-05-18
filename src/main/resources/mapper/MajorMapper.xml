@@ -5,35 +5,37 @@
     <id column="mid" jdbcType="INTEGER" property="mid" />
     <result column="mname" jdbcType="VARCHAR" property="mname" />
     <result column="mdepartment" jdbcType="VARCHAR" property="mdepartment" />
+    <result column="mfullname" jdbcType="VARCHAR" property="mfullname" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_major
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="team.tb.pojo.Major">
-    insert into t_major (mid, mname, mdepartment
+    insert into t_major (mid, mname, mdepartment, mfullname
       )
-    values (#{mid,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, #{mdepartment,jdbcType=VARCHAR}
+    values (#{mid,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, #{mdepartment,jdbcType=VARCHAR}, #{mfullname,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.Major">
     update t_major
     set mname = #{mname,jdbcType=VARCHAR},
-      mdepartment = #{mdepartment,jdbcType=VARCHAR}
+        mdepartment = #{mdepartment,jdbcType=VARCHAR},
+        mfullname = #{mfullname,jdbcType=VARCHAR}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select mid, mname, mdepartment
+    select mid, mname, mdepartment, mfullname
     from t_major
     where mid = #{mid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select mid, mname, mdepartment
+    select mid, mname, mdepartment, mfullname
     from t_major
   </select>
 <!--  根据院系id获取专业-->
   <select id="getMajorByDepartmentId" resultMap="BaseResultMap">
-    select mid, mname, mdepartment
+    select mid, mname, mdepartment, mfullname
     from t_major
     <where>
       <if test="departments != null and departments.length > 0">
@@ -43,5 +45,6 @@
         </foreach>
       </if>
     </where>
+    order by mfullname
   </select>
 </mapper>

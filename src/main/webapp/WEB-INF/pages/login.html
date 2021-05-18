@@ -155,10 +155,23 @@
                             // console.log(basePath);
                             window.location.href = res.msg.split(" ")[1];
                         }else if(res.code === 400){
-                            layer.msg("账号或密码错误");
-                        }else if(res.code === 401){
-                            layer.msg("验证码错误");
+                            layer.msg("账号或密码错误",
+                                {
+                                    icon: 2,
+                                    time: 1500
+                                });
                             changeCode();
+                        }else if(res.code === 401){
+                            layer.msg("验证码错误", {
+                                icon: 2,
+                                time: 1500
+                            });
+                            changeCode();
+                        }else if(res.code === 402){
+                            layer.msg("账号已被封禁，请联系管理员解封", {
+                                icon: 2,
+                                time: 1500
+                            })
                         }
                     },
                     error: function (res) {

@@ -1,8 +1,12 @@
 package team.tb.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.internal.NotNull;
+import net.sf.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class TableInfo implements Serializable {
@@ -11,10 +15,13 @@ public class TableInfo implements Serializable {
     private String tftitle;
 
     //设置时间格式，防止在转换成json时变成秒数
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Date tfbegintime;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    private Date tfendtime;
+//    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") // 入参格式化
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8") // 将出参格式化
+    private LocalDateTime tfbegintime;
+
+//    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    private LocalDateTime tfendtime;
 
     private String tfsrc;
 
@@ -26,7 +33,39 @@ public class TableInfo implements Serializable {
 
     private String tfcondition;
 
+    private Integer tfstatus;
+
     private static final long serialVersionUID = 1L;
+
+    public TableInfo() {
+    }
+
+    public TableInfo(Integer tfid, String tftitle, LocalDateTime tfbegintime, LocalDateTime tfendtime, Integer tfflag) {
+        this.tfid = tfid;
+        this.tftitle = tftitle;
+        this.tfbegintime = tfbegintime;
+        this.tfendtime = tfendtime;
+        this.tfflag = tfflag;
+    }
+
+    public TableInfo(String tftitle, LocalDateTime tfbegintime, LocalDateTime tfendtime, String tfsrc, String tfcreator,
+                     @NotNull String tfcondition, Integer tfflag) {
+        this.tftitle = tftitle;
+        this.tfbegintime = tfbegintime;
+        this.tfendtime = tfendtime;
+        this.tfsrc = tfsrc;
+        this.tfcreator = tfcreator;
+        this.tfcondition = tfcondition;
+        this.tfflag = tfflag;
+    }
+
+    public Integer getTfstatus() {
+        return tfstatus;
+    }
+
+    public void setTfstatus(Integer tfstatus) {
+        this.tfstatus = tfstatus;
+    }
 
     public Integer getTfid() {
         return tfid;
@@ -44,19 +83,19 @@ public class TableInfo implements Serializable {
         this.tftitle = tftitle == null ? null : tftitle.trim();
     }
 
-    public Date getTfbegintime() {
+    public LocalDateTime getTfbegintime() {
         return tfbegintime;
     }
 
-    public void setTfbegintime(Date tfbegintime) {
+    public void setTfbegintime(LocalDateTime tfbegintime) {
         this.tfbegintime = tfbegintime;
     }
 
-    public Date getTfendtime() {
+    public LocalDateTime getTfendtime() {
         return tfendtime;
     }
 
-    public void setTfendtime(Date tfendtime) {
+    public void setTfendtime(LocalDateTime tfendtime) {
         this.tfendtime = tfendtime;
     }
 
@@ -112,6 +151,7 @@ public class TableInfo implements Serializable {
                 ", tfcreator='" + tfcreator + '\'' +
                 ", tfkeys='" + tfkeys + '\'' +
                 ", tfcondition='" + tfcondition + '\'' +
+                ", tfstatus=" + tfstatus +
                 '}';
     }
 }

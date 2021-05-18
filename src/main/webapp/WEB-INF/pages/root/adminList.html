@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+</head>
+<style>
+    #serachDiv{
+        margin-top: 10px;
+        margin-left: 30%;
+    }
+</style>
+<body>
+<div id="serachDiv">
+    <form class="layui-form layui-col-space5">
+        <div class="layui-form-item">
+            <div class="layui-inline layui-show-xs-inline">
+                <input type="text" name="username"  placeholder="请输入用户名字" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-inline layui-show-xs-block">
+                <button class="layui-btn" lay-submit="" lay-filter="searchUser"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="layui-hide" id="userListTable" lay-filter="userListTable"></table>
+<script type="text/html" id="toolbar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script th:inline="none">
+    layui.use(['form', 'table', 'layer'], function() {
+        var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
+
+        // 生成一个表格
+        var tabIns = table.render({
+            elem: '#userListTable' // 表格id
+            , url: '/tableOnline/root/getAdminList'
+            , title: '管理员列表'
+            , page: true //开启分页
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'uid', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
+                , {field: 'username', title: '姓名', width: 100}
+                , {field: 'ulevel', title: '用户等级', templet: '#userLevel', width: 120}
+                , {field: 'ustatus', title: '用户状态', templet: '#userStatus', width: 120}
+                , {fixed: 'right', title: '操作', toolbar: '#toolbar', width: 150}
+            ]]
+        });
+
+
+        // 监听状态操作，实现更改用户状态
+        form.on('switch(userstatus)', function(data){
+            // console.log(data.elem); //得到checkbox原始DOM对象
+            // console.log(data.elem.checked); //开关是否开启，true或者false
+            // console.log(data.value); //开关value值，也可以通过data.elem.value得到
+            //向后台发送请求  ajax  使用jquery的形式编写ajax
+            let check = data.elem.checked === true?1:0;
+            let uid = data.value;
+            $.ajax({ //jquery的ajax形式
+                type:'post',//请求的方式
+                url:'/tableOnline/root/changeAdminStatus',//向后台发送请求的地址
+                data:{ //表示向后台传入的参数 key-value
+                    'status':check,
+                    'uid':uid
+                },
+                dataType:'json',//告诉后台返回的数据必须是json格式的数据
+                success:function(res){ // 当请求成功以后的回调函数  res会直接接受后台返回的json格式的数据
+                    if(res.code === 200){
+                        layer.msg('修改成功', {
+                            icon: 1,
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        });
+                    }else{
+                        layer.msg('修改失败', {
+                            icon: 1,
+                            time: 1000 // 1秒关闭
+                        })
+                    }
+                },
+                error: function (err) {
+                    layer.msg('服务器错误', {
+                        icon: 2,
+                        time: 1000 // 1秒关闭
+                    })
+                }
+            })
+
+        });
+
+        // 搜索提交，表格重载
+        form.on("submit(searchUser)", function (data) {
+            console.log(data.field);
+            var btn = $(this);
+            btn.attr("disabled", true).addClass("layui-disabled");
+            tabIns.reload({
+                url: "/tableOnline/root/searchAdmin",
+                type: "post",
+                where: data.field,
+                page: {
+                    cur: 1
+                }
+            });
+            btn.attr("disabled", false).removeClass("layui-disabled");
+            return false;
+        });
+    })
+</script>
+
+<!--用户类型-->
+<script type="text/html" id="userLevel">
+    {{# var level = d.ulevel;
+    if(level === 0){
+    }}
+    <span>普通用户</span>
+    {{# }else if(level === 1) { }}
+    <soan>管理员</soan>
+    {{# }else if(level === 2) { }}
+    <span>超级管理员</span>
+    {{# }}}
+</script>
+<!--用户状态-->
+<script type="text/html" id="userStatus">
+    {{# var status = d.ustatus;
+    var uid = d.uid;
+    if(status === 0){
+    }}
+    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
+    {{# }else if(status === 1) { }}
+    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
+    {{# } }}
+</script>
+
+</body>
+</html>

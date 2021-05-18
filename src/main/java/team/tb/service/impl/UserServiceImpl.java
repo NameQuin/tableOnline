@@ -1,12 +1,31 @@
 package team.tb.service.impl;
 
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import team.tb.common.FormField;
+import team.tb.common.FormInfo;
 import team.tb.dao.UserMapper;
+import team.tb.pojo.TableInfo;
 import team.tb.pojo.User;
+import team.tb.pojo.UserInfo;
+import team.tb.service.TableInfoService;
+import team.tb.service.UserInfoService;
 import team.tb.service.UserService;
+import team.tb.utils.XmlUtils;
 
+import java.io.IOException;
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -14,6 +33,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private TableInfoService tableInfoService;
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Override
     public User findUserByUsernameAndPwd(User user) {
@@ -41,7 +64,239 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> selectAll() {
+        return userMapper.selectAll();
+    }
+
+    @Override
     public List<User> getUserByClass(Integer[] clazzs) {
         return userMapper.getUserByClass(clazzs);
+    }
+
+    @Override
+    public List<User> getUserByMajor(Integer[] majors) {
+        return userMapper.getUserByMajor(majors);
+    }
+
+    @Override
+    public List<User> getUserByDepartment(Integer[] departments) {
+        return userMapper.getUserByDepartment(departments);
+    }
+
+    @Override
+    public List<User> getUserByGrade(Integer[] grades) {
+        return userMapper.getUserByGrade(grades);
+    }
+
+    @Override
+    public List<String> selectAllNormalUserId() {
+        return userMapper.selectAllNormalUserId();
+    }
+
+    @Override
+    public Map<String, Object> getAllFormCurUser(String uid, Integer page, Integer limit) {
+        Map<String, Object> map = new HashMap<>();
+        List<TableInfo> list = tableInfoService.selectAllForms();
+        List<TableInfo> ret = list.stream().filter(s -> {
+            String[] condition = s.getTfcondition().split("/");
+            if (condition.length > 0) {
+                for (int i = 0; i < condition.length; i++) {
+                    if (uid.equals(condition[i])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }).collect(Collectors.toList());
+        int size = ret.size();
+        map.put("count", size);
+        if(size >= page){
+            limit = Math.min(size - page, limit);
+        }else{
+            limit = page = size -1;
+        }
+        List<TableInfo> target = ret.subList(page, limit);
+        map.put("list", target);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> searchForm(String id, String formTitle, String startTime, String endTime, Integer page, Integer limit) {
+        Map<String, Object> map = new HashMap<>();
+        List<TableInfo> list = tableInfoService.searchFormByCurUser(formTitle, startTime, endTime);
+        List<TableInfo> ret = list.stream().filter(s -> {
+            String[] condition = s.getTfcondition().split("/");
+            if (condition.length > 0) {
+                for (int i = 0; i < condition.length; i++) {
+                    if (id.equals(condition[i])) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }).collect(Collectors.toList());
+        int size = ret.size();
+        map.put("count", size);
+        if(size >= page){
+            limit = Math.min(size - page, limit);
+        }else{
+            limit = page = size -1;
+        }
+        List<TableInfo> target = ret.subList(page, limit);
+        map.put("list", target);
+        return map;
+    }
+
+    /**
+     * 从文件读出所有字段数据并返回
+     * @param formId
+     * @param realPath
+     * @return 0表示无法填写的表单尝试更新，1表示更新成功
+     */
+    @Override
+    public Map<String, Object> getFormAllFields(Integer formId, String realPath, String id) throws DocumentException {
+        Map<String, Object> ret = new HashMap<>();
+        // 存入表单id
+        ret.put("formId", formId);
+        // 获取表单的所有信息
+        TableInfo tableInfo = tableInfoService.getTableInfoById(formId, 1);
+        // 存入表单开放状态
+        ret.put("formStatus", tableInfo.getTfflag());
+        // 表单路径
+        String path = realPath + tableInfo.getTfsrc();
+        // 读取文件，获得文档对象
+        Document doc = XmlUtils.readDocument(path);
+        // 是否提交到数据库
+        Element subToDb = (Element) doc.selectSingleNode("//submit-to-db");
+        ret.put("submitToDb", Boolean.valueOf(subToDb.getText()));
+        // 获取所有字段节点
+        List<FormField> fields = new ArrayList<>();
+        List<Element> elements = (List<Element>) doc.selectNodes("//form-items/form-item");
+        for (Element element : elements) {
+            FormField field = new FormField();
+            field.setId(element.element("id").getText());
+            field.setKid(element.element("kid").getText());
+            field.setType(element.element("type").getText());
+            field.setLabel(element.element("label").getText());
+            field.setReq(Boolean.valueOf(element.element("req").getText()));
+            field.setCanEdit(Boolean.valueOf(element.element("can-edit").getText()));
+            field.setNewField(Boolean.valueOf(element.element("new-field").getText()));
+            field.setHasOption(Boolean.valueOf(element.element("has-option").getText()));
+            // 处理选项部分
+            List<Element> options = element.selectNodes("options/option");
+            if(options.size() > 0){
+                List<String> list = new ArrayList<>();
+                options.forEach(s -> list.add(s.getText()));
+                field.setOptions(list);
+            }
+            fields.add(field);
+        }
+        ret.put("fields", fields);
+        // 获取对应的字段值
+        List<Element> userInfos = doc.selectNodes("//user");
+        List<Map> infos = new ArrayList<>();
+        // 根据用户id拿到文件中的字段值
+        for (Element element : userInfos) {
+            if(id.equals(element.attributeValue("id"))){
+                Map<String, Object> map = new HashMap<>();
+                // 设置用户id
+                map.put("uid", element.attributeValue("id"));
+                // 设置标签名和值
+                List<Map> fList = new ArrayList<>();
+                List<Element> children = element.selectNodes("field");
+                for (Element child : children) {
+                    Map<String, Object> f = new HashMap<>();
+                    f.put("label", child.attributeValue("label"));
+                    f.put("value", child.attributeValue("value"));
+                    fList.add(f);
+                }
+                map.put("info", fList);
+                infos.add(map);
+                break;
+            }
+        }
+        ret.put("userInfo", infos);
+        return ret;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int updateUserInfoInForm(String realPath, String basePath, FormInfo data, String uid) throws DocumentException, IOException {
+        // 根据表单id获取表单信息，判断表单是否在进行中，是则进行更新，否则就不更新
+        Integer formId = Integer.valueOf(data.getFormTitle());
+        TableInfo tableInfo = tableInfoService.getTableInfoById(formId, 1);
+        // 是否需要在数据库同步更新
+        boolean submitToDb = data.getSubmitToDb();
+        // 表单位置
+        String src1 = realPath + tableInfo.getTfsrc();
+        String src2 = basePath + tableInfo.getTfsrc();
+        if(tableInfo.getTfflag() != 1){
+            return 0;
+        }
+        // 字段信息
+        // 将字段信息过滤，选出需要更新的部分并组装成map，key为kid，value为对应字段信息
+        Map<String, FormField> retFields = data.getFormData().stream()
+                .filter(FormField::getCanEdit)
+                .collect(Collectors.toMap(FormField::getKid, s -> s));
+        if(submitToDb){ // 提交到数据库，将该用户下的字段进行更新
+            retFields.forEach((kid, field) -> {
+                UserInfo userInfo = new UserInfo();
+                userInfo.setUid(uid);
+                userInfo.setKid(field.getKid());
+                userInfo.setValue(field.getValue());
+                userInfoService.updateValue(userInfo);
+            });
+        }
+        // 更新文件
+        // 获取文档对象
+        Document doc = XmlUtils.readDocument(src1);
+        List<Element> users = doc.selectNodes("//user");
+        for (Element user : users) {
+            if(uid.equals(user.attributeValue("id"))){ // 找到目标用户，修改对应字段值
+                List<Element> attributes = user.selectNodes("field");
+                attributes.forEach(field -> {
+                    FormField f = null;
+                    if((f = retFields.get(field.attributeValue("kid"))) != null){
+                        field.attribute("value").setValue(f.getValue());
+                    }
+                });
+                break;
+            }
+        }
+        // 更新完毕，写入磁盘
+        XmlUtils.writeToFile(doc, src1, true);
+        XmlUtils.writeToFile(doc, src2, true);
+        // 获得用户信息节点
+        return 1;
+    }
+
+    @Override
+    public List<User> getAdminList(Integer page, Integer limit) {
+        return userMapper.getAdminList(page, limit);
+    }
+
+    @Override
+    public int getAdminCount() {
+        return userMapper.getAdminCount();
+    }
+
+    @Override
+    public List<User> searchAdmin(String username, Integer page, Integer limit) {
+        return userMapper.searchAdmin(username, page, limit);
+    }
+
+    @Override
+    public int searchAdminCount(String username) {
+        return userMapper.searchAdminCount(username);
+    }
+
+    @Override
+    public int changeUserStatus(Integer uid, Integer status) {
+        return userMapper.changeUserStatus(uid, status);
+    }
+
+    @Override
+    public int changeAdminStatus(Integer uid, Integer status) {
+        return userMapper.changeAdminStatus(uid,status);
     }
 }

@@ -49,6 +49,60 @@ public class IndexController {
         return "admin/userList";
     }
 
+    @RequestMapping("/admin/editFormInfo.html")
+    public String editFormInfo(){
+        return "admin/editFormInfo";
+    }
+
+    @RequestMapping("/admin/viewForm.html")
+    public String viewForm(){
+        return "admin/viewForm";
+    }
+
+    @RequestMapping("/user/formList.html")
+    public String formList(){
+        return "user/formList";
+    }
+
+    @RequestMapping("/user/viewForm.html")
+    public String viewForm2(){
+        return "user/viewForm";
+    }
+
+    @RequestMapping("/root/userList.html")
+    public String userList2(){
+        return "root/userList";
+    }
+
+    @RequestMapping("/root/adminList.html")
+    public String adminList(){
+        return "root/adminList";
+    }
+
+    @RequestMapping("/root/addForm.html")
+    public String addFormInRoot(){
+        return "root/addForm";
+    }
+
+    @RequestMapping("/root/editFormInfo.html")
+    public String editFormInfo2(){
+        return "root/editFormInfo";
+    }
+
+    @RequestMapping("/root/viewForm.html")
+    public String viewForm3(){
+        return "root/viewForm";
+    }
+
+    @RequestMapping("/root/formList.html")
+    public String formListInRoot(){
+        return "root/formList";
+    }
+
+    @RequestMapping("/root/deletedFormList.html")
+    public String deletedFormList(){
+        return "root/deletedFormList";
+    }
     /**
      * 获取验证码
      * @param request
@@ -67,5 +121,10 @@ public class IndexController {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping("/admin/jobList.html")
+    public String jobList(){
+        return "admin/jobList";
     }
 }

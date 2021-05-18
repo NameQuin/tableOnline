@@ -9,6 +9,8 @@ public class Clazz implements Serializable {
 
     private String cmajor;
 
+    private String cfullname;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getCid() {
@@ -35,12 +37,21 @@ public class Clazz implements Serializable {
         this.cmajor = cmajor == null ? null : cmajor.trim();
     }
 
+    public String getCfullname() {
+        return cfullname;
+    }
+
+    public void setCfullname(String cfullname) {
+        this.cfullname = cfullname == null ? null : cfullname.trim();
+    }
+
     @Override
     public String toString() {
         return "Clazz{" +
                 "cid=" + cid +
                 ", cnum='" + cnum + '\'' +
                 ", cmajor='" + cmajor + '\'' +
+                ", cfullname='" + cfullname + '\'' +
                 '}';
     }
 }

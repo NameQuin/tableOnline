@@ -9,6 +9,8 @@ public class Department implements Serializable {
 
     private String dgrade;
 
+    private String dfullname;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getDid() {
@@ -35,12 +37,21 @@ public class Department implements Serializable {
         this.dgrade = dgrade == null ? null : dgrade.trim();
     }
 
+    public String getDfullname() {
+        return dfullname;
+    }
+
+    public void setDfullname(String dfullname) {
+        this.dfullname = dfullname == null ? null : dfullname.trim();
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "did=" + did +
                 ", dname='" + dname + '\'' +
                 ", dgrade='" + dgrade + '\'' +
+                ", dfullname='" + dfullname + '\'' +
                 '}';
     }
 }

@@ -12,9 +12,18 @@ public class KeysServiceImpl implements KeysService {
     @Autowired
     private KeysMapper keysMapper;
 
-
     @Override
     public List<Keys> getAllKeys() {
         return keysMapper.selectAll();
+    }
+
+    @Override
+    public Keys selectLastOne() {
+        return keysMapper.selectLastOne();
+    }
+
+    @Override
+    public void insertForKey(Keys key) {
+        keysMapper.insertForKey(key);
     }
 }

@@ -11,6 +11,7 @@
     <result column="tfcreator" jdbcType="VARCHAR" property="tfcreator" />
     <result column="tfkeys" jdbcType="VARCHAR" property="tfkeys" />
     <result column="tfcondition" jdbcType="LONGVARCHAR" property="tfcondition" />
+    <result column="tfstatus" jdbcType="INTEGER" property="tfstatus" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_table_info
@@ -19,11 +20,12 @@
   <insert id="insert" parameterType="team.tb.pojo.TableInfo">
     insert into t_table_info (tfid, tftitle, tfbegintime,
       tfendtime, tfsrc, tfflag,
-      tfcreator, tfkeys, tfcondition
+      tfcreator, tfkeys, tfcondition, tfstatus
       )
     values (#{tfid,jdbcType=INTEGER}, #{tftitle,jdbcType=VARCHAR}, #{tfbegintime,jdbcType=TIMESTAMP},
       #{tfendtime,jdbcType=TIMESTAMP}, #{tfsrc,jdbcType=VARCHAR}, #{tfflag,jdbcType=INTEGER},
-      #{tfcreator,jdbcType=VARCHAR}, #{tfkeys,jdbcType=VARCHAR}, #{tfcondition,jdbcType=LONGVARCHAR}
+      #{tfcreator,jdbcType=VARCHAR}, #{tfkeys,jdbcType=VARCHAR}, #{tfcondition,jdbcType=LONGVARCHAR},
+        #{tfflag,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="team.tb.pojo.TableInfo">
@@ -35,41 +37,43 @@
       tfflag = #{tfflag,jdbcType=INTEGER},
       tfcreator = #{tfcreator,jdbcType=VARCHAR},
       tfkeys = #{tfkeys,jdbcType=VARCHAR},
-      tfcondition = #{tfcondition,jdbcType=LONGVARCHAR}
+      tfcondition = #{tfcondition,jdbcType=LONGVARCHAR},
+      tfstatus = #{tfstatus}
     where tfid = #{tfid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tfcreator, tfkeys, tfcondition
+    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tfcreator, tfkeys, tfcondition, tfstatus
     from t_table_info
-    where tfid = #{tfid,jdbcType=INTEGER}
+    where tfid = #{tfid,jdbcType=INTEGER} and tfstatus = #{formStatus}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tfcreator, tfkeys, tfcondition
+    select tfid, tftitle, tfbegintime, tfendtime, tfsrc, tfflag, tfcreator, tfkeys, tfcondition, tfstatus
     from t_table_info
+    where tfstatus = 1
   </select>
 
 <!--  管理员发布的所有表单-->
   <select id="getFormListByAdminId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator
     from t_table_info tti, t_user_info tui, t_keys tk
-    where tti.tfcreator = #{id} and tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" limit #{page}, #{limit}
+    where tti.tfcreator = #{id} and tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 1 limit #{page}, #{limit}
   </select>
 <!--管理员发布的表单总数-->
   <select id="getFormCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
     select count(tfid) from t_table_info
-    where tfcreator = #{id}
+    where tfcreator = #{id} and tfstatus = 1
   </select>
 <!--  按条件搜索管理员发布表单，动态sql内使用<符号会报错，要么使用替代符号，要么掉换位置-->
   <select id="searchForm"  resultMap="BaseResultMap">
     <bind name="likePattern" value="'%' + formTitle + '%'"/>
     select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator
     from t_table_info tti, t_user_info tui, t_keys tk
-    where tti.tfcreator = #{id} and tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name"
+    where tti.tfcreator = #{id} and tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 1
     <if test="startTime != null and startTime != ''">
       and unix_timestamp(tti.tfbegintime) > unix_timestamp(#{startTime})
     </if>
     <if test="endTime != null and endTime != ''">
-      and unix_timestamp(#{endTime}) > unix_timestamp(tti.tfbegintime)
+      and unix_timestamp(#{endTime}) > unix_timestamp(tti.tfendtime)
     </if>
     <if test="formTitle != null and formTitle != ''">
       and tti.tftitle like #{likePattern}
@@ -80,7 +84,7 @@
   <select id="getFormCountOnCondition"   resultType="java.lang.Integer">
     <bind name="likePattern" value="'%' + formTitle + '%'"/>
     select count(tfid) from t_table_info
-    where tfcreator = #{id}
+    where tfcreator = #{id} and tfstatus = 1
     <if test="startTime != null and startTime != ''">
       and unix_timestamp(tfbegintime) > unix_timestamp(#{startTime})
     </if>
@@ -91,4 +95,163 @@
       and tftitle like #{likePattern}
     </if>
   </select>
+<!--插入表单信息并返回表单id-->
+  <insert id="insertInfoForId" parameterType="team.tb.pojo.TableInfo" useGeneratedKeys="true" keyProperty="tfid">
+    insert into t_table_info (tftitle, tfbegintime,
+                              tfendtime, tfsrc, tfcreator, tfcondition, tfflag
+    )
+    values (#{tftitle}, #{tfbegintime},
+            #{tfendtime}, #{tfsrc}, #{tfcreator},
+            #{tfcondition}, #{tfflag}
+           )
+  </insert>
+<!--  更新表单标志位-->
+  <update id="updateFlag">
+    update t_table_info
+    set tfflag = #{flag}
+    where tfid = #{id}
+  </update>
+<!--根据表单id获取信息-->
+  <select id="getFormById" resultMap="BaseResultMap">
+    select tfid, tftitle, tfbegintime, tfendtime
+    from t_table_info
+    where tfid = #{formId} and tfstatus = 1
+  </select>
+<!--  修改表单名，起始时间，标志位-->
+  <update id="updatePartTableInfo" parameterType="team.tb.pojo.TableInfo">
+    update t_table_info
+    set tftitle = #{tftitle},
+        tfbegintime = #{tfbegintime},
+        tfendtime = #{tfendtime},
+        tfflag = #{tfflag}
+    where tfid = #{tfid} and tfstatus = 1
+  </update>
+
+<!--  修改标志位达到删除的效果-->
+  <update id="updateFormStatus">
+    update t_table_info
+    set tfstatus = 0
+    where tfid = #{tfid} and tfstatus = 1
+  </update>
+
+  <!--选择当前普通用户可以填写的所有表单-->
+  <select id="selectALlForms" resultMap="BaseResultMap">
+    select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator, tti.tfcondition
+    from t_table_info tti, t_user_info tui, t_keys tk
+    where tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 1
+  </select>
+
+<!--  根据条件搜索当前普通用户能填写的表单-->
+  <select id="searchFormByCurUser"  resultMap="BaseResultMap">
+    <bind name="likePattern" value="'%' + formTitle + '%'"/>
+    select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator, tti.tfcondition
+    from t_table_info tti, t_user_info tui, t_keys tk
+    where tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 1
+    <if test="startTime != null and startTime != ''">
+      and unix_timestamp(tti.tfbegintime) > unix_timestamp(#{startTime})
+    </if>
+    <if test="endTime != null and endTime != ''">
+      and unix_timestamp(#{endTime}) > unix_timestamp(tti.tfendtime)
+    </if>
+    <if test="formTitle != null and formTitle != ''">
+      and tti.tftitle like #{likePattern}
+    </if>
+  </select>
+<!--  root用户下查找所有未被删除的表单-->
+  <select id="getFormListByRoot" resultMap="BaseResultMap">
+    select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator
+    from t_table_info tti, t_user_info tui, t_keys tk
+    where tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 1 limit #{page}, #{limit}
+  </select>
+  <!--  root用户下查找所有未被删除的表单总数-->
+  <select id="getFormCountByRoot" resultType="java.lang.Integer">
+    select count(tti.tfid)
+    from t_table_info tti
+    where tti.tfstatus = 1
+  </select>
+  <!--  按条件搜索管理员发布表单，动态sql内使用<符号会报错，要么使用替代符号，要么掉换位置-->
+  <select id="searchFormByRoot"  resultMap="BaseResultMap">
+    <bind name="likePattern" value="'%' + formTitle + '%'"/>
+    select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator
+    from t_table_info tti, t_user_info tui, t_keys tk
+    where tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 1
+    <if test="startTime != null and startTime != ''">
+      and unix_timestamp(tti.tfbegintime) > unix_timestamp(#{startTime})
+    </if>
+    <if test="endTime != null and endTime != ''">
+      and unix_timestamp(#{endTime}) > unix_timestamp(tti.tfendtime)
+    </if>
+    <if test="formTitle != null and formTitle != ''">
+      and tti.tftitle like #{likePattern}
+    </if>
+    limit #{page}, #{limit}
+  </select>
+  <!--  符合搜索条件的表单总数-->
+  <select id="getSearchFormCountByRoot"   resultType="java.lang.Integer">
+    <bind name="likePattern" value="'%' + formTitle + '%'"/>
+    select count(tfid) from t_table_info
+    where tfstatus = 1
+    <if test="startTime != null and startTime != ''">
+      and unix_timestamp(tfbegintime) > unix_timestamp(#{startTime})
+    </if>
+    <if test="endTime != null and endTime != ''">
+      and unix_timestamp(#{endTime}) > unix_timestamp(tfbegintime)
+    </if>
+    <if test="formTitle != null and formTitle != ''">
+      and tftitle like #{likePattern}
+    </if>
+  </select>
+
+<!--  选择被标记删除的表单-->
+  <select id="getDeleteForm" resultMap="BaseResultMap">
+    select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator
+    from t_table_info tti, t_user_info tui, t_keys tk
+    where tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 0
+    limit #{page}, #{limit}
+  </select>
+<!--  带删除标记的表单数-->
+  <select id="getDeleteFormCount" resultType="java.lang.Integer">
+    select count(tfid)
+    from t_table_info
+    where tfstatus = 0
+  </select>
+<!--  搜索符合条件且被标记删除的表单-->
+  <select id="searchDeleteForm" resultMap="BaseResultMap">
+    <bind name="likePattern" value="'%' + formTitle + '%'"/>
+    select tti.tfid, tti.tftitle, tti.tfbegintime, tti.tfendtime, tti.tfflag, tui.value as tfcreator
+    from t_table_info tti, t_user_info tui, t_keys tk
+    where tti.tfcreator = tui.uid and tk.kid = tui.kid and tk.kname = "name" and tti.tfstatus = 0
+    <if test="startTime != null and startTime != ''">
+      and unix_timestamp(tti.tfbegintime) > unix_timestamp(#{startTime})
+    </if>
+    <if test="endTime != null and endTime != ''">
+      and unix_timestamp(#{endTime}) > unix_timestamp(tti.tfendtime)
+    </if>
+    <if test="formTitle != null and formTitle != ''">
+      and tti.tftitle like #{likePattern}
+    </if>
+    limit #{page}, #{limit}
+  </select>
+<!-- 搜索符合条件且被标记删除的表单数 -->
+  <select id="searchDeleteFormCount" resultType="java.lang.Integer">
+    <bind name="likePattern" value="'%' + formTitle + '%'"/>
+    select count(tti.tfid)
+    from t_table_info tti
+    where tti.tfstatus = 0
+    <if test="startTime != null and startTime != ''">
+      and unix_timestamp(tti.tfbegintime) > unix_timestamp(#{startTime})
+    </if>
+    <if test="endTime != null and endTime != ''">
+      and unix_timestamp(#{endTime}) > unix_timestamp(tti.tfendtime)
+    </if>
+    <if test="formTitle != null and formTitle != ''">
+      and tti.tftitle like #{likePattern}
+    </if>
+  </select>
+<!--  恢复被删除的表单-->
+  <update id="resetDeleteForm">
+    update t_table_info
+    set tfstatus = 1
+    where tfid = #{formId}
+  </update>
 </mapper>

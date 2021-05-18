@@ -38,10 +38,12 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
             // session中没有，需要先判断cookie中是否有token
             Cookie[] cookies = httpServletRequest.getCookies();
             String token = null;
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("token")){
-                    token = cookie.getValue();
-                    break;
+            if(cookies != null && cookies.length > 0){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("token")){
+                        token = cookie.getValue();
+                        break;
+                    }
                 }
             }
             if(StringUtils.isEmpty(token)){

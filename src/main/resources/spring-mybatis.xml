@@ -47,7 +47,7 @@
         <property name="dataSource" ref="dataSource">
         </property>
         <!--指定mybatis的配置文件路径，该配置文件下不需要再定义数据库连接信息和mapper信息了，但是可以有一些关于mybatis的配置信息-->
-        <!--<property name="configLocation" value="classpath:mybatis.xml"/>-->
+<!--        <property name="configLocation" value="classpath:mybatis.xml"/>-->
         <!--扫描mapper配置文件中的.xml文件-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
 
