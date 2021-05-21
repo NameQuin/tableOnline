@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <!--    vue3就不再和elementui兼容了-->
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<style>
+    #app {
+        width: 30%;
+        margin-left: 35%;
+    }
+</style>
+<body>
+    <div id="app">
+        <el-form :model="formInfo" :rules="rules" ref="formInfo" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="原密码" prop="oldPwd">
+                <el-input :type="pwd1" v-model="formInfo.oldPwd" clearable @blur="onBlur('pwd1', 'icon1')">
+                    <i slot="suffix" :class="icon1" @click="showPass('pwd1', 'icon1')"></i>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="新密码" prop="newPwd1">
+                <el-input :type="pwd2" v-model="formInfo.newPwd1" clearable @blur="onBlur('pwd2', 'icon2')">
+                    <i slot="suffix" :class="icon2" @click="showPass('pwd2', 'icon2')"></i>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="确认密码" prop="newPwd2">
+                <el-input :type="pwd3" v-model="formInfo.newPwd2" clearable @blur="onBlur('pwd3', 'icon3')">
+                    <i slot="suffix" :class="icon3" @click="showPass('pwd3', 'icon3')"></i>
+                </el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="submitForm('formInfo')">提交</el-button>
+                <el-button @click="resetForm('formInfo')">重置</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
+</body>
+<script>
+    var app =new Vue({
+        el: "#app",
+        data: {
+            // 进行查看密码所用到的图标和类型
+            pwd1: "password",
+            pwd2: "password",
+            pwd3: "password",
+            icon1: "el-input__icon el-icon-view",
+            icon2: "el-input__icon el-icon-view",
+            icon3: "el-input__icon el-icon-view",
+            formInfo: {
+                oldPwd: "",
+                newPwd1: "",
+                newPwd2: ""
+            },
+            rules: {
+                oldPwd: [
+                    {required: true, message: "请输入原密码", trigger: 'blur'}
+                ],
+                newPwd1: [
+                    {required: true, message: "请输入新密码", trigger: 'blur'},
+                    {min: 6, max: 18, message: "密码长度应位于6-18之间", trigger: ['change', 'blur']},
+                    {pattern: /^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,18})$/, message: "密码应该包含大小写字母，数字，以及特殊符号@#$%", trigger: ['change', 'blur']}
+                ],
+                newPwd2: [
+                    {required: true, message: "请确认新密码", trigger: 'blur'},
+                    {min: 6, max: 18, message: "密码长度应位于6-18之间", trigger: 'change'},
+                    {pattern: /^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%\\.]).{6,18})$/, message: "密码应该包含大小写字母，数字，以及特殊符号@.#$%", trigger: ['change', 'blur']},
+                    {validator: (rule, value, callback) => {
+                            console.log("进入验证");
+                            if(value !== app.formInfo.newPwd1){
+                                console.log("密码不一致");
+                                return callback(new Error("两次新密码输入不一致"))
+                            }else{
+                                console.log("密码一致");
+                                return callback();
+                            }
+                        }, trigger: ['change', 'blur']}
+                ]
+            }
+        },
+        methods: {
+            // validateNewPwd: function (rule, value, callback) {
+            //     console.log("进入验证");
+            //     if(value !== this.formInfo.newPwd1){
+            //         console.log("密码不一致");
+            //         return callback(new Error("两次新密码输入不一致"))
+            //     }else{
+            //         console.log("密码一致");
+            //         return callback();
+            //     }
+            // },
+            submitForm: function (formName) {
+                this.$refs[formName].validate(valid => {
+                    if(valid){
+                        this.$confirm('确认修改密码?', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning',
+                            center: true
+                        }).then(() => {
+                            let that = this;
+                            // console.log(JSON.stringify(that.formInfo));
+                            $.ajax({
+                                type: "POST",
+                                url: "/tableOnline/user/changeUserPwd",
+                                data: {
+                                    oldPwd: that.formInfo.oldPwd,
+                                    newPwd: that.formInfo.newPwd1
+                                },
+                                dataType: "json",
+                                success: function (res) {
+                                    if(res.code === 200){
+                                        that.$message({
+                                            showClose: true,
+                                            message: "修改成功，请重新登录",
+                                            center: true,
+                                            type: "success"
+                                        });
+                                        setTimeout(() => window.parent.location.href = "/tableOnline/pages/login.html", 1500);
+                                    }else if(res.code === 400){
+                                        that.$message({
+                                            message: "原密码错误，修改失败",
+                                            center: true,
+                                            type: "error",
+                                            showClose: true
+                                        });
+                                    }else if(res.code === 401){
+                                        that.$message({
+                                            message: "修改出错，用户不存在",
+                                            center: true,
+                                            showClose: true,
+                                            type: "error"
+                                        });
+                                    }
+                                },
+                                error: function(err){
+                                    that.$message({
+                                        message: "服务器错误",
+                                        center: true
+                                    });
+                                }
+                            });
+                        }).catch(() => {
+                            console.log("取消提交", this.formInfo.data);
+                            this.$message({
+                                message: "已取消修改",
+                                center: true
+                            })
+                        });
+                    }else{
+                        this.$message({
+                            message: '填写选项不符合条件',
+                            center: true
+                        });
+                        return false;
+                    }
+                });
+            },
+            resetForm: function(formName){ // 重置表单
+                this.$refs[formName].resetFields();
+            },
+            //密码的隐藏和显示
+            showPass: function(pwd, icon) {
+                //点击图标是密码隐藏或显示
+                if (this[pwd] === "text") {
+                    this[pwd] = "password";
+                    //更换图标
+                    this[icon] = "el-input__icon el-icon-view";
+                } else {
+                    this[pwd] = "text";
+                    this[icon] = "el-input__icon el-icon-loading";
+                    setTimeout(()=>{ // 让加载图标只存在短暂时间
+                        this[icon] = "";
+                    },500)
+                }
+            },
+            //密码失焦事件恢复为密码框
+            onBlur: function(pwd, icon){
+                this[pwd] = "password";
+                this[icon] = "el-input__icon el-icon-view";
+            },
+        }
+    });
+</script>
+</html>

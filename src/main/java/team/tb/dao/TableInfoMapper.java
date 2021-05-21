@@ -123,7 +123,8 @@ public interface TableInfoMapper {
      * @param limit
      * @return
      */
-    List<TableInfo> searchFormByRoot(String formTitle, String startTime, String endTime, Integer page, Integer limit);
+    List<TableInfo> searchFormByRoot(@Param("formTitle") String formTitle, @Param("startTime") String startTime,
+                                     @Param("endTime") String endTime,@Param("page") Integer page,@Param("limit") Integer limit);
 
     /**
      * 按条件搜索表单数据条数
@@ -132,7 +133,7 @@ public interface TableInfoMapper {
      * @param endTime
      * @return
      */
-    Integer getSearchFormCountByRoot(String formTitle, String startTime, String endTime);
+    Integer getSearchFormCountByRoot(@Param("formTitle") String formTitle,@Param("startTime") String startTime, @Param("endTime") String endTime);
 
     /**
      * 获得已被标记删除的表单

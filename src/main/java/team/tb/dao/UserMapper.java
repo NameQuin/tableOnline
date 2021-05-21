@@ -144,4 +144,12 @@ public interface UserMapper {
      * @return
      */
     int changeAdminStatus(@Param("uid") Integer uid, @Param("status") Integer status);
+
+    /**
+     * 修改用户管理员权限
+     * @param uid
+     * @param level
+     * @return
+     */
+    int updateUserLevel(@Param("uid") Integer uid, @Param("level") Integer level);
 }

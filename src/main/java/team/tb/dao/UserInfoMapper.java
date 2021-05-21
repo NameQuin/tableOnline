@@ -68,4 +68,6 @@ public interface UserInfoMapper {
      * @return
      */
     Integer updateValue(UserInfo userInfo);
+
+
 }

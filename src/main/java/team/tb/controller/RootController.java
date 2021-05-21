@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import team.tb.common.FormInfo;
+import team.tb.common.KeysWithUid;
 import team.tb.common.Result;
 import team.tb.pojo.*;
 import team.tb.service.RootService;
 import team.tb.utils.DateUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -418,6 +422,26 @@ public class RootController extends BaseController {
     }
 
     /**
+     * 提升与收回管理员权限
+     * @param uid
+     * @param level
+     * @return
+     */
+    @RequestMapping("/changeUserLevel")
+    @ResponseBody
+    public Result changeUserLevel(Integer uid, Integer level){
+        if(uid == null || level == null){
+            return Result.fail("修改失败");
+        }
+        int ret = rootService.changeUserLevel(uid, level);
+        if(ret > 0){
+            return Result.succ("修改成功");
+        }else{
+            return Result.fail("修改失败");
+        }
+    }
+
+    /**
      * 获得被标记删除的表单
      * @param page
      * @param limit
@@ -446,14 +470,18 @@ public class RootController extends BaseController {
      * @param limit
      * @return
      */
+    @RequestMapping("/searchDeleteForm")
+    @ResponseBody
     public Result searchDeleteForm(String formTitle, String startTime, String endTime, Integer page, Integer limit){
         if(page == null){
             page = 0;
             limit = 10;
+        }else{
+            page = (page - 1) * limit;
         }
         List<TableInfo> list = rootService.searchDeleteForm(formTitle, startTime, endTime, page, limit);
         int count = rootService.searchDeleteFormCount(formTitle, startTime, endTime);
-        return Result.succ(0, list,count);
+        return Result.succ(0, list, count);
     }
 
     /**
@@ -473,6 +501,137 @@ public class RootController extends BaseController {
             }else{
                 return Result.fail("修改失败");
             }
+        }
+    }
+
+    /**
+     * 到达用户信息编辑页面，保存目标用户id
+     * @param uid
+     * @return
+     */
+    @RequestMapping("/toEditUserInfo")
+    @ResponseBody
+    public Result toEditUserInfo(Integer uid, HttpServletRequest request){
+        request.getSession().setAttribute("userId", uid);
+        return Result.succ("存放成功");
+    }
+
+    /**
+     * 获得用户的所有信息
+     * @return
+     */
+    @RequestMapping("/getUserAllInfo")
+    @ResponseBody
+    public Result getUserAllInfo(HttpServletRequest request){
+        // 获取用户id，查找用户信息
+        Integer userId = (Integer) request.getSession().getAttribute("userId");
+        if(userId == null){
+            return Result.fail("查找失败");
+        }else{
+            Map<String, Object> map = new HashMap<>();
+            map.put("userId", userId);
+            List<Keys> list = rootService.getUserAllInfo(userId);
+            map.put("keys", list);
+            return Result.succ(map);
+        }
+    }
+
+    /**
+     * root管理员修改目标普通用户数据
+     * @param changedUserInfo
+     * @return
+     */
+    @RequestMapping("/modifyUserInfo")
+    @ResponseBody
+    public Result modifyUserInfoByRoot(@RequestBody KeysWithUid changedUserInfo){
+        System.out.println("userId: "+changedUserInfo);
+        // 开始更新相关数据
+        int ret = rootService.modifyUserInfoByRoot(changedUserInfo);
+        if(ret > 0){
+            return Result.succ("修改成功");
+        }else{
+            return Result.fail("修改失败");
+        }
+    }
+
+    /**
+     * 获取当前root管理员自己的所有信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("/getRootAllInfo")
+    @ResponseBody
+    public Result getRootAllInfo(HttpServletRequest request){
+        // 获取管理员id
+        User user = (User) request.getSession().getAttribute("user");
+        Integer uid = user.getUid();
+        // 查找信息
+        List<Keys> list = rootService.getUserAllInfo(uid);
+        return Result.succ(list);
+    }
+
+    /**
+     * 修改root用户自身的信息
+     * @return
+     */
+    @RequestMapping("/modifyRootInfoBySelf")
+    @ResponseBody
+    public Result modifyRootInfoBySelf(@RequestBody List<Keys> rootInfo, HttpServletRequest request){
+        // 获取用户id
+        User user = (User) request.getSession().getAttribute("user");
+        String uid = String.valueOf(user.getUid());
+        int ret = rootService.modifyRootInfoBySelf(rootInfo, uid);
+        if(ret > 0){
+            return Result.succ("修改成功");
+        }else{
+            return Result.fail("修改失败");
+        }
+    }
+
+    /**
+     * root管理员修改自己的登录密码
+     * @param oldPwd
+     * @param newPwd
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/changeRootPwd")
+    @ResponseBody
+    public Result changeRootPwd(String oldPwd, String newPwd, HttpServletRequest request, HttpServletResponse response){
+        User user = (User) request.getSession().getAttribute("user");
+        // 获取用户Id
+        Integer uid = user.getUid();
+        // 根据Id查找密码并进行验证
+        int ret = rootService.changeRootPwdBySelf(uid, oldPwd, newPwd);
+        if(ret > 0){ // 密码修改成功
+            // 清除session和cookie，跳转到登录界面
+            Cookie cookie = new Cookie("token", "");
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            request.getSession().invalidate();
+            return Result.succ("修改成功");
+        }else if(ret == 0){
+            return Result.fail( "原密码错误");
+        }else{
+            return Result.fail(401, "修改失败", null);
+        }
+    }
+
+    /**
+     * root管理员重置用户密码为000000Aa@
+     * @param uid
+     * @return
+     */
+    @RequestMapping("/resetUserPwd")
+    @ResponseBody
+    public Result resetUserPwd(Integer uid){
+        int ret = rootService.resetUserPwd(uid);
+        if(ret > 0){
+            return Result.succ("重置成功");
+        }else{
+            return Result.fail("重置失败");
         }
     }
 }

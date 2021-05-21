@@ -48,7 +48,7 @@
     select tu.uid, tui.value as username, tu.ulevel, tu.ustatus
     from t_user tu, t_user_info tui, t_keys tk
     where tk.kname = "name" and tk.kid = tui.kid and tu.uid = tui.uid
-    and tu.ulevel = 0 limit #{page}, #{limit}
+    and tu.ulevel = 0 order by tu.uid limit #{page}, #{limit}
   </select>
 <!--  普通用户数据条数-->
   <select id="getCount" resultType="java.lang.Integer">
@@ -180,7 +180,7 @@
     select tu.uid, tui.value as username, tu.ulevel, tu.ustatus
     from t_user tu, t_user_info tui, t_keys tk
     where tk.kname = "name" and tk.kid = tui.kid and tu.uid = tui.uid
-      and tu.ulevel = 1 limit #{page}, #{limit}
+      and tu.ulevel = 1 order by tu.uid limit #{page}, #{limit}
   </select>
   <!--  管理员数据条数-->
   <select id="getAdminCount" resultType="java.lang.Integer">
@@ -218,5 +218,11 @@
     update t_user
     set ustatus = #{status}
     where uid = #{uid} and ulevel = 1
+  </update>
+<!--  修改管理员权限-->
+  <update id="updateUserLevel">
+    update t_user
+    set ulevel = #{level}
+    where uid = #{uid}
   </update>
 </mapper>

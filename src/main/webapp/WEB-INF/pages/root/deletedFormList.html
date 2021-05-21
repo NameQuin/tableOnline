@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="../layui/css/layui.css" th:href="@{/layui/css/layui.css}">
     <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 </head>
+<style>
+    #serachDiv{
+    margin-top: 10px;
+    margin-left: 30%;
+    }
+</style>
 <body>
 <div id="serachDiv">
     <form class="layui-form layui-col-space5">
@@ -112,7 +118,7 @@
             let data = obj.data; // 当前行数据
             let layEvent = obj.event; // 对应的lay-event值
             if(layEvent === "reset"){ // 将表单从删除状态恢复成正常状态
-                layer.alert('是否确认恢复表单表单', {icon: 2}, function(index){
+                layer.alert('是否确认恢复表单表单', {icon: 3}, function(index){
                     //do something
                     $.ajax({
                         type: "POST",
@@ -123,14 +129,14 @@
                         dataType: "json",
                         success: function (res) {
                             if(res.code === 200){
-                                layer.msg("删除成功",
+                                layer.msg("恢复成功",
                                     {
                                         icon: 1,
                                         time: 1000
                                     });
                                 tabIns.reload();
                             }else if(res.code === 400){
-                                layer.msg("删除失败",
+                                layer.msg("恢复失败",
                                     {
                                         icon: 2,
                                         time: 1000

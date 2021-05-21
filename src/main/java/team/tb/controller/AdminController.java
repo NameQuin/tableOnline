@@ -1,5 +1,6 @@
 package team.tb.controller;
 
+import org.apache.ibatis.annotations.ResultMap;
 import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,10 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import team.tb.common.FormField;
-import team.tb.common.FormInfo;
-import team.tb.common.Result;
-import team.tb.common.TimingTask;
+import team.tb.common.*;
 import team.tb.dao.GradeMapper;
 import team.tb.dao.UserMapper;
 import team.tb.pojo.*;
@@ -18,7 +16,9 @@ import team.tb.service.*;
 import team.tb.utils.DateUtils;
 import team.tb.utils.StringUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -354,6 +354,12 @@ public class AdminController extends BaseController {
         return Result.succ(ret);
     }
 
+    /**
+     * 改变用户封禁状态
+     * @param uid
+     * @param status
+     * @return
+     */
     @RequestMapping("/changeUserStatus")
     @ResponseBody
     public Result changeUserStatus(Integer uid, Integer status){
@@ -362,6 +368,139 @@ public class AdminController extends BaseController {
             return Result.succ("修改成功");
         }else{
             return Result.fail("修改失败");
+        }
+    }
+
+    /**
+     * 到达用户信息编辑页面，保存目标用户id
+     * @param uid
+     * @return
+     */
+    @RequestMapping("/toEditUserInfo")
+    @ResponseBody
+    public Result toEditUserInfo(Integer uid, HttpServletRequest request){
+        request.getSession().setAttribute("userId", uid);
+        return Result.succ("存放成功");
+    }
+
+    /**
+     * 获得目标用户的所有信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("/getUserAllInfo")
+    @ResponseBody
+    public Result getUserAllInfo(HttpServletRequest request){
+        // 获取用户id，查找用户信息
+        Integer userId = (Integer) request.getSession().getAttribute("userId");
+        if(userId == null){
+            return Result.fail("查找失败");
+        }else{
+            Map<String, Object> map = new HashMap<>();
+            map.put("userId", userId);
+            List<Keys> list = adminService.getUserAllInfo(userId);
+            map.put("keys", list);
+            return Result.succ(map);
+        }
+    }
+
+    /**
+     * 管理员修改目标普通用户数据
+     * @param changedUserInfo
+     * @return
+     */
+    @RequestMapping("/modifyUserInfo")
+    @ResponseBody
+    public Result modifyUserInfoByAdmin(@RequestBody KeysWithUid changedUserInfo){
+        System.out.println("userId: "+changedUserInfo);
+        // 开始更新相关数据
+        int ret = adminService.modifyUserInfoByAdmin(changedUserInfo);
+        if(ret > 0){
+            return Result.succ("修改成功");
+        }else{
+            return Result.fail("修改失败");
+        }
+    }
+
+    /**
+     * 获取当前管理员自己的所有信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("/getAdminAllInfo")
+    @ResponseBody
+    public Result getAdminAllInfo(HttpServletRequest request){
+        // 获取管理员id
+        User user = (User) request.getSession().getAttribute("user");
+        Integer uid = user.getUid();
+        // 查找信息
+        List<Keys> list = adminService.getUserAllInfo(uid);
+        return Result.succ(list);
+    }
+
+    /**
+     * 管理员自己修改自己的信息
+     * @param adminInfo
+     * @return
+     */
+    @RequestMapping("/modifyAdminInfoBySelf")
+    @ResponseBody
+    public Result modifyAdminInfoBySelf(@RequestBody List<Keys> adminInfo, HttpServletRequest request){
+        // 获取用户id
+        User user = (User) request.getSession().getAttribute("user");
+        String uid = String.valueOf(user.getUid());
+        int ret = adminService.modifyAdminInfoBySelf(adminInfo, uid);
+        if(ret > 0){
+            return Result.succ("修改成功");
+        }else{
+            return Result.fail("修改失败");
+        }
+    }
+
+    /**
+     * 管理员修改自己的登录密码
+     * @param oldPwd
+     * @param newPwd
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/changeAdminPwd")
+    @ResponseBody
+    public Result changeAdminPwd(String oldPwd, String newPwd, HttpServletRequest request, HttpServletResponse response){
+        User user = (User) request.getSession().getAttribute("user");
+        // 获取用户Id
+        Integer uid = user.getUid();
+        // 根据Id查找密码并进行验证
+        int ret = adminService.changeAdminPwdBySelf(uid, oldPwd, newPwd);
+        if(ret > 0){ // 密码修改成功
+            // 清除session和cookie，跳转到登录界面
+            Cookie cookie = new Cookie("token", "");
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            request.getSession().invalidate();
+            return Result.succ("修改成功");
+        }else if(ret == 0){
+            return Result.fail( "原密码错误");
+        }else{
+            return Result.fail(401, "修改失败", null);
+        }
+    }
+
+    /**
+     * 管理员重置用户密码为000000Aa@
+     * @param uid
+     * @return
+     */
+    @RequestMapping("/resetUserPwd")
+    @ResponseBody
+    public Result resetUserPwd(Integer uid){
+        int ret = adminService.resetUserPwd(uid);
+        if(ret > 0){
+            return Result.succ("重置成功");
+        }else{
+            return Result.fail("重置失败");
         }
     }
 

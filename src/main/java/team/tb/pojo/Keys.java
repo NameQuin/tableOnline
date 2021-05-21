@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class Keys implements Serializable {
     private Integer kid;
 
-    private String kname;
+    private String kname; // 字段英文名
 
-    private String ktype;
+    private String ktype; // 字段类型
 
-    private String ktypevalue;
+    private String ktypevalue; // 字段选项
 
-    private String kcnname;
+    private String kcnname; //字段中文名
 
-    private String kusvalue;
+    private String kusvalue; // 字段值英文版（在获取用户信息时存放该字段值）
 
-    private Boolean kchange;
+    private Boolean kchange; // 字段是否可变，仅对普通用户而言
 
     private static final long serialVersionUID = 1L;
 
@@ -90,7 +90,7 @@ public class Keys implements Serializable {
         return "Keys{" +
                 "kid=" + kid +
                 ", kname='" + kname + '\'' +
-                ", ktype=" + ktype +
+                ", ktype='" + ktype + '\'' +
                 ", ktypevalue='" + ktypevalue + '\'' +
                 ", kcnname='" + kcnname + '\'' +
                 ", kusvalue='" + kusvalue + '\'' +

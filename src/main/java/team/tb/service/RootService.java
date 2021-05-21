@@ -4,6 +4,7 @@ import com.sun.istack.internal.NotNull;
 import org.dom4j.DocumentException;
 import team.tb.common.FormField;
 import team.tb.common.FormInfo;
+import team.tb.common.KeysWithUid;
 import team.tb.pojo.*;
 
 import java.io.IOException;
@@ -280,4 +281,50 @@ public interface RootService {
      * @return
      */
     int resetDeleteForm(Integer formId);
+
+    /**
+     * 获得用户的所有信息
+     * @param userId
+     * @return
+     */
+    List<Keys> getUserAllInfo(Integer userId);
+
+    /**
+     * 超级管理员修改用户数据
+     * @param changedUserInfo
+     * @return
+     */
+    int modifyUserInfoByRoot(KeysWithUid changedUserInfo);
+
+    /**
+     * 修改root管理员数据
+     * @param rootInfo
+     * @param uid
+     * @return
+     */
+    int modifyRootInfoBySelf(List<Keys> rootInfo, String uid);
+
+    /**
+     * root用户修改自己的登录密码
+     * @param uid
+     * @param oldPwd
+     * @param newPwd
+     * @return
+     */
+    int changeRootPwdBySelf(Integer uid, String oldPwd, String newPwd);
+
+    /**
+     * 重置用户密码
+     * @param uid
+     * @return
+     */
+    int resetUserPwd(Integer uid);
+
+    /**
+     * 修改用户的管理员状态，解除与赋予管理员权限
+     * @param uid
+     * @param level
+     * @return
+     */
+    int changeUserLevel(Integer uid, Integer level);
 }

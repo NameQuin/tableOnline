@@ -29,6 +29,10 @@
                     <img th:src="@{/imgs/default.jpg}" src="/WEB-INF/imgs/default.jpg" class="layui-nav-img">
                     <span th:text="${session.user.username}">user</span>
                 </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/pages/user/userInfo.html" th:href="@{/pages/user/userInfo.html}" target="ifr">个人信息</a></dd>
+                    <dd><a href="/pages/user/changePwd.html" th:href="@{/pages/user/changePwd.html}" target="ifr">修改密码</a></dd>
+                </dl>
             </li>
             <li class="layui-nav-item"><a href="/user/logout" th:href="@{/user/logout}">Sign out</a></li>
         </ul>
@@ -41,7 +45,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">个人信息</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/pages/admin/userList.html" th:href="@{/pages/admin/userList.html}" target="ifr">用户列表</a></dd>
+                        <dd><a href="/pages/admin/userList.html" th:href="@{/pages/user/userInfo.html}" target="ifr">个人信息</a></dd>
                     </dl>
                 </li>
 

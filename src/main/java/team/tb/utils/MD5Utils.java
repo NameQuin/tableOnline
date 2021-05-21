@@ -18,7 +18,9 @@ public class MD5Utils {
 
 
     public static void main(String[] args) {
-        String en = encryption("root", "root");
+        String en = encryption("user1", "123456Zy@");
+        String en2 = encryption("user1", "admin");
         System.out.println(en);
+        System.out.println(en2);
     }
 }

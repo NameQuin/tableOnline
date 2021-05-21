@@ -5,6 +5,8 @@ import org.dom4j.DocumentException;
 import sun.rmi.server.LoaderHandler;
 import team.tb.common.FormField;
 import team.tb.common.FormInfo;
+import team.tb.common.KeysWithUid;
+import team.tb.pojo.Keys;
 import team.tb.pojo.TableInfo;
 
 import java.io.IOException;
@@ -76,4 +78,42 @@ public interface AdminService {
      * @return
      */
     int changeUserStatus(Integer uid, Integer status);
+
+    /**
+     * 根据id获取普通用户的所有信息
+     * @param userId
+     * @return
+     */
+    List<Keys> getUserAllInfo(Integer userId);
+
+    /**
+     * 管理员修改普通用户的信息
+     * @param changedUserInfo
+     * @return
+     */
+    int modifyUserInfoByAdmin(KeysWithUid changedUserInfo);
+
+    /**
+     * 管理员修改自己的信息
+     * @param adminInfo
+     * @param uid
+     * @return
+     */
+    int modifyAdminInfoBySelf(List<Keys> adminInfo, String uid);
+
+    /**
+     * 管理员向修改自己的密码
+     * @param uid
+     * @param oldPwd
+     * @param newPwd
+     * @return
+     */
+    int changeAdminPwdBySelf(Integer uid, String oldPwd, String newPwd);
+
+    /**
+     * 重置用户密码
+     * @param uid
+     * @return
+     */
+    int resetUserPwd(Integer uid);
 }

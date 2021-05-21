@@ -2,14 +2,31 @@ package team.tb.service;
 
 import org.dom4j.DocumentException;
 import team.tb.common.FormInfo;
+import team.tb.pojo.Keys;
 import team.tb.pojo.TableInfo;
 import team.tb.pojo.User;
+import team.tb.pojo.UserInfo;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 public interface UserService {
+
+    /**
+     * 根据id获取用户所有信息，该范围是所有用户
+     * @param uid
+     * @return
+     */
+    User getUserById(Integer uid);
+
+    /**
+     * 根据Id更新所有信息，针对所有用户
+     * @param user
+     * @return
+     */
+    Integer updateById(User user);
+
     /**
      * 根据用户名和密码查询未被封禁的用户，实现登录
      * @param user
@@ -174,4 +191,36 @@ public interface UserService {
      * @return
      */
     int changeAdminStatus(Integer uid, Integer status);
+
+    /**
+     * 获得该id用户的所有字段数据
+     * @param uid
+     * @return
+     */
+    List<Keys> getUserAllInfo(Integer uid);
+
+    /**
+     * 普通用户修改自身信息
+     * @param data
+     * @param uid
+     * @return
+     */
+    int modifyUserInfo(List<Keys> data, Integer uid);
+
+    /**
+     * 根据id查找普通未被封禁用户并修改密码
+     * @param uid
+     * @param oldPwd
+     * @param newPwd
+     * @return
+     */
+    int changeUserPwdBySelf(Integer uid, String oldPwd, String newPwd);
+
+    /**
+     * 修改用户管理员权限
+     * @param uid
+     * @param level
+     * @return
+     */
+    int updateUserLevel(Integer uid, Integer level);
 }

@@ -24,6 +24,11 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/login.html")
+    public String login(){
+        return "login";
+    }
+
     @RequestMapping("/user/userPanel.html")
     public String userPanel(){
         return "user/userPanel";
@@ -59,6 +64,21 @@ public class IndexController {
         return "admin/viewForm";
     }
 
+    @RequestMapping("/admin/editUserInfo")
+    public String editUserInfoByAdmin(){
+        return "admin/editUserInfo";
+    }
+
+    @RequestMapping("/admin/userInfo.html")
+    public String userInfoAdmin(){
+        return "admin/userInfo";
+    }
+
+    @RequestMapping("/admin/changePwd.html")
+    public String changePwdAdmin(){
+        return "admin/changePwd";
+    }
+
     @RequestMapping("/user/formList.html")
     public String formList(){
         return "user/formList";
@@ -67,6 +87,16 @@ public class IndexController {
     @RequestMapping("/user/viewForm.html")
     public String viewForm2(){
         return "user/viewForm";
+    }
+
+    @RequestMapping("/user/userInfo.html")
+    public String userInfo(){
+        return "user/userInfo";
+    }
+
+    @RequestMapping("/user/changePwd.html")
+    public String changePwd(){
+        return "user/changePwd";
     }
 
     @RequestMapping("/root/userList.html")
@@ -103,6 +133,22 @@ public class IndexController {
     public String deletedFormList(){
         return "root/deletedFormList";
     }
+
+    @RequestMapping("/root/editUserInfo")
+    public String editUserInfoRoot(){
+        return "root/editUserInfo";
+    }
+
+    @RequestMapping("/root/userInfo.html")
+    public String userInfoRoot(){
+        return "root/userInfo";
+    }
+
+    @RequestMapping("/root/changePwd.html")
+    public String changePwdRoot(){
+        return "root/changePwd";
+    }
+
     /**
      * 获取验证码
      * @param request

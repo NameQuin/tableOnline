@@ -24,11 +24,14 @@
             <div class="layui-logo" style="text-decoration: solid;">Admin管理</div>
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
-
                     <a href="javascript:;">
                         <img th:src="@{/imgs/default.jpg}" src="/WEB-INF/imgs/default.jpg" class="layui-nav-img">
                         <span th:text="${session.user.username}">user</span>
                     </a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/pages/admin/userInfo.html}" target="ifr">个人信息</a></dd>
+                        <dd><a th:href="@{/pages/admin/changePwd.html}" target="ifr">修改密码</a></dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item"><a href="/user/logout" th:href="@{/user/logout}">Sign out</a></li>
             </ul>

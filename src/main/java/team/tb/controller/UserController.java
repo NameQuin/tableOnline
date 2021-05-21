@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.filter.OncePerRequestFilter;
 import team.tb.common.FormInfo;
 import team.tb.common.Result;
+import team.tb.pojo.Keys;
 import team.tb.pojo.TableInfo;
 import team.tb.pojo.User;
+import team.tb.pojo.UserInfo;
 import team.tb.service.UserService;
 import team.tb.utils.JWTUtils;
 import team.tb.utils.MD5Utils;
@@ -61,11 +63,11 @@ public class UserController extends BaseController{
                 // 将传递进来的密码进行加密
                 user.setPassword(MD5Utils.encryption(user.getUsername(), user.getPassword()));
                 ret = userService.findUserByUsernameAndPwd(user);
+            }
+            if(ret != null){
                 if(ret.getUstatus() == 0){
                     return Result.fail(402, "已封禁", null);
                 }
-            }
-            if(ret != null){
                 // 将对象存入session中
                 request.getSession().setAttribute("user", ret);
                 // 将用户id，用户名，用户等级生成token
@@ -110,6 +112,7 @@ public class UserController extends BaseController{
         request.getSession().invalidate();
         Cookie cookie = new Cookie("token", "");
         cookie.setMaxAge(0);
+        cookie.setPath("/");
         response.addCookie(cookie);
         return "login";
     }
@@ -201,6 +204,14 @@ public class UserController extends BaseController{
         return Result.succ(ret);
     }
 
+    /**
+     * 提交填写的表单
+     * @param data
+     * @param request
+     * @return
+     * @throws DocumentException
+     * @throws IOException
+     */
     @RequestMapping("/submitForm")
     @ResponseBody
     public Result submitForm(@RequestBody FormInfo data, HttpServletRequest request) throws DocumentException, IOException {
@@ -214,6 +225,69 @@ public class UserController extends BaseController{
             return Result.succ("成功");
         }else{
             return Result.fail("失败");
+        }
+    }
+
+    /**
+     * 获得当前普通用户所有字段数据
+     * @param
+     * @return
+     */
+    @RequestMapping("/getUserInfo")
+    @ResponseBody
+    public Result getUserInfo(HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        Integer uid = user.getUid();
+        List<Keys> list = userService.getUserAllInfo(uid);
+        return Result.succ(list);
+    }
+
+    /**
+     * 更新用户修改后的个人信息
+     * @param data 用户修改后的所有数据信息
+     * @return
+     */
+    @RequestMapping("/modifyUserInfo")
+    @ResponseBody
+    public Result modifyUserInfo(@RequestBody List<Keys> data, HttpServletRequest request){
+//        System.out.println(data);
+        // 获取用户id
+        User user  = (User) request.getSession().getAttribute("user");
+        Integer uid = user.getUid();
+        int ret = userService.modifyUserInfo(data, uid);
+        if(ret > 0){
+            return Result.succ("修改成功");
+        }else{
+            return Result.fail("修改失败");
+        }
+    }
+
+    /**
+     * 用户自己修改密码
+     * @param oldPwd
+     * @param newPwd
+     * @return
+     */
+    @RequestMapping("/changeUserPwd")
+    @ResponseBody
+    public Result changeUserPwdBySelf(String oldPwd, String newPwd, HttpServletRequest request, HttpServletResponse response){
+        User user = (User) request.getSession().getAttribute("user");
+        // 获取用户Id
+        Integer uid = user.getUid();
+        // 根据Id查找密码并进行验证
+        int ret = userService.changeUserPwdBySelf(uid, oldPwd, newPwd);
+        if(ret > 0){ // 密码修改成功
+            // 清除session和cookie，跳转到登录界面
+            Cookie cookie = new Cookie("token", "");
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            request.getSession().invalidate();
+            return Result.succ("修改成功");
+        }else if(ret == 0){
+            return Result.fail( "原密码错误");
+        }else{
+            return Result.fail(401, "修改失败", null);
         }
     }
 }

@@ -6,6 +6,8 @@ import team.tb.dao.UserInfoMapper;
 import team.tb.pojo.UserInfo;
 import team.tb.service.UserInfoService;
 
+import java.util.List;
+
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
 
@@ -40,4 +42,5 @@ public class UserInfoServiceImpl implements UserInfoService {
     public Integer updateValue(UserInfo userInfo) {
         return userInfoMapper.updateValue(userInfo);
     }
+
 }

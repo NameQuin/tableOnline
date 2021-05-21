@@ -53,4 +53,11 @@
     values (#{kname,jdbcType=VARCHAR}, #{ktype,jdbcType=INTEGER},
     #{ktypevalue,jdbcType=VARCHAR}, #{kcnname,jdbcType=VARCHAR})
   </insert>
+  <!--  获得用户的所有字段信息-->
+  <select id="getUserAllInfo" resultMap="BaseResultMap">
+    SELECT tk.kid, tk.kname, tk.kcnname, tk.ktype, tk.ktypevalue, tui.value as kusvalue, tk.kchange
+    FROM t_user_info tui, t_keys tk
+    WHERE tui.kid = tk.kid AND tui.uid = #{uid}
+    ORDER BY tk.kid;
+  </select>
 </mapper>

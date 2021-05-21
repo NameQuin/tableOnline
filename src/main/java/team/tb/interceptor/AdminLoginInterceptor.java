@@ -67,6 +67,13 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
                     return true;
                 }else{
                     System.out.println("权限不够，拦截");
+                    System.out.println("==================>token校验失败，重定向");
+                    // 删除cookie，防止浏览器一直自动登录失败
+                    Cookie cookie = new Cookie("token", "0");
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    httpServletResponse.addCookie(cookie);
+                    httpServletResponse.sendRedirect("/tableOnline/user/toLogin");
                     return false;
                 }
             }catch (Exception e){
@@ -74,6 +81,7 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
                 // 删除cookie，防止浏览器一直自动登录失败
                 Cookie cookie = new Cookie("token", "0");
                 cookie.setMaxAge(0);
+                cookie.setPath("/");
                 httpServletResponse.addCookie(cookie);
                 httpServletResponse.sendRedirect("/tableOnline/user/toLogin");
                 return false;

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form> 
+  <header> 
+    <form-title>新建表单2</form-title>  
+    <submit-to-db>false</submit-to-db>  
+    <time-range>2021-05-19 09:22:41|2021-05-20 00:00:00</time-range>  
+    <grades/>  
+    <departments/>  
+    <majors/>  
+    <classes/>  
+    <students>3/4/5/6</students>  
+    <form-items> 
+      <form-item> 
+        <id>0</id>  
+        <kid>1</kid>  
+        <type>text</type>  
+        <label>姓名</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>1</id>  
+        <kid>new1</kid>  
+        <type>text</type>  
+        <label>必填输入</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>2</id>  
+        <kid>new2</kid>  
+        <type>text</type>  
+        <label>非必填输入</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>3</id>  
+        <kid>new3</kid>  
+        <type>radio</type>  
+        <label>必填单选</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>1</option>  
+          <option>2</option>  
+          <option>3</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>4</id>  
+        <kid>new4</kid>  
+        <type>radio</type>  
+        <label>非必填单选</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>1</option>  
+          <option>2</option>  
+          <option>3</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>5</id>  
+        <kid>new5</kid>  
+        <type>checkbox</type>  
+        <label>必选复选</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>1</option>  
+          <option>2</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>6</id>  
+        <kid>new6</kid>  
+        <type>checkbox</type>  
+        <label>非必选复选</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>1</option>  
+          <option>2</option>  
+          <option>3</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>7</id>  
+        <kid>new7</kid>  
+        <type>select</type>  
+        <label>必选下拉</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>1</option>  
+          <option>2</option>  
+          <option>3</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>8</id>  
+        <kid>new8</kid>  
+        <type>select</type>  
+        <label>非必选下拉</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>1</option>  
+          <option>2</option>  
+          <option>3</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>9</id>  
+        <kid>new9</kid>  
+        <type>textarea</type>  
+        <label>必填文本</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>10</id>  
+        <kid>new10</kid>  
+        <type>textarea</type>  
+        <label>非必填文本</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>11</id>  
+        <kid>new11</kid>  
+        <type>number</type>  
+        <label>必填数字</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>12</id>  
+        <kid>new12</kid>  
+        <type>number</type>  
+        <label>非必填数字</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>13</id>  
+        <kid>new13</kid>  
+        <type>date</type>  
+        <label>必填日期</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>14</id>  
+        <kid>new14</kid>  
+        <type>date</type>  
+        <label>非必填日期</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>15</id>  
+        <kid>new15</kid>  
+        <type>tel</type>  
+        <label>必填电话</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>16</id>  
+        <kid>new16</kid>  
+        <type>tel</type>  
+        <label>非必填电话</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item> 
+    </form-items> 
+  </header>  
+  <body> 
+    <user id="3"> 
+      <field kid="1" label="姓名" value="王五"/>  
+      <field kid="new1" label="必填输入" value="1"/>  
+      <field kid="new2" label="非必填输入" value="非必须输入"/>  
+      <field kid="new3" label="必填单选" value="2"/>  
+      <field kid="new4" label="非必填单选" value="2"/>  
+      <field kid="new5" label="必选复选" value="2&amp;1"/>  
+      <field kid="new6" label="非必选复选" value="2&amp;3"/>  
+      <field kid="new7" label="必选下拉" value="3"/>  
+      <field kid="new8" label="非必选下拉" value="1"/>  
+      <field kid="new9" label="必填文本" value="2"/>  
+      <field kid="new10" label="非必填文本" value="非必填文本"/>  
+      <field kid="new11" label="必填数字" value="2"/>  
+      <field kid="new12" label="非必填数字" value="12"/>  
+      <field kid="new13" label="必填日期" value="2021-05-21"/>  
+      <field kid="new14" label="非必填日期" value="2021-05-12"/>  
+      <field kid="new15" label="必填电话" value="16683086501"/>  
+      <field kid="new16" label="非必填电话" value="16683086502"/> 
+    </user>  
+    <user id="4"> 
+      <field kid="1" label="姓名" value="李四"/>  
+      <field kid="new1" label="必填输入" value=""/>  
+      <field kid="new2" label="非必填输入" value=""/>  
+      <field kid="new3" label="必填单选" value=""/>  
+      <field kid="new4" label="非必填单选" value=""/>  
+      <field kid="new5" label="必选复选" value=""/>  
+      <field kid="new6" label="非必选复选" value=""/>  
+      <field kid="new7" label="必选下拉" value=""/>  
+      <field kid="new8" label="非必选下拉" value=""/>  
+      <field kid="new9" label="必填文本" value=""/>  
+      <field kid="new10" label="非必填文本" value=""/>  
+      <field kid="new11" label="必填数字" value=""/>  
+      <field kid="new12" label="非必填数字" value=""/>  
+      <field kid="new13" label="必填日期" value=""/>  
+      <field kid="new14" label="非必填日期" value=""/>  
+      <field kid="new15" label="必填电话" value=""/>  
+      <field kid="new16" label="非必填电话" value=""/> 
+    </user>  
+    <user id="5"> 
+      <field kid="1" label="姓名" value="李五"/>  
+      <field kid="new1" label="必填输入" value=""/>  
+      <field kid="new2" label="非必填输入" value=""/>  
+      <field kid="new3" label="必填单选" value=""/>  
+      <field kid="new4" label="非必填单选" value=""/>  
+      <field kid="new5" label="必选复选" value=""/>  
+      <field kid="new6" label="非必选复选" value=""/>  
+      <field kid="new7" label="必选下拉" value=""/>  
+      <field kid="new8" label="非必选下拉" value=""/>  
+      <field kid="new9" label="必填文本" value=""/>  
+      <field kid="new10" label="非必填文本" value=""/>  
+      <field kid="new11" label="必填数字" value=""/>  
+      <field kid="new12" label="非必填数字" value=""/>  
+      <field kid="new13" label="必填日期" value=""/>  
+      <field kid="new14" label="非必填日期" value=""/>  
+      <field kid="new15" label="必填电话" value=""/>  
+      <field kid="new16" label="非必填电话" value=""/> 
+    </user>  
+    <user id="6"> 
+      <field kid="1" label="姓名" value="王六"/>  
+      <field kid="new1" label="必填输入" value=""/>  
+      <field kid="new2" label="非必填输入" value=""/>  
+      <field kid="new3" label="必填单选" value=""/>  
+      <field kid="new4" label="非必填单选" value=""/>  
+      <field kid="new5" label="必选复选" value=""/>  
+      <field kid="new6" label="非必选复选" value=""/>  
+      <field kid="new7" label="必选下拉" value=""/>  
+      <field kid="new8" label="非必选下拉" value=""/>  
+      <field kid="new9" label="必填文本" value=""/>  
+      <field kid="new10" label="非必填文本" value=""/>  
+      <field kid="new11" label="必填数字" value=""/>  
+      <field kid="new12" label="非必填数字" value=""/>  
+      <field kid="new13" label="必填日期" value=""/>  
+      <field kid="new14" label="非必填日期" value=""/>  
+      <field kid="new15" label="必填电话" value=""/>  
+      <field kid="new16" label="非必填电话" value=""/> 
+    </user> 
+  </body> 
+</form>

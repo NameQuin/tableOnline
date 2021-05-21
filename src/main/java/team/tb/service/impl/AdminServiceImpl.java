@@ -12,21 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sun.security.krb5.internal.crypto.KeyUsage;
-import team.tb.common.FormField;
-import team.tb.common.FormInfo;
-import team.tb.common.Task;
-import team.tb.common.TimingTask;
+import team.tb.common.*;
 import team.tb.dao.KeysMapper;
 import team.tb.dao.TableInfoMapper;
 import team.tb.dao.UserInfoMapper;
 import team.tb.dao.UserMapper;
 import team.tb.log.Logger;
-import team.tb.pojo.Keys;
-import team.tb.pojo.TableInfo;
-import team.tb.pojo.User;
-import team.tb.pojo.UserInfo;
+import team.tb.pojo.*;
 import team.tb.service.*;
 import team.tb.utils.DateUtils;
+import team.tb.utils.MD5Utils;
 import team.tb.utils.StringUtils;
 import team.tb.utils.XmlUtils;
 
@@ -63,7 +58,14 @@ public class AdminServiceImpl implements AdminService {
     private UserService userService;
     @Autowired
     private UserInfoService userInfoService;
-
+    @Autowired
+    private GradeService gradeService;
+    @Autowired
+    private DepartmentService departmentService;
+    @Autowired
+    private MajorService majorService;
+    @Autowired
+    private ClazzService clazzService;
 
     @Override
     public void createForm(FormInfo formInfo, String realPath, String basePath, String creatorId) throws IOException, NoSuchMethodException {
@@ -258,7 +260,7 @@ public class AdminServiceImpl implements AdminService {
                 if(field.getHasOption()){
                     options = new StringBuilder();
                     for(String option : field.getOptions()){
-                        options.append(option).append("/");
+                        options.append(option).append("&");
                     }
                 }
                 String options2 = options == null ? null : options.substring(0, options.length()-1);
@@ -300,25 +302,25 @@ public class AdminServiceImpl implements AdminService {
         if(targetUsers == null || targetUsers.size() == 0){ // 学生列表为空
             // 班级列表是否为空
             if(classes != null && classes.size() > 0){ // 根据班级查找所有的学生
-                Integer[] classes2 = (Integer[]) classes.stream().map(Integer::valueOf).toArray();
+                Integer[] classes2 = (Integer[]) classes.stream().map(Integer::valueOf).toArray(Integer[]::new);
                 List<User> users = userService.getUserByClass(classes2);
                 if(users != null){
                     targetUsers = users.stream().map(s -> String.valueOf(s.getUid())).collect(Collectors.toList());
                 }
             }else if(majors != null && majors.size() > 0){// 班级列表空，专业列表不空
-                Integer[] majors2 = (Integer[]) majors.stream().map(Integer::valueOf).toArray();
+                Integer[] majors2 = (Integer[]) majors.stream().map(Integer::valueOf).toArray(Integer[]::new);
                 List<User> users = userService.getUserByMajor(majors2);
                 if(users != null){
                     targetUsers = users.stream().map(s -> String.valueOf(s.getUid())).collect(Collectors.toList());
                 }
             }else if(departments != null && departments.size() > 0){// 专业列表空，院系列表不空
-                Integer[] departments2 = (Integer[]) departments.stream().map(Integer::valueOf).toArray();
+                Integer[] departments2 = (Integer[]) departments.stream().map(Integer::valueOf).toArray(Integer[]::new);
                 List<User> users = userService.getUserByDepartment(departments2);
                 if(users != null){
                     targetUsers = users.stream().map(s -> String.valueOf(s.getUid())).collect(Collectors.toList());
                 }
             }else if(grades != null && grades.size() > 0){// 院系列表空，年级列表不空
-                Integer[] grades2 = (Integer[]) grades.stream().map(Integer::valueOf).toArray();
+                Integer[] grades2 = (Integer[]) grades.stream().map(Integer::valueOf).toArray(Integer[]::new);
                 List<User> users = userService.getUserByGrade(grades2);
                 if(users != null){
                     targetUsers = users.stream().map(s -> String.valueOf(s.getUid())).collect(Collectors.toList());
@@ -444,6 +446,114 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int changeUserStatus(Integer uid, Integer status) {
         return userService.changeUserStatus(uid, status);
+    }
+
+    @Override
+    public List<Keys> getUserAllInfo(Integer userId) {
+        List<Keys> list = keysService.getUserAllInfo(userId);
+        // 找出年级院系专业信息
+        String grade = null, department = null, major = null;
+        for (Keys keys : list) {
+            String label = keys.getKcnname();
+            if("年级".equals(label)){
+                grade = keys.getKusvalue();
+            }else if("院系".equals(label)){
+                department = keys.getKusvalue();
+            }else if("专业".equals(label)){
+                major = keys.getKusvalue();
+            }
+        }
+        for(Keys keys : list) {
+            String label = keys.getKcnname();
+            // 对特殊引用值进行再次处理
+            if ("年级".equals(label)) {
+                List<Grade> grades = gradeService.getGrade();
+                StringBuilder sb = new StringBuilder();
+                StringBuilder reduce = grades.stream().reduce(sb, (acc, item) -> {
+                    acc.append(item.getGid()).append(":").append(item.getGrade()).append("&");
+                    return acc;
+                }, (acc, item) -> null);
+                keys.setKtypevalue(reduce.substring(0, reduce.length() - 1));
+            } else if ("院系".equals(label)) {
+                if (grade == null) { // 信息不足直接退出
+                    return null;
+                }
+                List<Department> departments = departmentService.getDepartmentByGrade(new Integer[]{Integer.valueOf(grade)});
+                StringBuilder sb = new StringBuilder();
+                StringBuilder reduce = departments.stream().reduce(sb, (acc, item) -> {
+                    acc.append(item.getDid()).append(":").append(item.getDname()).append("&");
+                    return acc;
+                }, (acc, item) -> null);
+                keys.setKtypevalue(reduce.substring(0, reduce.length() - 1));
+            }else if("专业".equals(label)){
+                if(department == null) {
+                    return null;
+                }
+                List<Major> majors = majorService.getMajorByDepartmentId(new Integer[]{Integer.valueOf(department)});
+                StringBuilder sb = new StringBuilder();
+                StringBuilder reduce = majors.stream().reduce(sb, (acc, item) -> {
+                    acc.append(item.getMid()).append(":").append(item.getMname()).append("&");
+                    return acc;
+                }, (acc, item) -> null);
+                keys.setKtypevalue(reduce.substring(0, reduce.length()-1));
+            }else if("班级".equals(label)){
+                if(major == null){
+                    return null;
+                }
+                List<Clazz> clazzes = clazzService.getClazzByMajorId(new Integer[]{Integer.valueOf(major)});
+                StringBuilder sb = new StringBuilder();
+                StringBuilder reduce = clazzes.stream().reduce(sb, (acc, item) -> {
+                    acc.append(item.getCid()).append(":").append(item.getCnum()).append("&");
+                    return acc;
+                }, (acc, item) -> null);
+                keys.setKtypevalue(reduce.substring(0, reduce.length()-1));
+            }
+        }
+        return list;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int modifyUserInfoByAdmin(KeysWithUid changedUserInfo) {
+        String userId = changedUserInfo.getUserId();
+        List<Keys> keys = changedUserInfo.getData();
+        int ret = keys.stream().map(s -> new UserInfo(String.valueOf(s.getKid()), s.getKusvalue(), userId))
+                .mapToInt(s -> userInfoService.updateValue(s))
+                .sum();
+        return ret;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int modifyAdminInfoBySelf(List<Keys> adminInfo, String uid) {
+        int ret = adminInfo.stream().map(s -> new UserInfo(String.valueOf(s.getKid()), s.getKusvalue(), uid))
+                .mapToInt(s -> userInfoService.updateValue(s))
+                .sum();
+        return ret;
+    }
+
+    @Override
+    public int changeAdminPwdBySelf(Integer uid, String oldPwd, String newPwd) {
+        User user = userService.getUserById(uid);
+        if(user.getUstatus() == 1 && user.getUlevel() == 1){ // 判断必须是正常且是管理员用户
+            // 验证密码
+            if(MD5Utils.encryption(user.getUsername(), oldPwd).equals(user.getPassword())){ // 密码验证通过，修改密码
+                user.setPassword(MD5Utils.encryption(user.getUsername(), newPwd));
+                int ret = userService.updateById(user);
+                return ret;
+            }else{
+                return 0;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int resetUserPwd(Integer uid) {
+        User user = userService.getUserById(uid);
+        user.setPassword(MD5Utils.encryption(user.getUsername(), "000000Aa@"));
+        int ret = userService.updateById(user);
+        return ret;
     }
 
     /**

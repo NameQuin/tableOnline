@@ -2,6 +2,8 @@ package team.tb.service;
 
 import team.tb.pojo.UserInfo;
 
+import java.util.List;
+
 public interface UserInfoService {
     /**
      * 返回自增主键的部分信息插入
@@ -32,4 +34,5 @@ public interface UserInfoService {
      * @return
      */
     Integer updateValue(UserInfo userInfo);
+
 }

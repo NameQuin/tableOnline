@@ -53,12 +53,13 @@
 <table class="layui-hide" id="userListTable" lay-filter="userListTable"></table>
 <script type="text/html" id="toolbar">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="resetPwd">重置密码</a>
 </script>
 <script th:inline="none">
     $(function () {
+        console.log("初始化操作");
         // 初始化第一个下拉列表的内容
-        layui.use('form', 'layer', function () {
+        layui.use(['form', 'layer'], function () {
             let form = layui.form;
             let layer = layui.layer;
             $.ajax({
@@ -117,7 +118,7 @@
                     var s = $("#department");
                     var content = "<option value=\"\">请选择院系</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.did + ">" + val.dfullname + "</option>";
+                        content += "<option value=" + val.did + ">" + val.dname + "</option>";
                     });
                     s.html(content);
                     // 年级选择改变后，剩下的选项都需要清除
@@ -143,7 +144,7 @@
                     var s = $("#major");
                     var content = "<option value=\"\">请选择专业</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.mid + ">" + val.mfullname + "</option>";
+                        content += "<option value=" + val.mid + ">" + val.mname + "</option>";
                     });
                     s.html(content);
                     // 清除班级选项
@@ -169,7 +170,7 @@
                     var s = $("#clazz");
                     var content = "<option value=\"\">请选择班级</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.cid + ">" + val.cfullname + "</option>";
+                        content += "<option value=" + val.cid + ">" + val.cnum + "</option>";
                     });
                     s.html(content);
                     layui.form.render('select');
@@ -234,6 +235,69 @@
             });
             btn.attr("disabled", false).removeClass("layui-disabled");
             return false;
+        });
+
+        // 监听行工具栏
+        table.on("tool(userListTable)", function (obj) {
+            let data = obj.data;
+            let event = obj.event;
+            if(event === 'edit'){ // 编辑用户信息
+                $.ajax({
+                    type: "POST",
+                    url: "/tableOnline/admin/toEditUserInfo",
+                    data: {
+                        uid: data.uid
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code === 200){ // 跳转到编辑信息页面
+                            location.href = "/tableOnline/pages/admin/editUserInfo.html";
+                        }else{
+                            layer.msg("服务器繁忙", {
+                                icon: 2,
+                                time: 1000
+                            })
+                        }
+                    },
+                    error: function (err) {
+                        layer.msg("服务器错误", {
+                            icon: 2,
+                            time: 1000
+                        })
+                    }
+                });
+            }else if(event === 'resetPwd'){ // 重置用户密码
+                layer.confirm('确定重置该用户密码?', {icon: 3, title:'提示'}, function(index){
+                    $.ajax({
+                        type: "POST",
+                        url: "/tableOnline/admin/resetUserPwd",
+                        data: {
+                            uid: data.uid
+                        },
+                        dataType: "json",
+                        success: function (res) {
+                            if(res.code === 200){
+                                layer.msg("修改成功", {
+                                    icon: 1,
+                                    time: 1000
+                                });
+                            }else{
+                                layer.msg("服务器繁忙", {
+                                    icon: 2,
+                                    time: 1000
+                                })
+                            }
+                        },
+                        error: function (err) {
+                            layer.msg("服务器错误", {
+                                icon: 2,
+                                time: 1000
+                            })
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
         });
     })
 </script>

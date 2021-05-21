@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form> 
+  <header> 
+    <form-title>表单创建测试1</form-title>  
+    <submit-to-db>false</submit-to-db>  
+    <time-range>2021-05-18 23:39:02|2021-05-19 00:00:00</time-range>  
+    <grades>1</grades>  
+    <departments/>  
+    <majors/>  
+    <classes/>  
+    <students>3/5</students>  
+    <form-items> 
+      <form-item> 
+        <id>0</id>  
+        <kid>1</kid>  
+        <type>text</type>  
+        <label>姓名</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>1</id>  
+        <kid>5</kid>  
+        <type>text</type>  
+        <label>年级</label>  
+        <req>true</req>  
+        <can-edit>false</can-edit>  
+        <new-field>false</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>2</id>  
+        <kid>new1</kid>  
+        <type>text</type>  
+        <label>所在地</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>3</id>  
+        <kid>new2</kid>  
+        <type>select</type>  
+        <label>爱好</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>true</has-option>  
+        <options> 
+          <option>篮球</option>  
+          <option>足球</option>  
+          <option>乒乓球</option> 
+        </options> 
+      </form-item>  
+      <form-item> 
+        <id>4</id>  
+        <kid>new3</kid>  
+        <type>tel</type>  
+        <label>联系电话</label>  
+        <req>false</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item>  
+      <form-item> 
+        <id>5</id>  
+        <kid>new4</kid>  
+        <type>number</type>  
+        <label>楼层数</label>  
+        <req>true</req>  
+        <can-edit>true</can-edit>  
+        <new-field>true</new-field>  
+        <has-option>false</has-option>  
+        <options/> 
+      </form-item> 
+    </form-items> 
+  </header>  
+  <body> 
+    <user id="3"> 
+      <field kid="1" label="姓名" value="王五"/>  
+      <field kid="5" label="年级" value="2018"/>  
+      <field kid="new1" label="所在地" value="成都"/>  
+      <field kid="new2" label="爱好" value="乒乓球"/>  
+      <field kid="new3" label="联系电话" value=""/>  
+      <field kid="new4" label="楼层数" value="4"/> 
+    </user>  
+    <user id="5"> 
+      <field kid="1" label="姓名" value="李五"/>  
+      <field kid="5" label="年级" value="2018"/>  
+      <field kid="new1" label="所在地" value=""/>  
+      <field kid="new2" label="爱好" value=""/>  
+      <field kid="new3" label="联系电话" value=""/>  
+      <field kid="new4" label="楼层数" value=""/> 
+    </user> 
+  </body> 
+</form>

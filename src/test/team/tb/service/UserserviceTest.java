@@ -38,6 +38,14 @@ public class UserserviceTest {
         System.out.println(list.subList(0, 10));
     }
 
-
+    @Test
+    public void test03(){
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            list.add(""+i);
+        }
+        Integer[] ret = (Integer[]) list.stream().map(Integer::parseInt).toArray(Integer[]::new);
+        System.out.println(Arrays.toString(ret));
+    }
 
 }

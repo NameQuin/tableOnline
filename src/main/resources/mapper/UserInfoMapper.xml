@@ -83,4 +83,5 @@
     set value = #{value}
     where kid = #{kid} and uid = #{uid}
   </update>
+
 </mapper>

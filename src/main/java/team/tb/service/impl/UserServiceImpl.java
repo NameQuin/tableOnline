@@ -10,12 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import team.tb.common.FormField;
 import team.tb.common.FormInfo;
 import team.tb.dao.UserMapper;
+import team.tb.pojo.Keys;
 import team.tb.pojo.TableInfo;
 import team.tb.pojo.User;
 import team.tb.pojo.UserInfo;
+import team.tb.service.KeysService;
 import team.tb.service.TableInfoService;
 import team.tb.service.UserInfoService;
 import team.tb.service.UserService;
+import team.tb.utils.MD5Utils;
 import team.tb.utils.XmlUtils;
 
 import java.io.IOException;
@@ -37,6 +40,18 @@ public class UserServiceImpl implements UserService {
     private TableInfoService tableInfoService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private KeysService keysService;
+
+    @Override
+    public User getUserById(Integer uid) {
+        return userMapper.selectByPrimaryKey(uid);
+    }
+
+    @Override
+    public Integer updateById(User user) {
+        return userMapper.updateByPrimaryKey(user);
+    }
 
     @Override
     public User findUserByUsernameAndPwd(User user) {
@@ -298,5 +313,54 @@ public class UserServiceImpl implements UserService {
     @Override
     public int changeAdminStatus(Integer uid, Integer status) {
         return userMapper.changeAdminStatus(uid,status);
+    }
+
+    @Override
+    public List<Keys> getUserAllInfo(Integer uid) {
+        List<Keys> list = keysService.getUserAllInfo(uid);
+        list.forEach(s -> {
+            String label = s.getKcnname();
+            // 对引用值进行再次查询
+            if("年级".equals(label) || "院系".equals(label) || "专业".equals(label) || "班级".equals(label)){
+                s.setKtype("text");
+                UserInfo userInfo = userInfoService.getUserInfoWithReference(s.getKid(), uid);
+                s.setKusvalue(userInfo.getValue());
+            }
+        });
+        return list;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int modifyUserInfo(List<Keys> data, Integer uid) {
+        // 筛选数据，仅对可编辑项(即kchange为true的数据进行修改)
+        int ret = data.stream().filter(Keys::getKchange)
+                .map(s -> new UserInfo(String.valueOf(s.getKid()), s.getKusvalue(), String.valueOf(uid)))
+                .mapToInt(userInfo -> userInfoService.updateValue(userInfo)).sum();
+        // 该项可编辑，修改数据
+        return ret;
+    }
+
+    @Override
+    public int changeUserPwdBySelf(Integer uid, String oldPwd, String newPwd) {
+        User user = userMapper.selectByPrimaryKey(uid);
+        if(user.getUstatus() == 1 && user.getUlevel() == 0){ // 判断必须是正常且普通用户
+            // 验证密码
+            if(MD5Utils.encryption(user.getUsername(), oldPwd).equals(user.getPassword())){ // 密码验证通过，修改密码
+                System.out.println("密码验证通过: "+oldPwd);
+                user.setPassword(MD5Utils.encryption(user.getUsername(), newPwd));
+                int ret = userMapper.updateByPrimaryKey(user);
+                return ret;
+            }else{
+                System.out.println("密码验证通不过："+oldPwd);
+                return 0;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int updateUserLevel(Integer uid, Integer level) {
+        return userMapper.updateUserLevel(uid, level);
     }
 }

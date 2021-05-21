@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <script type="text/javascript" src="../../js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <!--    vue3就不再和elementui兼容了-->
+    <!--引入 element-ui 的样式，-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 必须先引入vue，  后使用element-ui -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <!-- 引入element 的组件库-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<style>
+    #app {
+        width: 50%;
+        margin-left: 25%;
+    }
+</style>
+<body>
+<div id="app">
+    <el-form :model="formInfo" ref="formInfo" label-width="100px" class="demo-ruleForm">
+        <el-row v-for="item, i in formInfo.data" :key="i" v-if="i % 2 === 0">
+            <el-col :span="12">
+                <el-form-item :label="item.kcnname" :prop="'data.'+i+'.kusvalue'" :rules="item.ktype === 'number' ? rules['number'] : (item.ktype === 'tel' ? rules['tel'] : [])">
+                    <el-input v-if="item.ktype === 'text'" :disabled="!item.kchange" v-model="item.kusvalue" clearable></el-input>
+                    <el-input v-if="item.ktype === 'number'" :disabled="!item.kchange" v-model.number="item.kusvalue" clearable></el-input>
+                    <el-input v-if="item.ktype === 'tel'" :disabled="!item.kchange" v-model.number="item.kusvalue" clearable></el-input>
+                    <el-select v-if="item.ktype === 'select'" :disabled="!item.kchange" v-model="item.kusvalue" placeholder="请选择" clearable>
+                        <el-option v-for="option, i in item.ktypevalue" :key="i" :label="option" :value="option"></el-option>
+                    </el-select>
+                    <el-date-picker v-if="item.ktype === 'date'" :disabled="!item.kchange" type="date" placeholder="选择日期" v-model="item.kusvalue" style="width: 100%;"></el-date-picker>
+                    <el-checkbox-group v-if="item.ktype === 'checkbox'" :disabled="!item.kchange" v-model="item.kusvalue">
+                        <el-checkbox v-for="option, i in item.ktypevalue" :key="i" :label="option" :value="option"></el-checkbox>
+                    </el-checkbox-group>
+                    <el-radio-group v-if="item.ktype === 'radio'" :disabled="!item.kchange" v-model="item.kusvalue">
+                        <el-radio v-for="option, i in item.ktypevalue" :key="i" :label="option" :value="option"></el-radio>
+                    </el-radio-group>
+                    <el-input v-if="item.ktype === 'textarea'" :disabled="!item.kchange" type="textarea" v-model="item.kusvalue" clearable></el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :span="12">
+                <el-form-item v-if="formInfo.data[i+1] != undefined" :label="formInfo.data[i+1].kcnname" :prop="'data.'+(i+1)+'.kusvalue'" :rules="formInfo.data[i+1].ktype === 'number' ? rules['number'] : (formInfo.data[i+1].ktype === 'tel' ? rules['tel'] : [])">
+                    <el-input v-if="formInfo.data[i+1].ktype === 'text'" :disabled="!formInfo.data[i+1].kchange" v-model="formInfo.data[i+1].kusvalue" clearable></el-input>
+                    <el-input v-if="formInfo.data[i+1].ktype === 'number'" :disabled="!formInfo.data[i+1].kchange" v-model.number="formInfo.data[i+1].kusvalue" clearable></el-input>
+                    <el-input v-if="formInfo.data[i+1].ktype === 'tel'" :disabled="!formInfo.data[i+1].kchange" v-model.number="formInfo.data[i+1].kusvalue" clearable></el-input>
+                    <el-select v-if="formInfo.data[i+1].ktype === 'select'" :disabled="!formInfo.data[i+1].kchange" v-model="formInfo.data[i+1].kusvalue" placeholder="请选择" clearable>
+                        <el-option v-for="option, i in formInfo.data[i+1].ktypevalue" :key="i" :label="option" :value="option"></el-option>
+                    </el-select>
+                    <el-date-picker v-if="formInfo.data[i+1].ktype === 'date'" :disabled="!formInfo.data[i+1].kchange" type="date" placeholder="选择日期" v-model="formInfo.data[i+1].kusvalue" style="width: 100%;"></el-date-picker>
+                    <el-checkbox-group v-if="formInfo.data[i+1].ktype === 'checkbox'" :disabled="!formInfo.data[i+1].kchange" v-model="formInfo.data[i+1].kusvalue">
+                        <el-checkbox v-for="option, i in formInfo.data[i+1].ktypevalue" :key="i" :label="option" :value="option"></el-checkbox>
+                    </el-checkbox-group>
+                    <el-radio-group v-if="formInfo.data[i+1].ktype === 'radio'" :disabled="!formInfo.data[i+1].kchange" v-model="formInfo.data[i+1].kusvalue">
+                        <el-radio v-for="option, i in formInfo.data[i+1].ktypevalue" :key="i" :label="option" :value="option"></el-radio>
+                    </el-radio-group>
+                    <el-input v-if="formInfo.data[i+1].ktype === 'textarea'" :disabled="!formInfo.data[i+1].kchange" type="textarea" v-model="formInfo.data[i+1].kusvalue" clearable></el-input>
+                </el-form-item>
+            </el-col>
+            <!--            <el-col :span="2" v-if="formInfo.data[i+1] != undefined">{{i+1}}、{{formInfo.data[i+1].label}}:{{formInfo.data[i+1][item.type]}}</el-col>-->
+        </el-row>
+        <el-form-item>
+            <el-button type="primary" @click="submitForm('formInfo')">提交</el-button>
+            <el-button @click="resetForm('formInfo')">重置</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            formInfo: {
+                data: ""
+            },
+            rules: {
+                number: [
+                    { pattern: /^\d+$/, message: '输入只能是数字', trigger: 'blur'}
+                ],
+                tel: [
+                    { pattern: /^1[3-8]\d{9}$/, message: '请输入正确的号码', trigger: 'blur'}
+                ]
+            }
+        },
+        mounted: function(){
+            // 获取表单信息
+            this.getFormInfo();
+        },
+        methods: {
+            getFormInfo: function () { // 获取表单字段信息用于显示表单
+                let that = this;
+                $.ajax({
+                    type: "GET",
+                    url: "/tableOnline/admin/getAdminAllInfo",
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code === 200) {
+                            // console.log("请求表单数据结果", res.data);
+                            let data = res.data;
+                            // 数据预处理
+                            data.forEach(s => {
+                                if(s.kcnname === '年级' || s.kcnname === '院系' || s.kcnname === '专业' || s.kcnname === '班级'){
+                                    let values = s.ktypevalue.split("&");
+                                    let aData = [];
+                                    values.forEach(t => {
+                                        let ts = t.split(":");
+                                        aData.push({
+                                            id: ts[0],
+                                            value: ts[1]
+                                        })
+                                    });
+                                    s.ktypevalue = aData;
+                                }else{
+                                    if(s.ktype === 'checkbox'){
+                                        if(s.kusvalue === null || s.kusvalue === undefined || s.kusvalue === ""){
+                                            s.kusvalue = [];
+                                        }else{
+                                            s.kusvalue = s.kusvalue.split("&");
+                                        }
+                                    }else if(s.ktype === 'date'){
+                                        if(s.kusvalue === null || s.kusvalue === undefined || s.kusvalue === ""){
+                                            s.kusvalue = null;
+                                        }else{
+                                            s.kusvalue = new Date(s.kusvalue);
+                                        }
+                                    }else if(s.ktype === 'select' || s.ktype === 'radio'){
+                                        s.ktypevalue = s.ktypevalue.split("&");
+                                    }
+                                }
+                            });
+                            that.formInfo.data = data;
+                        }
+                    },
+                    error: function (err) {
+                        that.$message({
+                            message: "服务器错误",
+                            center: true
+                        });
+                    }
+                });
+            },
+            submitForm: function(formName) { // 提交表单
+                this.$refs[formName].validate(valid => {
+                    if(valid){
+                        this.$confirm('确认修改信息?', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            type: 'warning',
+                            center: true
+                        }).then(() => {
+                            let data = $.extend([], this.formInfo.data); // 复制数据副本
+                            data.forEach(s => { // 格式化提交数据
+                                if(s.ktype === 'checkbox'){ // 复选框值格式化
+                                    s.kusvalue = s.kusvalue.join("&");
+                                } else if(s.ktype === 'date'){
+                                    if(s.kusvalue !== null && s.kusvalue !== undefined && s.kusvalue !== ""){
+                                        s.kusvalue = this.dateFormat(s.kusvalue); // 时间格式化
+                                    }else{
+                                        s.kusvalue = "";
+                                    }
+                                }
+                                s.ktypevalue = "";
+                            });
+                            // console.log(JSON.stringify(targetData));
+                            let that = this;
+                            $.ajax({
+                                type: "POST",
+                                contentType : "application/json;charset=UTF-8", // 提交json数据给后端
+                                url: "/tableOnline/admin/modifyAdminInfoBySelf",
+                                data: JSON.stringify(data),
+                                dataType: "json",
+                                success: function (res) {
+                                    if(res.code === 200){
+                                        that.$message({
+                                            message: "提交成功",
+                                            center: true
+                                        });
+                                        setTimeout(() => location.href = "/tableOnline/pages/index.html", 1500);
+                                    }else if(res.code === 400){
+                                        that.$message({
+                                            message: "提交失败，当前信息无法修改",
+                                            center: true
+                                        });
+                                    }else if(res.code === 500){
+                                        that.$message({
+                                            message: "服务器错误1",
+                                            center: true
+                                        });
+                                    }
+                                },
+                                error: function(err){
+                                    that.$message({
+                                        message: "服务器错误2",
+                                        center: true
+                                    });
+                                    setTimeout(() => location.href = "/tableOnline/pages/index.html", 1000);
+                                }
+                            });
+                        }).catch(() => {
+                            console.log("取消提交", this.formInfo.data);
+                            this.$message({
+                                message: "取消提交",
+                                center: true
+                            })
+                        });
+                    }else{
+                        this.$message({
+                            message: '填写选项不符合条件',
+                            center: true
+                        });
+                        return false;
+                    }
+                });
+            },
+            resetForm: function(formName) { // 重置表单
+                this.$refs[formName].resetFields();
+            },
+            dateFormat: function(date){ // 对时间进行格式化处理
+                let year = date.getFullYear();
+                let month = date.getMonth()+1;
+                let day = date.getDate();
+                // let hour = date.getHours();
+                // let minute = date.getMinutes();
+                // let second = date.getSeconds();
+                const formatNumber = function (n){
+                    n = n.toString();
+                    return n[1] ? n : "0"+n;
+                };
+                let ret = [year, month, day].map(formatNumber).join('-').toString();
+                return ret;
+            }
+        }
+    });
+</script>
+</body>
+</html>

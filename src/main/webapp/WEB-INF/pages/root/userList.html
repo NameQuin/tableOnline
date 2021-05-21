@@ -53,12 +53,12 @@
 <table class="layui-hide" id="userListTable" lay-filter="userListTable"></table>
 <script type="text/html" id="toolbar">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="resetPwd">重置密码</a>
 </script>
 <script th:inline="none">
     $(function () {
         // 初始化第一个下拉列表的内容
-        layui.use('form', 'layer', function () {
+        layui.use(['form', 'layer'], function () {
             let form = layui.form;
             let layer = layui.layer;
             $.ajax({
@@ -116,7 +116,7 @@
                     var s = $("#department");
                     var content = "<option value=\"\">请选择院系</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.did + ">" + val.dfullname + "</option>";
+                        content += "<option value=" + val.did + ">" + val.dname + "</option>";
                     });
                     s.html(content);
                     // 年级选择改变后，剩下的选项都需要清除
@@ -145,7 +145,7 @@
                     var s = $("#major");
                     var content = "<option value=\"\">请选择专业</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.mid + ">" + val.mfullname + "</option>";
+                        content += "<option value=" + val.mid + ">" + val.mname + "</option>";
                     });
                     s.html(content);
                     // 清除班级选项
@@ -174,7 +174,7 @@
                     var s = $("#clazz");
                     var content = "<option value=\"\">请选择班级</option>";
                     $.each(res.data, function (i, val) {
-                        content += "<option value=" + val.cid + ">" + val.cfullname + "</option>";
+                        content += "<option value=" + val.cid + ">" + val.cnum + "</option>";
                     });
                     s.html(content);
                     form.render('select');
@@ -227,6 +227,42 @@
 
         });
 
+        // 监听状态操作，实现更改用户等级
+        form.on('switch(userlevel)', function(data){
+            let check = data.elem.checked === true?1:0;
+            let uid = data.value;
+            $.ajax({ //jquery的ajax形式
+                type:'post',//请求的方式
+                url:'/tableOnline/root/changeUserLevel',//向后台发送请求的地址
+                data:{ //表示向后台传入的参数 key-value
+                    'level':check,
+                    'uid':uid
+                },
+                dataType:'json',//告诉后台返回的数据必须是json格式的数据
+                success:function(res){ // 当请求成功以后的回调函数  res会直接接受后台返回的json格式的数据
+                    if(res.code === 200){
+                        layer.msg('修改成功', {
+                            icon: 1,
+                            time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                        });
+                        tabIns.reload();
+                    }else{
+                        layer.msg('修改失败', {
+                            icon: 1,
+                            time: 1000 // 1秒关闭
+                        })
+                    }
+                },
+                error: function (err) {
+                    layer.msg('服务器错误', {
+                        icon: 2,
+                        time: 1000 // 1秒关闭
+                    })
+                }
+            })
+
+        });
+
         // 搜索提交，表格重载
         form.on("submit(searchUser)", function (data) {
             console.log(data.field);
@@ -243,20 +279,82 @@
             btn.attr("disabled", false).removeClass("layui-disabled");
             return false;
         });
+
+        // 监听行工具栏
+        table.on("tool(userListTable)", function (obj) {
+            let data = obj.data;
+            let event = obj.event;
+            if(event === 'edit'){ // 编辑用户信息
+                $.ajax({
+                    type: "POST",
+                    url: "/tableOnline/root/toEditUserInfo",
+                    data: {
+                        uid: data.uid
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code === 200){ // 跳转到编辑信息页面
+                            location.href = "/tableOnline/pages/root/editUserInfo.html";
+                        }else{
+                            layer.msg("服务器繁忙", {
+                                icon: 2,
+                                time: 1000
+                            })
+                        }
+                    },
+                    error: function (err) {
+                        layer.msg("服务器错误", {
+                            icon: 2,
+                            time: 1000
+                        })
+                    }
+                });
+            }else if(event === 'resetPwd'){ // 重置用户密码
+                layer.confirm('确定重置该用户密码?', {icon: 3, title:'提示'}, function(index){
+                    $.ajax({
+                        type: "POST",
+                        url: "/tableOnline/root/resetUserPwd",
+                        data: {
+                            uid: data.uid
+                        },
+                        dataType: "json",
+                        success: function (res) {
+                            if(res.code === 200){
+                                layer.msg("修改成功", {
+                                    icon: 1,
+                                    time: 1000
+                                });
+                            }else{
+                                layer.msg("服务器繁忙", {
+                                    icon: 2,
+                                    time: 1000
+                                })
+                            }
+                        },
+                        error: function (err) {
+                            layer.msg("服务器错误", {
+                                icon: 2,
+                                time: 1000
+                            })
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        });
     })
 </script>
 
 <!--用户类型-->
 <script type="text/html" id="userLevel">
     {{# var level = d.ulevel;
+        var uid = d.uid;
     if(level === 0){
     }}
-    <span>普通用户</span>
+    <input type="checkbox"  value="{{uid}}" name="level"  lay-skin="switch" lay-text="管理员|普通用户" lay-filter="userlevel">
     {{# }else if(level === 1) { }}
-    <soan>管理员</soan>
-    {{# }else if(level === 2) { }}
-    <span>超级管理员</span>
-    {{# }}}
+    <input type="checkbox"  value="{{uid}}" checked  name="level"  lay-skin="switch" lay-text="管理员|普通用户" lay-filter="userlevel">
+    {{# } }}
 </script>
 <!--用户状态-->
 <script type="text/html" id="userStatus">
@@ -266,7 +364,7 @@
     }}
     <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
     {{# }else if(status === 1) { }}
-    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
+    <input type="checkbox"  value="{{uid}}" name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
     {{# } }}
 </script>
 </body>

@@ -38,10 +38,12 @@ public class RootLoginInterceptor implements HandlerInterceptor {
             // session中没有，需要先判断cookie中是否有token
             Cookie[] cookies = httpServletRequest.getCookies();
             String token = null;
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("token")){
-                    token = cookie.getValue();
-                    break;
+            if(cookies != null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("token")){
+                        token = cookie.getValue();
+                        break;
+                    }
                 }
             }
             if(StringUtils.isEmpty(token)){
@@ -65,6 +67,13 @@ public class RootLoginInterceptor implements HandlerInterceptor {
                     return true;
                 }else{
                     System.out.println("权限不够，拦截");
+                    System.out.println("==================>token校验失败，重定向");
+                    // 删除cookie，防止浏览器一直自动登录失败
+                    Cookie cookie = new Cookie("token", "0");
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    httpServletResponse.addCookie(cookie);
+                    httpServletResponse.sendRedirect("/tableOnline/user/toLogin");
                     return false;
                 }
             }catch (Exception e){
@@ -72,6 +81,7 @@ public class RootLoginInterceptor implements HandlerInterceptor {
                 // 删除cookie，防止浏览器一直自动登录失败
                 Cookie cookie = new Cookie("token", "0");
                 cookie.setMaxAge(0);
+                cookie.setPath("/");
                 httpServletResponse.addCookie(cookie);
                 httpServletResponse.sendRedirect("/tableOnline/user/toLogin");
                 return false;

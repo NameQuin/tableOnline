@@ -26,8 +26,12 @@
 
                     <a href="javascript:;">
                         <img th:src="@{/imgs/default.jpg}" src="/WEB-INF/imgs/default.jpg" class="layui-nav-img">
-                        Name1e3s
+                        <span th:text="${session.user.username}">user</span>
                     </a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/pages/root/userInfo.html}" target="ifr">个人信息</a></dd>
+                        <dd><a th:href="@{/pages/root/changePwd.html}" target="ifr">修改密码</a></dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item"><a href="/user/logout" th:href="@{/user/logout}">Sign out</a></li>
             </ul>
