@@ -14,24 +14,37 @@
 </head>
 <style>
     #app{
-        /*width: 30%;*/
+        width: 70%;
         margin-left: 15%;
+    }
+    .title {
+        display: flex;
+        justify-content: center;
+    }
+    .table {
+        margin-top: 3%;
     }
 </style>
 <body>
 <div id="app">
-    <el-table :data="tableData" style="width: 100%" height="250">
-        <el-table-column fixed prop="uid" label="id" width="150">
-        </el-table-column>
-        <el-table-column v-for="item, i in tableHead" :key="i" :prop="'info.' + i + '.' + item.value" :label="item.label" width="120">
-        </el-table-column>
-    </el-table>
+    <div class="title">
+        <label>{{formTitle}}</label>
+    </div>
+    <div class="table">
+        <el-table :data="tableData" style="width: 100%" height="250" border>
+            <el-table-column fixed prop="uid" label="id" width="80">
+            </el-table-column>
+            <el-table-column v-for="item, i in tableHead" :key="i" :prop="'info.' + i + '.' + item.value" :label="item.label" width="120">
+            </el-table-column>
+        </el-table>
+    </div>
 </div>
 </body>
 <script>
     let app = new Vue({
         el: "#app",
         data: {
+            formTitle: "", // 标题
             tableHead: [], // 表头
             tableData: [] // 主体数据
         },
@@ -48,9 +61,17 @@
                     dataType: "json",
                     success: function (res) {
                         if(res.code === 200){
+                            that.formTitle = res.data.formTitle;
                             that.tableHead = res.data.header;
                             that.tableData = res.data.userInfo;
                         }
+                    },
+                    error: function (err) {
+                        that.$message({
+                            message: "服务器错误",
+                            showClose: true,
+                            type: "error"
+                        });
                     }
                 });
             }

@@ -369,7 +369,7 @@ let app = new Vue({
                     url: "/tableOnline/root/getDepartment",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        grades: gradeData
+                        gradeId: gradeData
                     },
                     dataType: "json",
                     success: function (res) {
@@ -408,7 +408,7 @@ let app = new Vue({
                     url: "/tableOnline/root/getMajor",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        departments: departmentData
+                        departmentId: departmentData
                     },
                     dataType: "json",
                     success: function (res) {
@@ -446,7 +446,7 @@ let app = new Vue({
                     url: "/tableOnline/root/getClazz",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        majors: majorData
+                        majorId: majorData
                     },
                     dataType: "json",
                     success: function (res) {
@@ -483,7 +483,7 @@ let app = new Vue({
                     url: "/tableOnline/root/getStudent",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        clazzs: classData
+                        clazzId: classData
                     },
                     dataType: "json",
                     success: function (res) {

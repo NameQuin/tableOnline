@@ -110,6 +110,7 @@
             $.ajax({
                type: 'POST',
                url: '/tableOnline/admin/getDepartment',
+                traditional: true, // 传递数组，不做深度序列化
                data: {
                    gradeId: [data.value]
                },
@@ -136,6 +137,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/tableOnline/admin/getMajor',
+                traditional: true, // 传递数组，不做深度序列化
                 data: {
                     departmentId: [data.value]
                 },
@@ -162,6 +164,7 @@
             $.ajax({
                 type: 'POST',
                 url: '/tableOnline/admin/getClazz',
+                traditional: true, // 传递数组，不做深度序列化
                 data: {
                     majorId: [data.value]
                 },
@@ -320,9 +323,9 @@
         var uid = d.uid;
     if(status === 0){
     }}
-    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
+    <input type="checkbox"  value="{{uid}}" name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
     {{# }else if(status === 1) { }}
-    <input type="checkbox"  value="{{uid}}" checked  name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
+    <input type="checkbox"  value="{{uid}}" checked name="status"  lay-skin="switch" lay-text="正常|封禁" lay-filter="userstatus">
     {{# } }}
 </script>
 </body>

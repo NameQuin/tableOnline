@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,49 +73,49 @@ public class RootController extends BaseController {
 
     /**
      * 获取对应年级的所有班级
-     * @param grades
+     * @param gradeId
      * @return
      */
     @RequestMapping("/getDepartment")
     @ResponseBody
-    public Result getDepartment(Integer[] grades){
-        List<Department> list = rootService.getDepartmentByGrade(grades);
+    public Result getDepartment(Integer[] gradeId){
+        List<Department> list = rootService.getDepartmentByGrade(gradeId);
         return Result.succ(list);
     }
 
     /**
      * 根据院系id查找专业
-     * @param departments
+     * @param departmentId
      * @return
      */
     @RequestMapping("/getMajor")
     @ResponseBody
-    public Result getMajor(Integer[] departments){
-        List<Major> list = rootService.getMajorByDepartmentId(departments);
+    public Result getMajor(Integer[] departmentId){
+        List<Major> list = rootService.getMajorByDepartmentId(departmentId);
         return Result.succ(list);
     }
 
     /**
      * 获取对应专业的班级
-     * @param majors
+     * @param majorId
      * @return
      */
     @RequestMapping("/getClazz")
     @ResponseBody
-    public Result getClazz(Integer[] majors){
-        List<Clazz> list = rootService.getClazzByMajorId(majors);
+    public Result getClazz(Integer[] majorId){
+        List<Clazz> list = rootService.getClazzByMajorId(majorId);
         return Result.succ(list);
     }
 
     /**
      * 根据班级查找学生信息
-     * @param clazzs
+     * @param clazzId
      * @return
      */
     @RequestMapping("/getStudent")
     @ResponseBody
-    public Result getStudent(Integer[] clazzs){
-        List<User> list = rootService.getUserByClass(clazzs);
+    public Result getStudent(Integer[] clazzId){
+        List<User> list = rootService.getUserByClass(clazzId);
         return Result.succ(list);
     }
 

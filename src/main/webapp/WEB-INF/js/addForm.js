@@ -142,7 +142,10 @@ let app = new Vue({
                     });
                 }else{ // 数据库已有字段的组件对象生成
                     let fieldInfo = this.fieldInDB[this.selectField];
-                    let options = fieldInfo["ktypevalue"].split("/");
+                    let options = [];
+                    if(fieldInfo.ktypevalue !== undefined && fieldInfo.ktypevalue !== null && fieldInfo.ktypevalue !== ""){
+                        options = fieldInfo["ktypevalue"].split("&");
+                    }
                     let kid = fieldInfo["kid"];
                     let name = fieldInfo["kcnname"];
                     let targetOption = [];
@@ -240,7 +243,7 @@ let app = new Vue({
                     timeRange: timeObj,
                     formData: this.formConfig
                 };
-                console.log(JSON.stringify(destObj));
+                // console.log(JSON.stringify(destObj));
                 let that = this;
                 // 提交请求
                 $.ajax({
@@ -369,7 +372,7 @@ let app = new Vue({
                     url: "/tableOnline/admin/getDepartment",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        grades: gradeData
+                        gradeId: gradeData
                     },
                     dataType: "json",
                     success: function (res) {
@@ -408,7 +411,7 @@ let app = new Vue({
                     url: "/tableOnline/admin/getMajor",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        departments: departmentData
+                        departmentId: departmentData
                     },
                     dataType: "json",
                     success: function (res) {
@@ -446,7 +449,7 @@ let app = new Vue({
                     url: "/tableOnline/admin/getClazz",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        majors: majorData
+                        majorId: majorData
                     },
                     dataType: "json",
                     success: function (res) {
@@ -483,7 +486,7 @@ let app = new Vue({
                     url: "/tableOnline/admin/getStudent",
                     traditional: true, // 传递数组，不做深度序列化
                     data: {
-                        clazzs: classData
+                        clazzId: classData
                     },
                     dataType: "json",
                     success: function (res) {

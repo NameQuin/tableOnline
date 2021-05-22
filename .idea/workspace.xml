@@ -9,42 +9,24 @@
     <list default="true" id="db683a48-19e7-4a92-9411-b86018a9c178" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/IndexController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/RootController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/RootController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/KeysMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/KeysMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/TableInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/dao/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/AdminLoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/AdminLoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/RootLoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/RootLoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/UserLoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/interceptor/UserLoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/pojo/Keys.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/KeysService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/KeysService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/RootService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/RootService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/UserInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/KeysServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/KeysServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/RootServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/RootServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/tb/utils/MD5Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/team/tb/utils/MD5Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/KeysMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/KeysMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/adminPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/adminPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/addForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/addForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/addFormAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/js/addFormRoot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/editUserInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/editUserInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/userList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/moreForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/viewForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/viewForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/addForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/addForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/adminList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/adminList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/deletedFormList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/deletedFormList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/rootPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/rootPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/editUserInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/editUserInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/userInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/userInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/userList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/userList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/userPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/userPanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/viewForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/root/viewForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/userInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/userInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/viewForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/user/viewForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/team/tb/service/UserserviceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/team/tb/service/UserserviceTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -425,7 +407,8 @@
       <workItem from="1621402289576" duration="21643000" />
       <workItem from="1621469108393" duration="9770000" />
       <workItem from="1621491971630" duration="30023000" />
-      <workItem from="1621565089429" duration="15382000" />
+      <workItem from="1621565089429" duration="26921000" />
+      <workItem from="1621644362277" duration="885000" />
     </task>
     <servers />
   </component>

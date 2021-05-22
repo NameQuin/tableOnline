@@ -409,6 +409,9 @@ public class AdminServiceImpl implements AdminService {
         String path = realPath + tableInfo.getTfsrc();
         // 读取文件，获得文档对象
         Document doc = XmlUtils.readDocument(path);
+        // 获取表单标题
+        String formTitle = doc.selectSingleNode("//form-title").getText();
+        ret.put("formTitle", formTitle);
         // 获取所有的字段名，作为表头传递给前端
         List<Map> header = new ArrayList<>();
         List<Element> elements = (List<Element>) doc.selectNodes("//form-items/form-item");
@@ -554,6 +557,19 @@ public class AdminServiceImpl implements AdminService {
         user.setPassword(MD5Utils.encryption(user.getUsername(), "000000Aa@"));
         int ret = userService.updateById(user);
         return ret;
+    }
+
+    @Override
+    public List<Keys> getAllKeys() {
+        List<Keys> list = keysService.getAllKeys();
+        list.forEach(s -> {
+            String label = s.getKcnname();
+            // 对特殊字段重新赋值
+            if("年级".equals(label) || "院系".equals(label) || "专业".equals(label) || "班级".equals(label)){
+                s.setKtype("text");
+            }
+        });
+        return list;
     }
 
     /**

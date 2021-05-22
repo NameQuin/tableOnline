@@ -60,8 +60,12 @@
                 <!--            <el-col :span="2" v-if="formInfo.data[i+1] != undefined">{{i+1}}、{{formInfo.data[i+1].label}}:{{formInfo.data[i+1][item.type]}}</el-col>-->
             </el-row>
             <el-form-item>
-                <el-button type="primary" @click="submitForm('formInfo')">提交</el-button>
-                <el-button @click="resetForm('formInfo')">重置</el-button>
+                <el-col :span="8">&nbsp;</el-col>
+                <el-col :span="8">
+                    <el-button type="primary" @click="submitForm('formInfo')">提交</el-button>
+                    <el-button @click="resetForm('formInfo')">重置</el-button>
+                </el-col>
+                <el-col :span="8">&nbsp;</el-col>
             </el-form-item>
         </el-form>
     </div>

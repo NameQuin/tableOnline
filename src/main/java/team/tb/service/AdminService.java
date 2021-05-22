@@ -116,4 +116,10 @@ public interface AdminService {
      * @return
      */
     int resetUserPwd(Integer uid);
+
+    /**
+     * 获得数据库中所有字段
+     * @return
+     */
+    List<Keys> getAllKeys();
 }
